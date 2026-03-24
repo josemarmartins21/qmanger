@@ -19,6 +19,7 @@ use Illuminate\View\View;
 class RegisteredUserController extends Controller
 {
     use PermissionTrait;
+    
     /**
      * Display the registration view.
      */
@@ -41,9 +42,12 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', /* Rules\Password::defaults() */],
         ]);
 
+        
         if ($request->roles === null) {
             return redirect()->back()->with('nullRole', 'Selecione ao menos um nível de acesso');
         }
+
+        
 
         $user = User::create([
             'name' => $validated['name'],
@@ -51,9 +55,9 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
 
-        $this->givePermissions($request->roles, $user);
         
-        event(new Registered($user));
+
+        $this->givePermissions($request->roles, $user);
 
         return redirect()->route('users.index')->with('success', 'Utilizador registrado com sucesso!');
     }

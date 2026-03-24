@@ -48,12 +48,14 @@
                     >
                         Index
                     </x-dashboard.link-nav>
-                    <x-dashboard.link-nav 
-                    href="{{ route('users.index') }}"
-                    :active="request()->routeIs('users.index') || request()->routeIs('users.create')
-                    || request()->routeIs('users.edit')
-                    "
-                    >
+                    @can ('super-admin') 
+                        <x-dashboard.link-nav 
+                        href="{{ route('users.index') }}"
+                        :active="request()->routeIs('users.index') || request()->routeIs('users.create')
+                        || request()->routeIs('users.edit')
+                        "
+                        >
+                    @endcan
                     Gerir Usuários
                 </x-dashboard.link-nav>
                 <x-dashboard.link-nav 

@@ -6,11 +6,15 @@ use App\Http\Requests\UserRequestUpdate;
 use App\Models\Permission;
 use App\Models\User;
 use App\Traits\PermissionTrait;
-
+use LogicException;
 
 class UserController extends Controller
 {
     use PermissionTrait;
+
+    public function __cosntruct()
+    {
+    }
     /**
      * Display a listing of the resource.
      */
@@ -32,8 +36,9 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
+        return view('users.show', compact('user'));
     }
 
     /**
@@ -82,8 +87,15 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $user)
     {
-        //
+        try {
+
+            $user->delete();
+            return redirect()->back()->with('success', 'Usuário excluido com sucesso!');
+    
+        } catch (LogicException $e) {
+            return redirect()->back()->with('error', 'Não foi possivel excluir o usuário. Tente novamente mais tarde. Código do erro: ' . $e->getCode());
+        }
     }
 }

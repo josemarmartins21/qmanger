@@ -51,6 +51,7 @@ class User extends Authenticatable
             'name' => $permission
         ]);
 
+
         $this->permissions()->attach($permission);
     }
 

@@ -39,7 +39,7 @@
                                      <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
                                          @csrf
                                          @method('DELETE')
-                                         <x-dashboard.action-btn type="button" class="bg-red-800 mr-2.5">
+                                         <x-dashboard.action-btn type="button"  class="bg-red-800 mr-2.5 " onclick="return alert('Tem certeza que pretende excluir?')">
                                              Delete
                                          </x-dashboard.action-btn>
                                      </form>

@@ -23,6 +23,7 @@ trait PermissionTrait
      */
     private function givePermissions($permissions, User $user): void
     {
+
         if (!$permissions) throw new \Exception("Selecione ao menos um nível de aceeso!");
         
         foreach ($permissions as $permission) {

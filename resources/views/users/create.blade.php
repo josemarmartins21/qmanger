@@ -21,10 +21,10 @@
 
                 <x-dashboard.input-container>
                     <x-dashboard.form-label for="name">
-                        name
+                        Nome
                     </x-dashboard.form-label>
 
-                    <x-dashboard.form-input type="text" name="name" id="name" placeholder="name *"></x-dashboard.form-input>
+                    <x-dashboard.form-input type="text" value="{{ old('name') }}" name="name" id="name" placeholder="name *"></x-dashboard.form-input>
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </x-dashboard.input-container>
 
@@ -33,7 +33,7 @@
                         Email
                     </x-dashboard.form-label>
 
-                    <x-dashboard.form-input type="text" name="email" id="email" placeholder="Email *"></x-dashboard.form-input>
+                    <x-dashboard.form-input type="text" value="{{ old('email') }}" name="email" id="email" placeholder="Email *"></x-dashboard.form-input>
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </x-dashboard.input-container>
 
@@ -42,7 +42,7 @@
                         Senha
                     </x-dashboard.form-label>
 
-                    <x-dashboard.form-input type="password" name="password" id="password" placeholder="Senha *"></x-dashboard.form-input>
+                    <x-dashboard.form-input type="password" value="{{ old('password') }}" name="password" id="password" placeholder="Senha *"></x-dashboard.form-input>
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </x-dashboard.input-container>
                 
@@ -51,7 +51,7 @@
                         Confirmar Senha
                     </x-dashboard.form-label>
 
-                    <x-dashboard.form-input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirmar Senha *"></x-dashboard.form-input>
+                    <x-dashboard.form-input type="password" value="{{ old('password_confirmation') }}" name="password_confirmation" id="password_confirmation" placeholder="Confirmar Senha *"></x-dashboard.form-input>
                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                 </x-dashboard.input-container>
                 <x-dashboard.input-container>
