@@ -1,3 +1,268 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Laravel sources */
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+
+
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer {
+    body {
+        @apply bg-zinc-200 transition  dark:text-white dark:bg-[var(--dark-fundo-principal)] text-[#222222] h-screen md:flex md:flex-col;
+    }
+
+    #float-btn {
+        @apply fixed w-16 h-16 rounded-full flex items-center justify-center font-bold text-white transition duration-500 transform shadow-lg hover:shadow-xl active:scale-90 z-[20px] text-3xl p-5 md:cursor-pointer bg-blue-600 bottom-8 right-8;
+    }
+
+    /** === MODAL === */
+    #modal {
+        @apply w-[90%] md:w-[70%] dark:bg-[var(--dark-fundo-card)] bg-white p-2.5 shadow-2xl rounded-lg z-20 p-5;
+    }
+
+    /** OVERLAY */
+    #overlay {
+        @apply bg-black opacity-50 w-full h-screen z-10;
+    }
+
+    .abrir {
+        /* @apply absolute top-[50%] left-[50%] transform translate-y-[50%] translate-x-[50%]; */
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+    }
+
+    /**-------- FORM -----*/
+    h2#title-form {
+        @apply text-3xl font-semibold pb-5;
+    }
+
+    form#form-container {
+        @apply grid grid-cols-1 pb-5 md:grid-cols-2 gap-2.5 md:gap-4;
+    }
+
+    div.input-container {
+        @apply flex flex-col gap-[3px];
+    }
+
+    input::placeholder {
+        @apply text-xl;
+    }
+
+    /* ========== HEADER ================ */
+    header {
+        @apply bg-[var(--destaque)] dark:bg-slate-800 p-1 sm:p-1 flex justify-between items-center;
+    }
+
+    div#logo {
+        @apply flex items-center gap-2.5 p-4;
+    }
+
+    div#logo h1 {
+        @apply text-white hidden text-[var(--font-name-app)] lg:block text-4xl font-bold;
+    }
+
+    div#logo img {
+        @apply sm:w-40 w-36;
+    }
+
+    div#barra-divisao {
+        @apply hidden lg:block  w-1 h-20 bg-white;
+    }
+
+    div#data-actual {
+        @apply hidden sm:block;
+    }
+    div#data-actual p {
+        @apply text-white font-semibold text-2xl;
+    }
+    /* ====================================================== */
+
+   /* ======= CONETEUDO PRINCIPAL ===== */
+    main {
+        @apply lg:grid pb-5 flex-1 lg:pb-0 lg:grid-rows-1 lg:grid-cols-[320px_1fr] lg:grid-cols-[320px_1fr];
+    }   
+
+    section#side-bar {
+        @apply px-4 hidden md:sticky dark:bg-[var(--dark-fundo-card)] h-full bg-white lg:flex md:flex-col pt-8 md:gap-5 h-fit  overflow-y-auto;
+    }
+
+    div#link-container {
+        @apply p-[3px] mb-20 md:gap-2 md:flex md:flex-col md:items-center;
+    }
+
+    div#link-container a.link-nav {
+        @apply p-[3px]  w-full border-[7.5px] border-[var(--destaque)]  font-semibold rounded-lg;
+    }
+
+    .link-desativado {
+        @apply text-zinc-600 dark:text-zinc-300;
+    }
+
+    .link-active {
+        @apply bg-[var(--destaque)] text-white;
+    }
+
+    div#image-account {
+        @apply flex justify-center md:mt-5 flex-col items-center;
+    }
+
+    div#image-account img {
+        @apply md:w-[140px] lg:w-40 border-8 border-[var(--destaque)] aspect-square rounded-full object-cover;
+    }
+
+    div#image-account a {
+        @apply text-2xl font-bold mt-3  hover:underline;
+    }
+    div#logout-btn {
+        @apply text-[22px] text-[var(--destaque)] flex  items-center font-bold relative md:bottom-[3%]  pl-6 text-center gap-2.5; 
+    }
+
+    div#logout-btn button {
+        @apply md:cursor-pointer;
+    }
+
+    /** CONTEUDO DE CADA PAGINA */
+    div#principal-content {
+        @apply  m-5 md:m-[30px_35px_0px_35px] md:gap-7 lg:grid-cols-[70%_1fr];
+    }
+    div#fast-checkout {
+        @apply  m-5 md:m-[55px_35px_0px_35px]  md:gap-7 lg:grid-cols-[70%_1fr] md:grid-cols-1;
+    }
+
+    /** OVEVIEW */
+    div#overview h2 {
+        @apply text-3xl font-thin mb-5;
+    }
+
+    div#cards-resume {
+        @apply grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5;
+    }
+
+    div.card-resume {
+        @apply bg-[var(--fundo-card)] dark:bg-[var(--dark-fundo-card)] shadow-[var(--card-sombras)] dark:shadow-[var(--dark-card-sombras)] rounded-xl sm:rounded-[15px] p-4 md:p-3 flex flex-col gap-5;
+    }
+
+    div.card-resume h3 {
+        @apply sm:text-2xl  text-xl font-bold;
+    }
+
+    div.card-resume p {
+        @apply text-lg font-semibold;
+    }
+    
+    /** ======= TABLE ==================*/
+    div#table-container {
+        @apply overflow-x-auto md:mb-0 mb-[15px] bg-white rounded-lg shadow-[var(--card-sombras)] dark:bg-[var(--dark-fundo-card)];
+    }    
+
+    table#main-table {
+        @apply w-[600px] sm:w-[100%] m-auto rounded-t-lg overflow-hidden;
+    }
+
+    table#main-table thead {
+        @apply bg-[var(--destaque)] font-semibold text-white;
+    }
+    
+    #main-table td {
+        @apply border-b-2 py-2.5 border-zinc-300 text-zinc-600 dark:text-zinc-300 text-center;
+    }
+
+
+    table#main-table th {
+        @apply py-3.5;
+    }
+
+    /** RAKING */
+    #raking-container {
+        @apply bg-white lg:w-[300px] rounded-lg dark:bg-[var(--dark-fundo-card)] shadow-[var(--card-sombras)] p-2;
+    }
+
+    #header-raking {
+        @apply border-b-2 border-zinc-300 mb-2.5 p-2.5;
+    }
+
+    div#header-raking p {
+        @apply text-zinc-600 dark:text-zinc-300 pb-2.5 text-[14px]; 
+    }
+
+    div#header-raking h2 {
+        @apply text-3xl font-bold pb-2.5;
+    }
+
+    div#list-raking {
+        @apply flex flex-col gap-2.5;
+    }
+
+    div.item-raking {
+        @apply p-1;
+    }
+
+    div.item-raking p {
+        @apply flex justify-between gap-2.5 pb-3;
+    }
+
+    div.rate-bar-container {
+        @apply bg-zinc-300 h-3 rounded-full  relative;
+    }
+
+    div.rate-bar {
+        @apply bg-[var(--blue-primary)] h-full w-[50%] rounded-full;
+    }
+    /* ====================================================== */
+
+    /*========== CARDS CONTAINER ==========================*/ 
+    div#cards-container {
+        @apply flex flex-col justify-center items-center sm:items-start md:justify-start lg:flex-row md:gap-4 gap-4 lg:gap-3.5 flex-wrap pb-5;
+    }
+
+    .card {
+        @apply flex flex-col justify-between gap-2.5 bg-[var(--fundo-card)] dark:bg-[var(--dark-fundo-card)] shadow-[var(--card-sombras)] dark:shadow-[var(--dark-card-sombras)] rounded-lg p-2.5 lg:gap-4 w-[95%] sm:w-[70%] lg:w-[321px] h-[200px];
+    }
+
+    .card h3 {
+        @apply text-2xl font-semibold;
+    }
+
+    .card div.body p {
+        @apply text-zinc-600 dark:text-zinc-300;
+    }
+}
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --montserrat:  'Montserrat', sans-serif;  
+
+    --fundo-principal: #f3f2f2;
+    --texto: #222222;
+    --destaque: #0D3973;
+    --fundo-card: #ffff;
+    --card-sombras: 0 1px 3px #0000000f;
+
+    --blue-primary: #1a6dd4;
+
+    --dark-fundo-principal: #0f0f0f;    /* Preto muito escuro */
+    --dark-texto: #f0f0f0;               /* Branco/cinza claro */
+    --dark-destaque: #1a6dd4;            /* Azul mais brilhante */
+    --dark-fundo-card: #1e1e1e;          /* Cinza escuro para cards */
+    --dark-card-sombras: 0 1px 3px #00000050;  /* Sombra mais forte */
+    --dark-blue-primary: #3b82f6;        /* Azul bem visível */
+
+    --font-name-app:  "Boldonse", system-ui;
+}
+
+
+

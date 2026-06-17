@@ -1,19 +1,81 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.main')    
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+@section('title', 'Dashboard')
 
-        @fonts
+@section('content')
+    <section id="principal">
+        <x-dashboard.content>
+            <x-dashboard.overview>
+                <x-dashboard.title-overview title="Resumo" />
 
-    </head>
-    <body class="bg-[#FDFDFC] dark:bg-[#0a0a0a] text-[#1b1b18] flex p-6 lg:p-8 items-center lg:justify-center min-h-screen flex-col">
-      {{--  @dd(Auth::user()->hasPermission('admin')) --}}
+                <x-dashboard.cards-overview>    
+                    <x-dashboard.card-overview>
+                        <span>Lorem, ipsum.</span>
+                        <h3>150</h3>
+                        <p>Lorem ipsum dolor sit.</p>
+                    </x-dashboard.card-overview>
+                    
+                    <x-dashboard.card-overview>
+                        <span>Lorem, ipsum.</span>
+                        <h3>150</h3>
+                        <p>Lorem ipsum dolor sit.</p>
+                    </x-dashboard.card-overview>
+                    
+                    <x-dashboard.card-overview>
+                        <span>Lorem, ipsum.</span>
+                        <h3>150</h3>
+                        <p>Lorem ipsum dolor sit.</p>
+                    </x-dashboard.card-overview>
+                    
+                    <x-dashboard.card-overview>
+                        <span>Lorem, ipsum.</span>
+                        <h3>150</h3>
+                        <p>Lorem ipsum dolor sit.</p>
+                    </x-dashboard.card-overview>
+                </x-dashboard.cards-overview>
+            </x-dashboard.overview>
+        </x-dashboard.content>
 
-       @can('admin')
-           <h2>Admin pode ver</h2> 
-       @endcan
-    </body>
-</html>
+        <x-dashboard.fast-checkout class="md:grid">
+            <x-dashboard.main-table
+            >
+                <x-dashboard.table>
+                    <x-slot:thead>
+                        <th>col 1</th>
+                        <th>col 1</th>
+                        <th>col 1</th>
+                        <th>col 1</th>
+                    </x-slot:thead>
+                    
+                    <x-slot:body>
+                       @for ($i=0;$i < 5;$i++) 
+                         <tr>
+                             <td>lorem {{ $i+1  }} </td>
+                             <td>lorem {{ $i+1  }} </td>
+                             <td>lorem {{ $i +1}} </td>
+                             <td>
+                                 <x-dashboard.action-btn class="bg-green-800 mr-2.5">
+                                     Edit
+                                 </x-dashboard.action-btn>
+                                 <x-dashboard.action-btn class="bg-red-800 mr-2.5">
+                                     Delete
+                                 </x-dashboard.action-btn>
+                                 <x-dashboard.action-btn class="bg-blue-600">
+                                     Ver Mais
+                                 </x-dashboard.action-btn>
+                             </td>
+                         </tr>
+                       @endfor
+                    </x-slot:body>
+                </x-dashboard.table>
+            </x-dashboard.main-table>
+
+            <x-dashboard.raking 
+                description="Description Description"
+                title="Raking"
+            >
+                
+            </x-dashboard.raking>
+        </x-dashboard.fast-checkout>
+    </section>
+@endsection
