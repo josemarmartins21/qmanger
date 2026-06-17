@@ -1,11 +1,22 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    $user = User::find(2);
+    
+    $user->assignPermission('default');
+
+    Auth::login($user);
+
+
     return view('welcome');
-});
+
+    
+})->middleware(['auth', 'can:admin']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
