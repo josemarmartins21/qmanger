@@ -2,22 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Boldonse&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-
 /* Laravel sources */
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 
 
-
-
 @custom-variant dark (&:where(.dark, .dark *));
+:root {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --montserrat:  'Montserrat', sans-serif;  
+
+    --fundo-principal: #f3f2f2;
+    --texto: #222222;
+    --destaque: #0D3973;
+    --fundo-card: #ffff;
+    --card-sombras: 0 1px 3px #0000000f;
+
+    --blue-primary: #1a6dd4;
+
+    --dark-fundo-principal: #0f0f0f;    /* Preto muito escuro */
+    --dark-texto: #f0f0f0;               /* Branco/cinza claro */
+    --dark-destaque: #1a6dd4;            /* Azul mais brilhante */
+    --dark-fundo-card: #1e1e1e;          /* Cinza escuro para cards */
+    --dark-card-sombras: 0 1px 3px #00000050;  /* Sombra mais forte */
+    --dark-blue-primary: #3b82f6;        /* Azul bem visível */
+
+    --font-name-app:  "Boldonse", system-ui;
+}
+
 
 @layer {
     body {
-        @apply bg-zinc-200 transition  dark:text-white dark:bg-[var(--dark-fundo-principal)] text-[#222222] h-screen md:flex md:flex-col;
+        @apply bg-zinc-200 transition   dark:text-white dark:bg-[var(--dark-fundo-principal)] text-[var(--texto)] dark:text-[var(--dark-texto)] h-screen md:flex md:flex-col;
     }
 
     #float-btn {
@@ -31,7 +49,7 @@
 
     /** OVERLAY */
     #overlay {
-        @apply bg-black opacity-50 w-full h-screen z-10;
+        @apply bg-black opacity-50 w-[100%] h-screen z-10;
     }
 
     .abrir {
@@ -45,7 +63,7 @@
 
     /**-------- FORM -----*/
     h2#title-form {
-        @apply text-3xl font-semibold pb-5;
+        @apply text-[26px] font-semibold pb-5;
     }
 
     form#form-container {
@@ -53,7 +71,7 @@
     }
 
     div.input-container {
-        @apply flex flex-col gap-[3px];
+        @apply flex flex-col gap-1.5;
     }
 
     input::placeholder {
@@ -95,15 +113,15 @@
     }   
 
     section#side-bar {
-        @apply px-4 hidden md:sticky dark:bg-[var(--dark-fundo-card)] h-full bg-white lg:flex md:flex-col pt-8 md:gap-5 h-fit  overflow-y-auto;
+        @apply px-4 hidden md:sticky dark:bg-[var(--dark-fundo-card)] h-[100%] bg-white lg:flex md:flex-col pt-8 md:gap-5 overflow-y-auto;
     }
 
     div#link-container {
-        @apply p-[3px] mb-20 md:gap-2 md:flex md:flex-col md:items-center;
+        @apply p-1.5 mb-20 md:gap-2 md:flex md:flex-col md:items-center;
     }
 
     div#link-container a.link-nav {
-        @apply p-[3px]  w-full border-[7.5px] border-[var(--destaque)]  font-semibold rounded-lg;
+        @apply p-1.5  w-[100%] border  font-semibold rounded-lg;
     }
 
     .link-desativado {
@@ -218,7 +236,7 @@
     }
 
     div.rate-bar {
-        @apply bg-[var(--blue-primary)] h-full w-[50%] rounded-full;
+        @apply bg-[var(--blue-primary)] h-[100%] w-[50%] rounded-full;
     }
     /* ====================================================== */
 
@@ -240,29 +258,8 @@
     }
 }
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
 
-    --montserrat:  'Montserrat', sans-serif;  
 
-    --fundo-principal: #f3f2f2;
-    --texto: #222222;
-    --destaque: #0D3973;
-    --fundo-card: #ffff;
-    --card-sombras: 0 1px 3px #0000000f;
-
-    --blue-primary: #1a6dd4;
-
-    --dark-fundo-principal: #0f0f0f;    /* Preto muito escuro */
-    --dark-texto: #f0f0f0;               /* Branco/cinza claro */
-    --dark-destaque: #1a6dd4;            /* Azul mais brilhante */
-    --dark-fundo-card: #1e1e1e;          /* Cinza escuro para cards */
-    --dark-card-sombras: 0 1px 3px #00000050;  /* Sombra mais forte */
-    --dark-blue-primary: #3b82f6;        /* Azul bem visível */
-
-    --font-name-app:  "Boldonse", system-ui;
-}
 
 
 
