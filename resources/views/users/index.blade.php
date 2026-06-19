@@ -1,3 +1,4 @@
+@use('Illuminate\Support\Facades\Auth')
 @extends('layouts.main')
 
 
@@ -11,42 +12,55 @@
                 Usuários
             </x-dashboard.title-section>
 
-            <x-dashboard.main-table>
+            <x-dashboard.main-table class="md:mb-4">
                 <x-dashboard.table>
                     <x-slot:thead>
-                        <th>col 1</th>
-                        <th>col 1</th>
-                        <th>col 1</th>
-                        <th>col 1</th>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Ações</th>
                     </x-slot:thead>
                     
                     <x-slot:body>
-                       @for ($i=0;$i < 5;$i++) 
-                         <tr>
-                             <td>lorem {{ $i+1  }} </td>
-                             <td>lorem {{ $i+1  }} </td>
-                             <td>lorem {{ $i +1}} </td>
-                             <td>
-                                 <x-dashboard.action-btn class="bg-green-800 mr-2.5">
-                                     Edit
-                                 </x-dashboard.action-btn>
-                                 <x-dashboard.action-btn class="bg-red-800 mr-2.5">
-                                     Delete
-                                 </x-dashboard.action-btn>
-                                 <x-dashboard.action-btn class="bg-blue-600">
-                                     Ver Mais
-                                 </x-dashboard.action-btn>
-                             </td>
-                         </tr>
-                       @endfor
+                     
+                        @foreach ($users as $user) 
+                            @if (Auth::user()->id === $user->id)
+                                @continue
+                            @endif
+                             <tr>
+                                 <td>{{ $user->id }} </td>
+                                 <td>{{ $user->name }} </td>
+                                 <td>{{ $user->email }} </td>
+                                 <td>
+                                     <x-dashboard.action-btn type="link" href="{{ route('users.edit', $user->id) }}" class="bg-green-800 mr-2.5">
+                                         Editar
+                                     </x-dashboard.action-btn>
+
+                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
+                                         @csrf
+                                         @method('DELETE')
+                                         <x-dashboard.action-btn type="button" class="bg-red-800 mr-2.5">
+                                             Delete
+                                         </x-dashboard.action-btn>
+                                     </form>
+                                     
+                                     <x-dashboard.action-btn type="link" href="{{ route('users.show', $user->id) }}" class="bg-blue-600">
+                                         Ver Mais
+                                     </x-dashboard.action-btn>
+                                 </td>
+                             </tr>
+                        @endforeach
+                       
                     </x-slot:body>
                 </x-dashboard.table>
 
             </x-dashboard.main-table>
+            {{ $users->links() }}
         </x-dashboard.content>
         <x-dashboard.float-btn :rota="route('users.create')" >
             +
         </x-dashboard.float-btn>
+
     </section>
 @endsection    
 

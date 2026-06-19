@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\UserRequestUpdate;
+use App\Models\Permission;
+use App\Models\User;
+use App\Traits\PermissionTrait;
+
 
 class UserController extends Controller
 {
+    use PermissionTrait;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('users.index');
+        $users = User::paginate(5);
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -19,15 +25,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        $permissions = Permission::all();
+        return view('users.create', compact('permissions'));
     }
 
     /**
@@ -35,24 +34,50 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        $userPermissions = $user->load('permissions')['permissions'];
+        $permissions = Permission::all();
+
+        return view('users.edit', compact('user', 'permissions', 'userPermissions'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequestUpdate $request, User $user)
     {
-        //
+        
+        try {
+            $validated = $request->validated();
+
+            $userPermissions = $user->load('permissions')['permissions'];
+            $this->flushPermissions($userPermissions, $user);
+            
+            $user->update([
+                'name' => $validated['name'],
+                'email' => $validated['email'],
+            ]);
+    
+            $this->givePermissions($request->roles, $user);
+
+            return redirect()->route('users.index');
+            
+        } catch (\Throwable $e) {
+            dd($e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+
+
+
     }
+
+    
 
     /**
      * Remove the specified resource from storage.

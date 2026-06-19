@@ -1,1 +1,6 @@
-<input type="checkbox" name="role" id="{{ $target }}" value="{{ $value }}">
+@props([
+    'isCheck' => null,
+    'target' => null
+])
+
+<input type="checkbox" id="{{ $target }}" {{ $attributes }} @checked($isCheck) >

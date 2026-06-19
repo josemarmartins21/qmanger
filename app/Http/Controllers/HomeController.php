@@ -13,13 +13,6 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $user = User::find(1);
-
-        Auth::login($user);
-
-        $user->assignPermission('admin');
-
-        
         return view('welcome');
     }
 }

@@ -1,3 +1,4 @@
+@use('Illuminate\Support\Facades\Auth')
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -30,8 +31,8 @@
     <main>
         <section id="side-bar">
             <div id="image-account">
-                <img src="{{ asset('images/account/josemar.jpg') }}" alt="">
-                <a href="#">Josimar</a>
+                <img src="{{ asset('images/account/josemar.png') }}" alt="">
+                <a href="#" class="md:hover:underline">{{ Auth::user()->name }}</a>
             </div>
 
             <nav>
@@ -65,12 +66,15 @@
             </nav>
         
             <div id="logout-btn">
-                {{-- <button type="submit" id="btn-theme">
-                </button> --}}
                 
-                <button type="submit">
-                    <i class="fa-solid fa-right-from-bracket"></i>  Sair   
-                </button>
+                <form action="{{ route('logout') }}" method="POST">
+                    <button type="submit" onclick="return alert('Tem a certeza que deseja terminar a sessão?')">
+                        @csrf
+
+
+                        <i class="fa-solid fa-right-from-bracket"></i>  Sair
+                    </button>
+                </form>
             </div>
     </section>
     
