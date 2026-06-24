@@ -3,7 +3,6 @@
 
 @section('title', 'Usuários')
 
-
 @section('content')
     <section id="users-create">
                 <x-dashboard.content class="md:bg-white dark:bg-[var(--dark-fundo-card)] md:p-5">
@@ -16,7 +15,7 @@
         
             <x-dashboard.form-container 
                 method="POST" 
-                action="{{ route('register.store') }}"
+                action="{{ route('register') }}"
             >
 
                 <x-dashboard.input-container>

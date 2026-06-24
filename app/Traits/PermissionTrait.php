@@ -24,10 +24,14 @@ trait PermissionTrait
     private function givePermissions($permissions, User $user): void
     {
 
+        $wasAdd = [];
         if (!$permissions) throw new \Exception("Selecione ao menos um nível de aceeso!");
-        
-        foreach ($permissions as $permission) {
-            $user->assignPermission($permission);
+
+        for ($i=0; $i < count($permissions); $i++) { 
+            if (!in_array($permissions[$i], $wasAdd)) {
+                $user->assignPermission($permissions[$i]);
+            }
         }
+       
     }
 }

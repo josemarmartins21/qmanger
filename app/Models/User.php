@@ -51,8 +51,9 @@ class User extends Authenticatable
             'name' => $permission
         ]);
 
-
-        $this->permissions()->attach($permission);
+        if (!$this->permissions()->where('permission_id', $permission->id)->exists()) {
+            $this->permissions()->attach($permission);
+        }
     }
 
     /**

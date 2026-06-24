@@ -1,5 +1,5 @@
 @props([
-    'userId' => null,
+    'user' => null,
     'action' => '#',
 ])
 

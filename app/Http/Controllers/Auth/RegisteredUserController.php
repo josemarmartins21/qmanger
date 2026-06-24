@@ -47,15 +47,11 @@ class RegisteredUserController extends Controller
             return redirect()->back()->with('nullRole', 'Selecione ao menos um nível de acesso');
         }
 
-        
-
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
-
-        
 
         $this->givePermissions($request->roles, $user);
 

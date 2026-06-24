@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Permission::class);
+            $table->unique(['user_id', 'permission_id']);
             $table->timestamps();
         });
     }

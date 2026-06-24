@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequestUpdate;
 use App\Models\Permission;
 use App\Models\User;
 use App\Traits\PermissionTrait;
+use Exception;
 use LogicException;
 
 class UserController extends Controller
@@ -74,7 +75,6 @@ class UserController extends Controller
             return redirect()->route('users.index');
             
         } catch (\Throwable $e) {
-            dd($e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
 
@@ -95,6 +95,8 @@ class UserController extends Controller
             return redirect()->back()->with('success', 'Usuário excluido com sucesso!');
     
         } catch (LogicException $e) {
+            return redirect()->back()->with('error', 'Não foi possivel excluir o usuário. Tente novamente mais tarde. Código do erro: ' . $e->getCode());
+        } catch (Exception $e) {
             return redirect()->back()->with('error', 'Não foi possivel excluir o usuário. Tente novamente mais tarde. Código do erro: ' . $e->getCode());
         }
     }

@@ -1,5 +1,5 @@
 @props([
-    'userId' => null,
+    'user' => null,
 ])
 
 <div 
@@ -20,12 +20,12 @@
         </div>
 
         <!-- Form -->
-        <form action="" method="POST" class="p-6 space-y-4">
+        <form action="{{ route('password.update') }}" method="POST" class="p-6 text-black space-y-4">
             @csrf
             @method('PUT')
 
-            @if($userId)
-                <input type="hidden" name="user_id" value="{{ $userId }}">
+            @if($user->id)
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
             @endif
 
             <!-- Current Password -->
@@ -37,7 +37,6 @@
                     type="password" 
                     id="current_password" 
                     name="current_password" 
-                    required
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-zinc-400 focus:border-transparent transition"
                     placeholder="Digite sua senha atual"
                 >
@@ -55,7 +54,6 @@
                     type="password" 
                     id="password" 
                     name="password" 
-                    required
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-zinc-400 focus:border-transparent transition"
                     placeholder="Digite uma nova senha"
                 >
@@ -74,7 +72,6 @@
                     type="password" 
                     id="password_confirmation" 
                     name="password_confirmation" 
-                    required
                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-zinc-400 focus:border-transparent transition"
                     placeholder="Confirme a nova senha"
                 >

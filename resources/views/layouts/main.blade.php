@@ -52,7 +52,7 @@
                         <x-dashboard.link-nav 
                         href="{{ route('users.index') }}"
                         :active="request()->routeIs('users.index') || request()->routeIs('users.create')
-                        || request()->routeIs('users.edit')
+                        || request()->routeIs('users.edit') || request()->routeIs('users.show')
                         "
                         >
                     @endcan

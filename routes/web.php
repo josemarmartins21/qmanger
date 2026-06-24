@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/', HomeController::class)->name('home');
     Route::get('/index', IndexController::class)->name('index');
     Route::get('/create', CreateController::class)->name('create');
-    Route::resource('users', UserController::class)->middleware(['auth', 'can:admin']);
+    Route::resource('users', UserController::class)->middleware(['auth', 'can:admin'])->middleware(['auth', 'can:super-admin']);
 
     Route::view('settings', 'settings')->name('settings');
 

@@ -36,7 +36,7 @@
 
                     <!-- Actions Section -->
                     <div class="border-t border-gray-200 pt-8">
-                        <x-profile.change-password-button :userId="$user->id" />
+                        <x-profile.change-password-button :user="$user"  />
                     </div>
                 </div>
             </x-dashboard.content>
@@ -44,7 +44,7 @@
     </section>
 
     <!-- Change Password Modal -->
-    <x-profile.change-password-modal :userId="$user->id" />
+    <x-profile.change-password-modal :user="$user" />
 @endsection>
 
 
