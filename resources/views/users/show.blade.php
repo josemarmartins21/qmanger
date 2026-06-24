@@ -34,10 +34,29 @@
                         <x-profile.permissions-badge :user="$user" />
                     </div>
 
-                    <!-- Actions Section -->
-                    <div class="border-t border-gray-200 pt-8">
-                        <x-profile.change-password-button :user="$user"  />
-                    </div>
+
+                        @can ('super-admin')
+                            @if (!$user->hasPermission('super-admin'))
+                                <!-- Actions Section -->
+                                <div class="border-t border-gray-200 pt-8">
+                                    <x-profile.change-password-button :user="$user"  />
+                                </div>
+                            @endif 
+                        @endcan
+                        
+                        @can ('admin')
+                            @if (!$user->hasPermission('admin'))
+                                <!-- Actions Section -->
+                                <div class="border-t border-gray-200 pt-8">
+                                    <x-profile.change-password-button :user="$user"  />
+                                </div>
+                            @endif 
+                        @endcan
+
+                        @if (Auth::user()->hasPermission('super-admin') || Auth::user()->hasPermission('admin'))
+                            <x-dashboard.float-btn 
+                            :rota="route('users.edit', ['user' => Auth::user()->id])">E</x-dashboard.float-btn>
+                        @endif
                 </div>
             </x-dashboard.content>
         </div>

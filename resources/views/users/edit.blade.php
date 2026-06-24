@@ -39,35 +39,37 @@
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </x-dashboard.input-container>
                 
-                <x-dashboard.checkbox-container>
-                    <x-slot:title>
-                        Acessos
-                    </x-slot:title>
-
-                    <x-slot:check-box>
-                        @foreach ($permissions as $permission) 
-                            <div>
-                                 <x-dashboard.form-label for="{{ $permission->name }}">
-                                     {{ $permission->name }}
-                                 </x-dashboard.form-label>
-
-                                 @php
-                                     $wasChecked = false;
-
-                                     foreach ($userPermissions as $userpermission) {
-                                        if ($userpermission->name === $permission->name) {
-                                            $wasChecked = true;
+             @if (Auth::user()->id !== $user->id)  
+                   <x-dashboard.checkbox-container>
+                       <x-slot:title>
+                           Acessos
+                       </x-slot:title>
+   
+                       <x-slot:check-box>
+                           @foreach ($permissions as $permission) 
+                               <div>
+                                    <x-dashboard.form-label for="{{ $permission->name }}">
+                                        {{ $permission->name }}
+                                    </x-dashboard.form-label>
+   
+                                    @php
+                                        $wasChecked = false;
+   
+                                        foreach ($userPermissions as $userpermission) {
+                                           if ($userpermission->name === $permission->name) {
+                                               $wasChecked = true;
+                                           }
                                         }
-                                     }
-
-                                 @endphp
-                                 
-                                 <x-dashboard.form-checkbox name="roles[]" value="{{ $permission->name }}" target="{{ $permission->name }}" :isCheck="$wasChecked" />
-                                </div>
-                        @endforeach
-                    </x-slot:check-box>
-                      
-                </x-dashboard.checkbox-container>
+   
+                                    @endphp
+                                    
+                                    <x-dashboard.form-checkbox name="roles[]" value="{{ $permission->name }}" target="{{ $permission->name }}" :isCheck="$wasChecked" />
+                                   </div>
+                           @endforeach
+                       </x-slot:check-box>
+                         
+                   </x-dashboard.checkbox-container>
+             @endif
                 
                 <x-dashboard.input-container>
                     <x-dashboard.form-btn>
