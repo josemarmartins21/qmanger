@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\exceptions\UnauthorizedUserException;
 use App\Http\Requests\UserRequestUpdate;
 use App\Models\Permission;
 use App\Models\User;
+use App\Services\users\contracts\UserInterface;
 use App\Traits\PermissionTrait;
 use Exception;
 use Illuminate\Support\Facades\Gate;
@@ -14,9 +16,10 @@ class UserController extends Controller
 {
     use PermissionTrait;
 
-    public function __cosntruct()
+    public function __construct(
+        private UserInterface $user,
+    )
     {
-        Gate::authorize('any', ['super-admin', 'admin']);
     }
     /**
      * Display a listing of the resource.
@@ -90,11 +93,13 @@ class UserController extends Controller
     {
         try {
 
-            $user->delete();
+            $this->user->delete($user);
             return redirect()->back()->with('success', 'Usuário excluido com sucesso!');
     
         } catch (LogicException $e) {
             return redirect()->back()->with('error', 'Não foi possivel excluir o usuário. Tente novamente mais tarde. Código do erro: ' . $e->getCode());
+        } catch (UnauthorizedUserException $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Não foi possivel excluir o usuário. Tente novamente mais tarde. Código do erro: ' . $e->getCode());
         }

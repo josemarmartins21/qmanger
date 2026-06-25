@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Services\users\contracts\UserInterface;
+use App\Services\users\UserService;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(
+        UserInterface::class,
+            UserService::class
+        ); 
     }
 
     /**
@@ -22,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::define('access-admin', function(User $user) {
+            return $user->hasPermission('admin') || $user->hasPermission('super-admin');
+        });
+
         Gate::define('admin', function(User $user) {
             return $user->hasPermission('admin');
         });

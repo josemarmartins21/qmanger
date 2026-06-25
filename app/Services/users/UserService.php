@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Services\users;
+
+use App\exceptions\UnauthorizedUserException;
+use App\Models\User;
+use App\Services\users\contracts\UserInterface;
+use Illuminate\Support\Facades\Auth;
+
+class UserService implements UserInterface
+{
+    public function delete(User $user): void
+    {
+        if (! Auth::user()->is_master) {
+            throw new UnauthorizedUserException("Essa ação só é permitida a utilizadores master");
+        }
+
+        $user->delete();
+    }
+}
