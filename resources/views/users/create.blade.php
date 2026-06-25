@@ -65,12 +65,23 @@
 
                     <x-slot:check-box>
                         @foreach ($permissions as $permission) 
-                            <div>
-                                 <x-dashboard.form-label for="{{ $permission->name }}">
-                                     {{ $permission->name }}
-                                 </x-dashboard.form-label>
-                                 <x-dashboard.form-checkbox name="roles[]" value="{{ $permission->name }}" target="{{ $permission->name }}" />
+                            @can ('super-admin') 
+                                <div>
+                                     <x-dashboard.form-label for="{{ $permission->name }}">
+                                         {{ $permission->name }}
+                                     </x-dashboard.form-label>
+                                     <x-dashboard.form-checkbox name="roles[]" value="{{ $permission->name }}" target="{{ $permission->name }}" />
                                 </div>
+                            @elsecan ('admin') 
+                                @if ($permission->name === 'default') 
+                                    <div>
+                                         <x-dashboard.form-label for="{{ $permission->name }}">
+                                             {{ $permission->name }}
+                                         </x-dashboard.form-label>
+                                         <x-dashboard.form-checkbox name="roles[]" value="{{ $permission->name }}"  :isCheck="true" target="{{ $permission->name }}" />
+                                    </div>
+                                @endif
+                            @endcan
                         @endforeach
                     </x-slot:check-box>
                       

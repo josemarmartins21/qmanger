@@ -7,6 +7,7 @@ use App\Models\Permission;
 use App\Models\User;
 use App\Traits\PermissionTrait;
 use Exception;
+use Illuminate\Support\Facades\Gate;
 use LogicException;
 
 class UserController extends Controller
@@ -15,6 +16,7 @@ class UserController extends Controller
 
     public function __cosntruct()
     {
+        Gate::authorize('any', ['super-admin', 'admin']);
     }
     /**
      * Display a listing of the resource.
@@ -77,9 +79,6 @@ class UserController extends Controller
         } catch (\Throwable $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
-
-
-
     }
 
     

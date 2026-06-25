@@ -1,4 +1,5 @@
 @use('Illuminate\Support\Facades\Auth')
+@use('App\Helpers\DateHelper')
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -21,11 +22,11 @@
             
             <div id="barra-divisao"></div>
 
-            <h1>QManager</h1>
+            <h1 class="text-5xl font-bold">QManager</h1>
         </div>
 
         <div id="data-actual">
-            <p>Lorem ipsum dolor sit amet</p>
+            <p>{{ DateHelper::currentExtendedDate() }}</p>
         </div>
     </header>
     <main>
@@ -55,9 +56,19 @@
                         || request()->routeIs('users.edit') || request()->routeIs('users.show')
                         "
                         >
+                        Gerir Usuários
+                    </x-dashboard.link-nav>
                     @endcan
-                    Gerir Usuários
-                </x-dashboard.link-nav>
+                    @can ('admin') 
+                        <x-dashboard.link-nav 
+                        href="{{ route('users.index') }}"
+                        :active="request()->routeIs('users.index') || request()->routeIs('users.create')
+                        || request()->routeIs('users.edit') || request()->routeIs('users.show')
+                        "
+                        >
+                        Gerir Usuários
+                    </x-dashboard.link-nav>
+                    @endcan
                 <x-dashboard.link-nav 
                     href="{{ route('settings') }}"
                     :active="request()->routeIs('settings')"
