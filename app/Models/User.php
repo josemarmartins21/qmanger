@@ -68,4 +68,32 @@ class User extends Authenticatable
             $this->permissions()->detach($permission);
         }
     }
+
+    /**============================= */
+    /**
+     * RELATIONS
+     * 
+     */
+
+    /**============================= */
+
+    public function accounts()
+    {
+        return $this->hasMany(Account::class);
+    }
+
+    public function plans()
+    {
+        return $this->hasMany(Plan::class);
+    }
+
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
+    }
+
+    public function signatures()
+    {
+        return $this->hasMany(Signature::class);
+    }
 }
