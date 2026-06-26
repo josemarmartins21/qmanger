@@ -6,7 +6,7 @@
     <section id="principal">
         <x-dashboard.content>
             <x-dashboard.overview>
-                <x-dashboard.title-overview title="Resumo" />
+            <x-slot:title>Resumo Rápido</x-slot:title>
 
                 <x-dashboard.cards-overview>    
                     <x-dashboard.card-overview>

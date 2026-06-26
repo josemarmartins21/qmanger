@@ -124,8 +124,6 @@
         @apply p-1.5  w-[100%] font-semibold rounded-lg;
     }
 
-
-
     .link-active {
         @apply bg-[var(--destaque)] text-white;
     }
@@ -177,10 +175,15 @@
     div.card-resume p {
         @apply text-lg font-semibold;
     }
+
+    /** PRINCIPAL */
+    #principal {
+        @apply md:w-[80%] md:m-auto lg:w-[100%];
+    }
     
     /** ======= TABLE ==================*/
     div#table-container {
-        @apply overflow-x-auto md:mb-0 mb-[15px] bg-white rounded-lg shadow-[var(--card-sombras)] dark:bg-[var(--dark-fundo-card)];
+        @apply overflow-x-auto md:mb-0 mb-[15px] bg-white rounded-lg shadow-[var(--card-sombras)] sm:dark:bg-[var(--dark-fundo-card)] dark:bg-transparent;
     }    
 
     table#main-table {
@@ -202,7 +205,7 @@
 
     /** RAKING */
     #raking-container {
-        @apply bg-white lg:w-[300px] rounded-lg dark:bg-[var(--dark-fundo-card)] shadow-[var(--card-sombras)] p-2;
+        @apply bg-white lg:w-[300px] rounded-lg sm:dark:bg-[var(--dark-fundo-card)] dark:bg-transparent shadow-[var(--card-sombras)] p-2;
     }
 
     #header-raking {

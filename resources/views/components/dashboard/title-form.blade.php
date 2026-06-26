@@ -1,5 +1,5 @@
 <div {{ $attributes }}>
-    <h2 id="title-form">
+    <h2 id="title-form" class="text-2xl font-bold">
         {{ $title }}
     </h2>
 

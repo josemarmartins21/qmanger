@@ -10,7 +10,7 @@
             <!-- Profile Card -->
             <x-dashboard.content class="overflow-hidden">
                 <!-- Background Header -->
-                <div class="h-32 bg-slate-600"></div>
+                <div class="h-20 bg-slate-600"></div>
                 
                 <!-- Profile Content -->
                 <div class="px-6 py-8 sm:px-8">
@@ -34,6 +34,11 @@
                         <x-profile.permissions-badge :user="$user" />
                     </div>
 
+                        @if ($user->is_master AND Auth::user()->id === $user->id)
+                            <div class="border-t border-gray-200 pt-8">
+                                <x-profile.change-password-button :user="$user"  />
+                            </div>
+                        @endif
 
                         @can ('super-admin')
                             @if (!$user->hasPermission('super-admin'))
@@ -54,8 +59,22 @@
                         @endcan
 
                         @if (Auth::user()->hasPermission('super-admin') || Auth::user()->hasPermission('admin'))
-                            <x-dashboard.float-btn 
-                            :rota="route('users.edit', ['user' => Auth::user()->id])">E</x-dashboard.float-btn>
+                            @can ('can-edit-admin') 
+                                @if (! $user->hasPermission('super-admin')) 
+                                    <x-dashboard.float-btn 
+                                    :rota="route('users.edit', ['user' => Auth::user()->id])">E</x-dashboard.float-btn>
+                                @endif
+                                    
+                                @if (Auth::user()->is_master AND $user->hasPermission('super-admin'))
+                                    <x-dashboard.float-btn 
+                                    :rota="route('users.edit', ['user' => Auth::user()->id])">E</x-dashboard.float-btn>
+                                @endif
+                            @elsecan ('can-edit-default') 
+                                @if (! $user->hasPermission('admin') AND ! $user->hasPermission('super-admin')) 
+                                    <x-dashboard.float-btn 
+                                    :rota="route('users.edit', ['user' => Auth::user()->id])">E</x-dashboard.float-btn>
+                                @endif
+                            @endcan
                         @endif
                 </div>
             </x-dashboard.content>

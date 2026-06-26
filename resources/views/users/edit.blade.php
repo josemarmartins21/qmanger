@@ -6,7 +6,7 @@
 
 @section('content')
     <section id="users-create">
-                <x-dashboard.content class="md:bg-white dark:bg-[var(--dark-fundo-card)] md:p-5">
+        <x-dashboard.content class="md:bg-white sm:p-5 dark:bg-transparent sm:dark:bg-[var(--dark-fundo-card)] md:p-5">
             <x-dashboard.title-form class="pb-3">
                 <x-slot:title>Editar Usuário {{ $user->name }}</x-slot:title>
                 <x-slot:disclaimer>

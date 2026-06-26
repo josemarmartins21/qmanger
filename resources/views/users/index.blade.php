@@ -24,12 +24,9 @@
                     <x-slot:body>
                      
                         @foreach ($users as $user) 
-                            @if (Auth::user()->id === $user->id)
-                                @continue
-                            @endif
                              <tr>
                                  <td>{{ $user->id }} </td>
-                                 <td>{{ $user->name }} </td>
+                                 <td @class(['text-green-900 font-bold' => $user->is_master])>{{ $user->name }} </td>
                                  <td>{{ $user->email }} </td>
                                  <td>
                                      <x-dashboard.action-btn type="link" href="{{ route('users.edit', $user->id) }}" class="bg-green-800 mr-2.5">
@@ -39,9 +36,11 @@
                                      <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
                                          @csrf
                                          @method('DELETE')
-                                         <x-dashboard.action-btn type="button"  class="bg-red-800 mr-2.5 " onclick="return alert('Tem certeza que pretende excluir?')">
-                                             Delete
-                                         </x-dashboard.action-btn>
+                                         @if (!$user->is_master) 
+                                            <x-dashboard.action-btn type="button"  class="bg-red-800 mr-2.5 " onclick="return alert('Tem certeza que pretende excluir?')">
+                                                Delete
+                                            </x-dashboard.action-btn>
+                                         @endif
                                      </form>
                                      
                                      <x-dashboard.action-btn type="link" href="{{ route('users.show', $user->id) }}" class="bg-blue-600">

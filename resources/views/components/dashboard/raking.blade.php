@@ -3,7 +3,7 @@
         <div id="header-raking">
             <p> {{ $description }} </p>
     
-            <h2>{{ $title }}</h2>
+            <h2>{{ $title }}</h2>   
         </div>
     
         <div id="list-raking">
