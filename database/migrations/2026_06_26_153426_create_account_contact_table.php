@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('account_contact', function (Blueprint $table) {
             $table->id();
             
-            $table->foreignIdFor(Account::class);
-            $table->foreignIdFor(Contact::class);
+            $table->foreignIdFor(Account::class)->nullable()->constrained()->nullOnDelete()->nullOnUpdate();
+            $table->foreignIdFor(Contact::class)->nullable()->constrained()->nullOnDelete()->nullOnUpdate();
 
             $table->unique(['account_id', 'contact_id']);
 
