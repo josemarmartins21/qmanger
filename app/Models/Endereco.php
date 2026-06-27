@@ -14,9 +14,9 @@ class Endereco extends Model
         return $this->belongsTo(Account::class);
     }
 
-    public function contact()
+    public function contacts()
     {
-        return $this->belongsTo(Contact::class);
+        return $this->hasMany(Contact::class);
     }
 
     public function bairro()

@@ -11,7 +11,7 @@ class Contact extends Model
 
     public function endereco()
     {
-        return $this->hasOne(Endereco::class);
+        return $this->belongsTo(Endereco::class);
     }
 
     public function user()

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Bairro;
 use App\Models\Endereco;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -18,7 +19,9 @@ class EnderecoFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'indicacoes' => fake()->text(),
+            'street' => fake()->streetAddress(),
+            'bairro_id' => Bairro::all()->random()->id,
         ];
     }
 }

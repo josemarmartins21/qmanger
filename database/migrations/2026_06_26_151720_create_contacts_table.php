@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('first_name', 35);
             $table->string('last_name', 35);
-            $table->string('phone', 13);
+            $table->string('phone', 20);
             $table->string('email', 60)->unique()->nullable();
 
             $table->foreignId('user_id')
