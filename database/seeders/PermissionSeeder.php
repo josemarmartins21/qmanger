@@ -13,6 +13,14 @@ class PermissionSeeder extends Seeder
      */
     public function run(): void
     {
-       Permission::factory(3)->hasUsers(10)->create();
+       Permission::factory(1)->hasUsers(5)->create([
+        'name' => 'admin'
+       ]);
+       Permission::factory(1)->hasUsers(5)->create([
+        'name' => 'default'
+       ]);
+       Permission::factory(1)->hasUsers(3)->create([
+        'name' => 'super-admin'
+       ]);
     }
 }

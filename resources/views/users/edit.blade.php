@@ -1,10 +1,33 @@
 @extends('layouts.main')
-
+@props(['canotEdit' => true])
 
 @section('title', 'Usuários')
 
 
 @section('content')
+    @if (Auth::user()->hasPermission('super-admin') || Auth::user()->hasPermission('admin'))
+        @can ('can-edit-admin') 
+            @if (! $user->hasPermission('super-admin')) 
+                @php
+                    $canotEdit = false;
+                @endphp
+            @endif
+                
+            @if (Auth::user()->is_master AND $user->hasPermission('super-admin'))
+                @php
+                    $canotEdit = false;
+                @endphp
+            @endif
+        @elsecan ('can-edit-default')
+        
+            @if (! $user->hasPermission('admin') AND ! $user->hasPermission('super-admin')) 
+                @php
+                    $canotEdit = false;
+                @endphp
+            @endif
+        @endcan
+    @endif
+
     <section id="users-create">
         <x-dashboard.content class="md:bg-white sm:p-5 dark:bg-transparent sm:dark:bg-[var(--dark-fundo-card)] md:p-5">
             <x-dashboard.title-form class="pb-3">
@@ -26,7 +49,7 @@
                         name
                     </x-dashboard.form-label>
 
-                    <x-dashboard.form-input type="text" value="{{ $user->name }}" name="name" id="name" placeholder="name *"></x-dashboard.form-input>
+                    <x-dashboard.form-input type="text" value="{{ $user->name }}" name="name" id="name" placeholder="name *" :canotEdit="$canotEdit"></x-dashboard.form-input>
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </x-dashboard.input-container>
 
@@ -35,11 +58,11 @@
                         Email
                     </x-dashboard.form-label>
 
-                    <x-dashboard.form-input type="text" value="{{ $user->email }}" name="email" id="email" placeholder="Email *"></x-dashboard.form-input>
+                    <x-dashboard.form-input type="text" value="{{ $user->email }}" name="email" id="email" placeholder="Email *" :canotEdit="$canotEdit"></x-dashboard.form-input>
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </x-dashboard.input-container>
                 
-             @if (Auth::user()->id !== $user->id)  
+                @if (Auth::user()->id !== $user->id)  
                    <x-dashboard.checkbox-container>
                        <x-slot:title>
                            Acessos
@@ -64,12 +87,12 @@
                                     @endphp
                                     
                                     <x-dashboard.form-checkbox name="roles[]" value="{{ $permission->name }}" target="{{ $permission->name }}" :isCheck="$wasChecked" />
-                                   </div>
+                                </div>
                            @endforeach
-                       </x-slot:check-box>
+                        </x-slot:check-box>
                          
                    </x-dashboard.checkbox-container>
-             @endif
+                @endif
                 
                 <x-dashboard.input-container>
                     <x-dashboard.form-btn>

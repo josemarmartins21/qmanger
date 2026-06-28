@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
            EnderecoSeeder::class,
            PlanSeeder::class,
            AccountSeeder::class,
+           ContactSeeder::class,
            SignatureSeeder::class
         ]);
 

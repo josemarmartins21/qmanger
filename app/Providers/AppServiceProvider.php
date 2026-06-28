@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Services\plans\contracts\PlanInterface;
+use App\Services\plans\PlanService;
 use App\Services\users\contracts\UserInterface;
 use App\Services\users\UserService;
 use Illuminate\Support\Facades\Gate;
@@ -16,8 +18,12 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(
-        UserInterface::class,
+            UserInterface::class,
             UserService::class
+        ); 
+        $this->app->bind(
+            PlanInterface::class,
+            PlanService::class
         ); 
     }
 

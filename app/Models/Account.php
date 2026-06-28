@@ -24,4 +24,9 @@ class Account extends Model
     {
         return $this->hasMany(Signature::class);
     }
+
+    public function contacts()
+    {
+        return $this->belongsToMany(Contact::class);
+    }
 }

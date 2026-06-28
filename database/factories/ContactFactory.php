@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Contact;
+use App\Models\Endereco;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,6 +25,7 @@ class ContactFactory extends Factory
             'phone' => fake()->phoneNumber(),
             'email' => fake()->email(),
             'user_id' => User::all()->random()->id,
+            'endereco_id' => Endereco::all()->random()->id,
         ];
     }
 }

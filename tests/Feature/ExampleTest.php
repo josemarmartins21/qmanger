@@ -16,4 +16,13 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_dashboard_card_component_serializes_data_prop_to_data_attribute(): void
+    {
+        $view = $this->blade('<x-dashboard.card :data="$plan" />', [
+            'plan' => ['name' => 'Plano Básico', 'price' => 90],
+        ]);
+
+        $view->assertSee('"name":"Plano Básico"', false);
+    }
 }

@@ -18,4 +18,9 @@ class Contact extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function accounts()
+    {
+        return $this->belongsToMany(Account::class);
+    }
 }

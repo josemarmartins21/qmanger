@@ -44,10 +44,10 @@
                         Home
                     </x-dashboard.link-nav>
                     <x-dashboard.link-nav 
-                        href="{{ route('index') }}"
-                        :active="request()->routeIs('index') || request()->routeIs('create')"
+                        href="{{ route('plans.index') }}"
+                        :active="request()->routeIs('plans.index') || request()->routeIs('plans.create')"
                     >
-                        Index
+                        Planos
                     </x-dashboard.link-nav>
                     @can ('super-admin') 
                         <x-dashboard.link-nav 

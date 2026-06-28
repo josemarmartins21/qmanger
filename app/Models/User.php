@@ -96,4 +96,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Signature::class);
     }
+
+    public function log_dmls()
+    {
+        return $this->hasMany(LogDml::class);
+    }
 }
