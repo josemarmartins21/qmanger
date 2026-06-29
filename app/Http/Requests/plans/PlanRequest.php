@@ -25,8 +25,8 @@ class PlanRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:50',
-            'price' => 'required|numeric|min:0|min_digits:4|max_digits:6',
-            'instalation_tax' => 'required|numeric|min:0|min_digits:4|max_digits:6',
+            'price' => 'required|numeric|gte:5000|min_digits:4|max_digits:6',
+            'instalation_tax' => 'required|numeric|gte:50000|min_digits:4|max_digits:6',
             'description' => 'nullable|string|max:300',
             'velocity_download' => 'required|integer|numeric|min:2|max_digits:3|max:120',
         ];

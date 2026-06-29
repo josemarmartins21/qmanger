@@ -30,7 +30,11 @@
                                 </x-dashboard.card-btn>
     
                                 <x-dashboard.action-btn-container>
-                                    <x-dashboard.action-btn class="bg-green-700">
+                                    <x-dashboard.action-btn 
+                                        type="link" 
+                                        class="bg-green-700"
+                                        href="{{ route('plans.edit', ['plan' => $plan->id]) }}"
+                                    >
                                         <i class="fa-solid fa-edit text-xl"></i>
                                     </x-dashboard.action-btn>
     

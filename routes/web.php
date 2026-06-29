@@ -9,7 +9,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
-    Route::resource('plans', PlanController::class);
+    Route::resource('plans', PlanController::class)->except(['show']);
 
     Route::get('/', HomeController::class)->name('home');
     Route::get('/index', IndexController::class)->name('index');

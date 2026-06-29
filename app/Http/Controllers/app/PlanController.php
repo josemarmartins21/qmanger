@@ -4,6 +4,7 @@ namespace App\Http\Controllers\app;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\plans\PlanRequest;
+use App\Http\Requests\plans\PlanUpdateRequest;
 use App\Models\Plan;
 use App\Observers\plans\LoggerObserver;
 use App\Services\plans\contracts\PlanInterface;
@@ -32,9 +33,28 @@ class PlanController extends Controller
         return view('plans.create');
     }
 
-    public function edit()
+    public function edit(Plan $plan)
     {
-        return view('plans.edit');
+        return view('plans.edit', compact('plan'));
+    }
+
+    public function update(Plan $plan, PlanUpdateRequest $request)
+    {
+        try {
+            $validated = $request->validated();
+
+            $this->plan->update($plan, $validated);
+            return redirect()
+            ->back()
+            ->withInput()
+            ->with('success', 'Plano actualizado com sucesso!');
+
+        } catch (\Exception $e) {
+            return redirect()
+            ->back()
+            ->withInput()
+            ->with('error', 'Erro ao actualizar o plano, tente novamente. ' . $e->getMessage());
+        }
     }
 
     public function store(PlanRequest $request)

@@ -12,7 +12,7 @@ class PlanUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,22 @@ class PlanUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:50',
+            'price' => 'required|numeric|gte:10000|min_digits:4|max_digits:6',
+            'instalation_tax' => 'required|numeric|gte:50000|min_digits:4|max_digits:6',
+            'description' => 'nullable|string|max:300',
+            'velocity_download' => 'required|integer|numeric|min:2|max_digits:3|max:120',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'nome do plano',
+            'price' => 'preço',
+            'instalation_tax' => 'taxa de instalação',
+            'description' => 'descrição',
+            'velocity_download' => 'velocidade de download',
         ];
     }
 }

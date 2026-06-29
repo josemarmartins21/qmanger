@@ -45,7 +45,7 @@
                     </x-dashboard.link-nav>
                     <x-dashboard.link-nav 
                         href="{{ route('plans.index') }}"
-                        :active="request()->routeIs('plans.index') || request()->routeIs('plans.create')"
+                        :active="request()->routeIs('plans.index') || request()->routeIs('plans.create') || request()->routeIs('plans.edit')" 
                     >
                         Planos
                     </x-dashboard.link-nav>
