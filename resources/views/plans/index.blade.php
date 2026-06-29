@@ -19,7 +19,7 @@
     
                             <x-slot:body>
                                 <ul>
-                                    <li class="text-xl mb-1  text-zinc-100">Preço: AOA{{ $plan->price }}</li>
+                                    <li class="text-xl mb-1  text-zinc-100">Preço: {{ number_format($plan->price, 2, ',', '.') }}Kz</li>
                                     <li class="text-zinc-400">Velocidade: {{ $plan->velocity_download }}mbps </li>
                                 </ul>
                             </x-slot:body>
@@ -73,6 +73,16 @@
                         <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
                             <span class="font-medium">Velocidade</span>
                             <span id="modal-velocity" class="text-zinc-100 font-semibold"></span>
+                        </li>
+                        
+                        <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
+                            <span class="font-medium">Taxa de instalação</span>
+                            <span id="instalation_tax" class="text-zinc-100 font-semibold"></span>
+                        </li>
+
+                        <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
+                            <span class="font-medium">Registrado por</span>
+                            <span id="(instalation_tax)" class="text-zinc-100 font-semibold"></span>
                         </li>
                     </ul>
 

@@ -20,8 +20,17 @@ class PlanService implements PlanInterface
 
     public function getAll(): LengthAwarePaginator
     {
-        return Plan::select('name', 'price', 'id', 'velocity_download', 'description')
-        ->orderByDesc('created_at')
+        return Plan::select(
+            'plans.name', 
+            'plans.price', 
+            'plans.id', 
+            'plans.velocity_download', 
+            'plans.description', 
+            'plans.instalation_tax',
+            'users.name AS user_name'
+        )
+        ->join('users', 'users.id', '=', 'plans.user_id')
+        ->orderByDesc('plans.created_at')
         ->paginate(6);
     }
 

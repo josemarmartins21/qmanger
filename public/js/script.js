@@ -37,6 +37,8 @@ function showModal(dado) {
     var price = document.getElementById('modal-price')
     var velocity = document.getElementById('modal-velocity')
     var description = document.getElementById('modal-description')
+    var instalationTax = document.getElementById('instalation_tax')
+    var userName = document.getElementById('user_name')
     
     var wantOpen = overlay.classList.contains('hidden')
     var o = overlay
@@ -53,9 +55,11 @@ function showModal(dado) {
     } 
 
     title.innerText = dado.name;
-    price.innerText = 'AOA' + dado.price;
-    velocity.innerText = dado.velocity_download + ' Mbps';
+    price.innerText = dado.price + 'Kz';
+    velocity.innerText = dado.velocity_download + 'Mbps';
     description.innerText = dado.description;
+    instalationTax.innerText = dado.instalation_tax + 'Kz';
+    userName.innerText = dado.user_name;
     
 }
 

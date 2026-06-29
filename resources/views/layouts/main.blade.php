@@ -49,6 +49,12 @@
                     >
                         Planos
                     </x-dashboard.link-nav>
+                    <x-dashboard.link-nav 
+                        href="{{ route('contacts.index') }}"
+                        :active="request()->routeIs('contacts.index') || request()->routeIs('contacts.create') || request()->routeIs('contacts.edit')" 
+                    >
+                        Clientes
+                    </x-dashboard.link-nav>
                     @can ('super-admin') 
                         <x-dashboard.link-nav 
                         href="{{ route('users.index') }}"
