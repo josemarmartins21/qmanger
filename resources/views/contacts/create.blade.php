@@ -1,13 +1,13 @@
 @extends('layouts.main')
 
-@section('title', 'QManager - Planos')
+@section('title', 'QManager - Clientes')
 
 
 @section('content')
     <section id="index-container">
        <x-dashboard.content class="md:bg-white md:dark:bg-[var(--dark-fundo-card)] md:p-5">
             <x-dashboard.title-form class="pb-3">
-                <x-slot:title>Novo Plano</x-slot:title>
+                <x-slot:title>Novo Cliente</x-slot:title>
                 <x-slot:disclaimer>
                     Os campos obrigatórios estão marcados com *
                 </x-slot:disclaimer>
@@ -19,12 +19,30 @@
             >
 
                 <x-dashboard.input-container>
-                    <x-dashboard.form-label for="name">
-                        Nome
+                    <x-dashboard.form-label for="first_name">
+                        Primeiro Nome
                     </x-dashboard.form-label>
 
-                    <x-dashboard.form-input type="text" value="{{ old('name') }}" name="name" id="name" placeholder="Nome *"></x-dashboard.form-input>
-                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                    <x-dashboard.form-input type="text" value="{{ old('first_name') }}" name="first_name" id="name" placeholder="Primeiro nome do cliente *"></x-dashboard.form-input>
+                    <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
+                </x-dashboard.input-container>
+
+                <x-dashboard.input-container>
+                    <x-dashboard.form-label for="last_name">
+                        Último Nome
+                    </x-dashboard.form-label>
+
+                    <x-dashboard.form-input type="text" value="{{ old('last_name') }}" name="last_name" id="name" placeholder="Último nome do cliente *"></x-dashboard.form-input>
+                    <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
+                </x-dashboard.input-container>
+                
+                <x-dashboard.input-container>
+                    <x-dashboard.form-label for="last_name">
+                        Último Nome
+                    </x-dashboard.form-label>
+
+                    <x-dashboard.form-input type="text" value="{{ old('last_name') }}" name="last_name" id="name" placeholder="Último nome do cliente *"></x-dashboard.form-input>
+                    <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
                 </x-dashboard.input-container>
 
                 <x-dashboard.input-container>

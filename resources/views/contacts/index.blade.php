@@ -7,7 +7,7 @@
        <x-dashboard.content>
             <x-dashboard.title-section>
                 Clientes
-            </x-dashboard.title-section>
+            </x-dashboard.title-section> 
 
     
             <x-dashboard.main-table class="md:mb-4">
@@ -36,11 +36,13 @@
                                      </x-dashboard.action-btn>
 
                                      <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST" class="inline">
-                                         @csrf
-                                         @method('DELETE')
-                                            <x-dashboard.action-btn type="button"  class="bg-red-800 mr-2.5 " onclick="return alert('Tem certeza que pretende excluir?')">
-                                                Delete
-                                            </x-dashboard.action-btn>
+                                        @csrf
+
+                                        @method('DELETE')
+
+                                        <x-dashboard.action-btn type="button"  class="bg-red-800 mr-2.5 " onclick="return alert('Tem certeza que pretende excluir?')">
+                                            Delete
+                                        </x-dashboard.action-btn>
                                      </form>
                                      
                                      <x-dashboard.action-btn type="link" href="{{ route('contacts.show', $contact->id) }}" class="bg-blue-600">
@@ -56,13 +58,11 @@
             </x-dashboard.main-table>
             {{ $contacts->links() }}
        </x-dashboard.content>
-
-
-    <x-dashboard.float-btn 
-        bottom="2"
-        :rota="route('contacts.create')"
-    >
-        +
-    </x-dashboard.float-btn> 
+       <x-dashboard.float-btn 
+           bottom="2"
+           :rota="route('contacts.create')"
+       >
+           +
+       </x-dashboard.float-btn> 
     </section>
 @endsection  
