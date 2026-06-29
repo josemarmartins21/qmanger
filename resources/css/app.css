@@ -39,7 +39,7 @@
     }
 
     #float-btn {
-        @apply fixed w-16 h-16 rounded-full flex items-center justify-center font-bold text-white transition duration-500 transform shadow-lg hover:shadow-xl active:scale-90 z-[20px] text-3xl p-5 md:cursor-pointer bg-blue-600 bottom-8 right-8;
+        @apply fixed w-16 h-16 rounded-full flex items-center justify-center font-bold text-white transition duration-500 transform shadow-lg hover:shadow-xl active:scale-90 z-[20px] text-3xl p-5 md:cursor-pointer bg-blue-600 right-8;
     }
 
     /** === MODAL === */

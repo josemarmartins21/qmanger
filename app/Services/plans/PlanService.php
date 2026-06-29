@@ -5,7 +5,9 @@ namespace App\Services\plans;
 use App\Models\Plan;
 use App\Observers\plans\contracts\PlanObserverInterface;
 use App\Services\plans\contracts\PlanInterface;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use LogicException;
 
 class PlanService implements PlanInterface
@@ -14,11 +16,32 @@ class PlanService implements PlanInterface
     private $newData;
     private $oldData;
 
-    public function getAll(): Collection
+    public function getAll(): LengthAwarePaginator
     {
         return Plan::select('name', 'price', 'id', 'velocity_download', 'description')
         ->orderByDesc('created_at')
-        ->get();
+        ->paginate(6);
+    }
+
+    public function save($data = []): void
+    {
+        
+        try {
+            Plan::create([  
+                'name' => Str::ucwords($data['name']),
+                'price' => $data['price'],
+                'instalation_tax' => $data['instalation_tax'],
+                'description' => Str::ucfirst($data['description']),
+                'velocity_download' => $data['velocity_download'],
+                'user_id' => Auth::user()->id,
+            ]);
+    
+            // $this->newData = $plan;
+           // $this->notifyObservers();
+
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
     }
 
     public function delete(Plan $plan): void

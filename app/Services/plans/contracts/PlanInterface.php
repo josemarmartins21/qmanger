@@ -3,10 +3,11 @@
 namespace App\Services\plans\contracts;
 
 use App\Models\Plan;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 interface PlanInterface
 {
-    public function getAll(): Collection;
+    public function getAll(): LengthAwarePaginator;
     public function delete(Plan $plan): void;
+    public function save($data = []): void;
 }

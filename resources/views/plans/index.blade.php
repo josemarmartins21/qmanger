@@ -4,12 +4,6 @@
 
 
 @section('content')
-    <x-dashboard.float-btn 
-        :rota="route('create')"
-    >
-        +
-    </x-dashboard.float-btn> 
-
     <section id="index-container">
        <x-dashboard.content>
             <x-dashboard.title-section>
@@ -57,6 +51,7 @@
                     
                     @endforelse
             </x-dashboard.cards-container>
+            {{ $plans->links() }}
        </x-dashboard.content>
        <x-dashboard.modal>
             <div class="p-6 bg-zinc-900 text-zinc-100 rounded-md">
@@ -84,11 +79,18 @@
                 </div>
 
                 <footer class="mt-5 flex justify-end">
-                    <button type="button" class="px-4 py-2 bg-zinc-700 hover:bg-zinc-600 text-zinc-100 rounded" id="close-modal-btn">
+                    <button type="button" class="px-4 py-2 bg-red-700 hover:opacity-100 md:opacity-80 text-zinc-100 rounded" id="close-modal-btn">
                         Fechar
                     </button>
                 </footer>
             </div>
        </x-dashboard.modal>
+
+    <x-dashboard.float-btn 
+        bottom="2"
+        :rota="route('plans.create')"
+    >
+        +
+    </x-dashboard.float-btn> 
     </section>
 @endsection  

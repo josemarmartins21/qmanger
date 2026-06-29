@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\app;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\plans\PlanRequest;
 use App\Models\Plan;
 use App\Observers\plans\LoggerObserver;
 use App\Services\plans\contracts\PlanInterface;
 use Exception;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use InvalidArgumentException;
 use LogicException;
 
 class PlanController extends Controller
@@ -25,12 +27,41 @@ class PlanController extends Controller
         return view('plans.index', compact('plans'));
     }
 
+    public function create()
+    {
+        return view('plans.create');
+    }
+
+    public function edit()
+    {
+        return view('plans.edit');
+    }
+
+    public function store(PlanRequest $request)
+    {
+        
+        try {
+            $validated = $request->validated();
+    
+            $this->plan->save($validated);
+    
+            return redirect()
+            ->route('plans.index')
+            ->with('success', 'Plano criado com sucesso!');
+        } catch (\Exception $e) {
+            return redirect()
+            ->back()
+            ->withInput()
+            ->with('error', 'Erro ao registar o plano, tente novamente. ' . $e->getMessage());
+        }
+    }
+
     public function destroy(Plan $plan)
     {
         try {
             
             $this->plan->addObservers(new LoggerObserver);
-            
+
             $this->plan->delete($plan);
 
             return redirect()->back()->with('success', 'Registro eliminado com sucesso!');
