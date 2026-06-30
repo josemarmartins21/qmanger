@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Facades\enderecos\EnderecoFacade;
+use App\Http\Requests\contacts\ContactRequest;
+use App\Models\Account;
 use App\Services\contacts\contracts\ContactInterface;
-use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
+    private $bairroMunicipio = [];
+
     public function __construct(
         private ContactInterface $contact
     )
     {
-        
+        $this->bairroMunicipio = EnderecoFacade::bairroMunicipios();
     }
     /**
      * Display a listing of the resource.
@@ -27,15 +31,33 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        $bairroMunicipios = $this->bairroMunicipio;
+        
+        $contas = Account::select('name', 'id', 'is_active')
+        ->orderBy('name')
+        ->get()->toArray();
+
+        return view('contacts.create', compact('bairroMunicipios', 'contas'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
-        //
+        
+        try {
+            $validated = $request->validated();
+    
+            $this->contact->save($validated);
+
+            return redirect()->route('contacts.index')
+            ->with('success', 'Contacto criado com sucesso!');
+        } catch (\Throwable $e) {
+            dd($e->getMessage());
+            return redirect()->back()->withInput()
+            ->with('error', $e->getMessage());
+        }
     }
 
     /**

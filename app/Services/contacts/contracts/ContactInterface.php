@@ -10,7 +10,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 interface ContactInterface
 {
     public function getAll(): LengthAwarePaginator;
- /*    public function delete(Plan $plan): void;
     public function save($data = []): void;
+ /*    public function delete(Plan $plan): void;
     public function update(Plan $plan, $data = []): void; */
 }

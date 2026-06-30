@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('enderecos', function (Blueprint $table) {
             $table->id();
-            $table->text('indicacoes');
-            $table->string('street', 100)->nullable();
+            $table->text('indicacoes')->nullable();
+            $table->string('street', 80);
             $table->foreignId('bairro_id')->constrained()->restrictOnDelete()
             ->restrictOnUpdate();
             $table->timestamps();

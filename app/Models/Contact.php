@@ -2,9 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+#[Fillable([
+    'first_name', 
+    'email', 
+    'last_name',
+    'endereco_id',
+    'phone',
+    'user_id',
+])]
 class Contact extends Model
 {
     use HasFactory;
@@ -23,4 +32,18 @@ class Contact extends Model
     {
         return $this->belongsToMany(Account::class);
     }
+
+    public function associateAccount(Account $account): void
+    {
+        if (! $this->accounts()->where('accounts.id', $account->id)->exists()) {
+            $this->accounts()->attach($account);
+            return;
+        }
+        throw new \Exception("Contacto já associado a conta: " . $account->name);
+    }
+
+ /*    public function hasAccount()
+    {
+        $this->accounts()->where('id', );
+    } */
 }

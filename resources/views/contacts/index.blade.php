@@ -25,7 +25,7 @@
                      
                         @foreach ($contacts as $contact) 
                              <tr>
-                                 <td>{{ $contact->id }} </td>
+                                 <td>{{ $loop->index + 1 }} </td>
                                  <td>{{ $contact->first_name . ' '. $contact->last_name }} </td>
                                  <td>{{ $contact->phone }} </td>
                                  <td>{{ $contact->email }} </td>
