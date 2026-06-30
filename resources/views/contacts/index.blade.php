@@ -31,21 +31,33 @@
                                  <td>{{ $contact->email }} </td>
                                  <td>{{ $contact->bairro . ' - ' . $contact->municipio }} </td>
                                  <td>
-                                     <x-dashboard.action-btn type="link" href="{{ route('contacts.edit', $contact->id) }}" class="bg-green-800 mr-2.5">
+                                     <x-dashboard.action-btn 
+                                        type="link" 
+                                        href="{{ route('contacts.edit', ['contact' => $contact->contact_id]) }}" 
+                                        class="bg-green-800 mr-2.5"
+                                     >
                                          Editar
                                      </x-dashboard.action-btn>
 
-                                     <form action="{{ route('contacts.destroy', $contact->id) }}" method="POST" class="inline">
+                                     <form action="{{ route('contacts.destroy', ['contact' => $contact->contact_id]) }}" method="POST" class="inline">
                                         @csrf
 
                                         @method('DELETE')
 
-                                        <x-dashboard.action-btn type="button"  class="bg-red-800 mr-2.5 " onclick="return alert('Tem certeza que pretende excluir?')">
+                                        <x-dashboard.action-btn 
+                                            type="button"  
+                                            class="bg-red-800 mr-2.5 " 
+                                            onclick="return alert('Tem certeza que pretende excluir?')"
+                                        >
                                             Delete
                                         </x-dashboard.action-btn>
                                      </form>
                                      
-                                     <x-dashboard.action-btn type="link" href="{{ route('contacts.show', $contact->id) }}" class="bg-blue-600">
+                                     <x-dashboard.action-btn 
+                                        type="link" 
+                                        href="{{ route('contacts.show', ['contact' => $contact->contact_id]) }}" 
+                                        class="bg-blue-600"
+                                    >
                                          Ver Mais
                                      </x-dashboard.action-btn>
                                  </td>

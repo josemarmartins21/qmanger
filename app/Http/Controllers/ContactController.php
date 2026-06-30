@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Facades\enderecos\EnderecoFacade;
 use App\Http\Requests\contacts\ContactRequest;
+use App\Http\Requests\contacts\ContactUpdateRequest;
 use App\Models\Account;
+use App\Models\Contact;
 use App\Services\contacts\contracts\ContactInterface;
 
 class ContactController extends Controller
@@ -71,17 +73,31 @@ class ContactController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Contact $contact)
     {
-        //
+        $bairroMunicipios = $this->bairroMunicipio;
+
+        return view('contacts.edit', compact('contact', 'bairroMunicipios'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(
+        ContactUpdateRequest $request, 
+        Contact $contact
+    )
     {
-        //
+        
+        try {
+            
+            $this->contact->update($contact, $request->validated());
+
+            return redirect()->back()->with('success', 'Contacto actualizado com sucesso!');
+
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
     }
 
     /**

@@ -12,7 +12,7 @@ class ContactUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,24 @@ class ContactUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'first_name' => 'required|string|max:35',
+            'last_name' => 'required|string|max:35',
+            'email' => 'required|email|max:60|string|lowercase',
+            'indicacoes' => 'nullable|min:20|string|max:300',
+            'phone' => 'required|max:20|string',
+            'bairro_id' => 'required|integer|numeric|min:1',
+            'street' => 'required|max:80|string',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'first_name' => 'primeiro nome',
+            'last_name' => 'último nome',
+            'phone' => 'telefone',
+            'bairro_id' => 'bairro/município',
+            'street' => 'rua',
         ];
     }
 }

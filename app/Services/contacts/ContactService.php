@@ -6,8 +6,10 @@ use App\Facades\enderecos\EnderecoFacade;
 use App\Models\Account;
 use App\Models\Contact;
 use App\Services\contacts\contracts\ContactInterface;
+use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
+use InvalidArgumentException;
 
 class ContactService implements ContactInterface
 {
@@ -22,7 +24,7 @@ class ContactService implements ContactInterface
             'municipios.name AS municipio',
             'contacts.email',
             'contacts.phone',
-            'contacts.id',
+            'contacts.id as contact_id',
             'municipios.id',
         ];
 
@@ -39,7 +41,7 @@ class ContactService implements ContactInterface
     public function save($data = []): void
     {
         try {
-            
+
            $endereco = EnderecoFacade::create($data);
            $account = Account::find($data['account_id']);
     
@@ -61,6 +63,36 @@ class ContactService implements ContactInterface
        } catch (\Exception $e) {
             throw new \Exception("Erro: " . $e->getMessage());
        }
+    }
+
+    public function update(Contact $contact, $data = []): void
+    {
+        try {
+
+            $this->isAvaliable('email', $data['email'], $contact);
+            $this->isAvaliable('phone', $data['phone'], $contact);
+            
+            $contact->update($data);
+            $contact->endereco->update([
+                'bairro_id' => $data['bairro_id']
+            ]);
+
+        } catch (\InvalidArgumentException $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    private function isAvaliable(string $column, $attribute, Contact $contact): void
+    {
+        $unAvaliable = Contact::where($column, $attribute)
+        ->where('id', '<>', $contact->id)
+        ->exists();
+
+        $column = $column == 'phone' ? 'telefone' : $column;
+
+        if ($unAvaliable) {
+            throw new InvalidArgumentException("O " . $column . " " . $attribute . " já está em uso.");
+        }
     }
 
 }
