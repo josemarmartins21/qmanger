@@ -12,7 +12,9 @@
 
             <x-dashboard.cards-container>
                     @forelse ($plans as $plan) 
-                        <x-dashboard.card :data="$plan">
+                        <x-dashboard.card 
+                            :data="$plan"
+                        >
                             <x-slot:header>
                                 <h3 class="text-2xl font-semibold">{{ $plan->name }}</h3>
                             </x-slot:header>
@@ -25,7 +27,7 @@
                             </x-slot:body>
     
                             <x-slot:footer>
-                                <x-dashboard.card-btn    class="ver-mais bg-blue-600">
+                                <x-dashboard.card-btn    class="ver-mais-plano bg-blue-600">
                                     Ver Mais
                                 </x-dashboard.card-btn>
     
@@ -44,7 +46,7 @@
                                         @csrf
                                         @method('Delete')
 
-                                        <x-dashboard.action-btn onclick="return alert('Tem a certeza que pretende eliminar?')" class="bg-red-700">
+                                        <x-dashboard.action-btn onclick="return confirm('Tem a certeza que pretende eliminar?')" class="bg-red-700">
                                             <i class="fa-solid fa-trash text-xl"></i>
                                         </x-dashboard.action-btn>
                                     </form>
@@ -57,7 +59,7 @@
             </x-dashboard.cards-container>
             {{ $plans->links() }}
        </x-dashboard.content>
-       <x-dashboard.modal>
+              <x-dashboard.modal>
             <div class="p-6 bg-zinc-900 text-zinc-100 rounded-md">
                 <header class="mb-4 border-b border-zinc-800 pb-3">
                     <h2 id="modal-title" class="text-2xl font-semibold"></h2>
@@ -82,7 +84,7 @@
 
                         <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
                             <span class="font-medium">Registrado por</span>
-                            <span id="(instalation_tax)" class="text-zinc-100 font-semibold"></span>
+                            <span id="modal-user" class="text-zinc-100 font-semibold"></span>
                         </li>
                     </ul>
 

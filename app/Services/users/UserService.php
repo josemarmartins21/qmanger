@@ -2,7 +2,7 @@
 
 namespace App\Services\users;
 
-use App\exceptions\UnauthorizedUserException;
+use App\Exceptions\UnauthorizedUserException;
 use App\Models\User;
 use App\Services\users\contracts\UserInterface;
 use Illuminate\Support\Facades\Auth;

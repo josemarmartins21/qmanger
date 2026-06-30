@@ -25,8 +25,11 @@ class ContactService implements ContactInterface
             'municipios.name AS municipio',
             'contacts.email',
             'contacts.phone',
+            'contacts.user_id',
             'contacts.id as contact_id',
             'municipios.id',
+            'enderecos.indicacoes',
+            'enderecos.street',
         ];
 
         $contacts = Contact::select($attributes)

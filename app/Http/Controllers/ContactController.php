@@ -97,7 +97,7 @@ class ContactController extends Controller
             return redirect()->back()->with('success', 'Contacto actualizado com sucesso!');
 
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 

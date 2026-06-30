@@ -37,7 +37,7 @@
                                          @csrf
                                          @method('DELETE')
                                          @if (!$user->is_master) 
-                                            <x-dashboard.action-btn type="button"  class="bg-red-800 mr-2.5 " onclick="return alert('Tem certeza que pretende excluir?')">
+                                            <x-dashboard.action-btn type="button"  class="bg-red-800 mr-2.5 " onclick="return confirm('Tem certeza que pretende excluir?')">
                                                 Delete
                                             </x-dashboard.action-btn>
                                          @endif
