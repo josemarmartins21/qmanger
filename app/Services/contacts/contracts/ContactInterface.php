@@ -9,7 +9,7 @@ interface ContactInterface
 {
     public function getAll(): LengthAwarePaginator;
     public function save($data = []): void;
-    public function update(Contact $plan, $data = []): void; 
-    /*    public function delete(Contact $plan): void;
-    */
+    public function update(Contact $contact, $data = []): void; 
+    public function delete(Contact $contact): void;
+    
 }

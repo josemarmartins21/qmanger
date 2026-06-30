@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use InvalidArgumentException;
+use LogicException;
 
 class ContactService implements ContactInterface
 {
@@ -92,6 +93,28 @@ class ContactService implements ContactInterface
 
         if ($unAvaliable) {
             throw new InvalidArgumentException("O " . $column . " " . $attribute . " já está em uso.");
+        }
+    }
+
+    public function delete(Contact $contact): void
+    {
+        try {
+
+            $accounts = $contact->accounts;
+
+            foreach ($accounts as $account) {
+               if ($account->contacts->count() < 2) 
+                throw new Exception("A conta não pode ficar sem um proprietário!");
+            }
+
+            $endereco = $contact->endereco;
+            
+            $contact->delete();
+
+           // $endereco->delete();
+
+        } catch (LogicException) {
+            throw new \Exception("Erro ao elimiar o contacto. Tente novamente!");
         }
     }
 

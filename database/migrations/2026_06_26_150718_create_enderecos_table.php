@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->text('indicacoes')->nullable();
             $table->string('street', 80);
+
             $table->foreignId('bairro_id')->constrained()->restrictOnDelete()
             ->restrictOnUpdate();
+            
             $table->timestamps();
         });
     }

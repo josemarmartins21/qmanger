@@ -8,6 +8,7 @@ use App\Http\Requests\contacts\ContactUpdateRequest;
 use App\Models\Account;
 use App\Models\Contact;
 use App\Services\contacts\contracts\ContactInterface;
+use Exception;
 
 class ContactController extends Controller
 {
@@ -103,8 +104,13 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Contact $contact)
     {
-        //
+        try {
+            $this->contact->delete($contact);
+            return redirect()->back()->with('success', 'Contacto elimino com sucesso!');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 }
