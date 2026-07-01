@@ -111,7 +111,7 @@ class ContactService implements ContactInterface
                 throw new Exception("A conta não pode ficar sem um proprietário!");
             }
 
-            $endereco = $contact->endereco;
+           // $endereco = $contact->endereco;
             
             $contact->delete();
 

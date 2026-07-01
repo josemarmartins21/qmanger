@@ -39,8 +39,8 @@
                     <x-dashboard.input-select name="type">
                         <option value="" selected>Selecione o tipo de conta</option>
                         <option 
-                            value="residencial" 
-                            @selected(old('type', $account->type) == 'residencial')
+                            value="residêncial" 
+                            @selected(old('type', $account->type) == 'residêncial')
                         >
                             Residêncial
                         </option>
@@ -61,10 +61,10 @@
                     </x-dashboard.form-label>
 
                     <x-dashboard.input-select name="is_active">
-                        <option value="1" @selected(old('is_active') == '1' )>
+                        <option value="1" @selected(old('is_active', $account->is_active) == '1' )>
                             Activada
                         </option>
-                        <option value="0" @selected(old('is_active') == '0' )>
+                        <option value="0" @selected(old('is_active', $account->is_active) == '0' )>
                             Desactivada
                         </option>
                     </x-dashboard.input-select>

@@ -9,6 +9,7 @@ use App\Services\accounts\contracts\AccountInterface;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use LogicException;
 
 class AccountService implements AccountInterface
 {
@@ -80,9 +81,24 @@ class AccountService implements AccountInterface
             $account->updateOrFail($data);       
 
         } catch (\Throwable) {
-            throw new Exception("Algo deu errado tente novamente.");
+            throw new Exception("Algo deu errado, tente novamente.");
         } catch (Exception $e) {
             throw new \Exception($e->getMessage());
+        }
+    }
+
+    public function delete(Account $account): void
+    {
+        try {
+            
+            $enderecoId = $account->endereco_id;
+
+            $account->delete();
+            Endereco::find($enderecoId)->delete();
+
+
+        } catch (LogicException) {
+            throw new Exception("Algo deu errado, tente novamente.");
         }
     }
 }

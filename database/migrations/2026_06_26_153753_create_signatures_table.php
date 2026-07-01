@@ -16,8 +16,8 @@ return new class extends Migration
 
             $table->foreignId('account_id')
             ->constrained('accounts')
-            ->restrictOnDelete()
-            ->restrictOnUpdate();
+            ->cascadeOnDelete()
+            ->cascadeOnUpdate();
             $table->foreignId('plan_id')
             ->constrained('plans')
             ->restrictOnDelete()

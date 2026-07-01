@@ -8,7 +8,6 @@ use App\Http\Requests\accounts\AccountUpdateRequest;
 use App\Models\Account;
 use App\Services\accounts\contracts\AccountInterface;
 use Exception;
-use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
@@ -66,6 +65,17 @@ class AccountController extends Controller
 
             return redirect()->back()->with('success', 'Contacto actualizado com sucesso!');
         } catch (\Throwable $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function destroy(Account $account)
+    {
+        try {
+            $this->account->delete($account);
+            return redirect()->back()->with('success', 'Contacto excluido com sucesso!');
+        } catch (Exception $e) {
+            dd($e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
