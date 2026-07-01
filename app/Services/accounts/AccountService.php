@@ -4,6 +4,7 @@ namespace App\Services\accounts;
 
 use App\Facades\enderecos\EnderecoFacade;
 use App\Models\Account;
+use App\Models\Endereco;
 use App\Services\accounts\contracts\AccountInterface;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -64,5 +65,24 @@ class AccountService implements AccountInterface
         );
 
         return $numberAccount;
+    }
+
+    public function update(
+        Account $account, 
+        $data = []
+    ): void
+    {
+        try {
+
+            $endereco = Endereco::find($account->endereco_id);
+            EnderecoFacade::update($endereco, $data);
+    
+            $account->updateOrFail($data);       
+
+        } catch (\Throwable) {
+            throw new Exception("Algo deu errado tente novamente.");
+        } catch (Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
     }
 }

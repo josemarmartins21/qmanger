@@ -23,8 +23,8 @@ class ContactUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required|string|max:35',
-            'last_name' => 'required|string|max:35',
+            'first_name' => 'required|string|max:35|min:3',
+            'last_name' => 'required|string|max:35|min:3',
             'email' => 'required|email|max:60|string|lowercase',
             'indicacoes' => 'nullable|min:20|string|max:300',
             'phone' => 'required|max:20|string',

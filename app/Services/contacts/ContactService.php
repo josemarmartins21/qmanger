@@ -11,6 +11,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use InvalidArgumentException;
 use LogicException;
+use Throwable;
 
 class ContactService implements ContactInterface
 {
@@ -77,11 +78,11 @@ class ContactService implements ContactInterface
             $this->isAvaliable('phone', $data['phone'], $contact);
             
             $contact->update($data);
-            $contact->endereco->update([
-                'bairro_id' => $data['bairro_id']
-            ]);
+            EnderecoFacade::update($contact->endereco, $data);
 
         } catch (\InvalidArgumentException $e) {
+            throw new Exception($e->getMessage());
+        } catch (Throwable $e) {
             throw new Exception($e->getMessage());
         }
     }

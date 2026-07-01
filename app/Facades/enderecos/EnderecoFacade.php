@@ -4,6 +4,8 @@ namespace App\Facades\enderecos;
 
 use App\Models\Bairro;
 use App\Models\Endereco;
+use Exception;
+use Throwable;
 
 class EnderecoFacade
 {
@@ -26,5 +28,19 @@ class EnderecoFacade
             'bairro_id' => $data['bairro_id'],
             'street' => $data['street'],
         ]);
+    }
+    
+    public static function update(Endereco $endereco, $data = [])
+    {
+        try {
+            return $endereco->updateOrFail([
+                'indicacoes' => $data['indicacoes'],
+                'bairro_id' => $data['bairro_id'],
+                'street' => $data['street'],
+            ]);
+
+        } catch (Throwable) {
+            throw new Exception("Algo deu errado tente novamente.");
+        }
     }
 }

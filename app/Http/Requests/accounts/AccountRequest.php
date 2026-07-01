@@ -24,7 +24,7 @@ class AccountRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:50',
+            'name' => 'required|string|max:50|min:3',
             'is_active' => 'required|integer|min:0|max:1|boolean',
             'type' => 'required|string|'. Rule::in(['empresarial', 'residêncial']),
             'street' => 'required|string|max:80',

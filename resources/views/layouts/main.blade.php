@@ -31,11 +31,6 @@
     </header>
     <main>
         <section id="side-bar">
-            <div id="image-account">
-                <img src="{{ asset('images/account/josemar.png') }}" alt="">
-                <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}" class="md:hover:underline">{{ Auth::user()->name }}</a>
-            </div>
-
             <nav>
                 <x-dashboard.link-nav-container>
                     <x-dashboard.link-nav href="{{ route('home') }}"
