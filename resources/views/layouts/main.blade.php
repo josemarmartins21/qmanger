@@ -50,6 +50,12 @@
                         Planos
                     </x-dashboard.link-nav>
                     <x-dashboard.link-nav 
+                        href="{{ route('accounts.index') }}"
+                        :active="request()->routeIs('accounts.index') || request()->routeIs('accounts.create') || request()->routeIs('accounts.edit')" 
+                    >
+                        Contas
+                    </x-dashboard.link-nav>
+                    <x-dashboard.link-nav 
                         href="{{ route('contacts.index') }}"
                         :active="request()->routeIs('contacts.index') || request()->routeIs('contacts.create') || request()->routeIs('contacts.edit')" 
                     >

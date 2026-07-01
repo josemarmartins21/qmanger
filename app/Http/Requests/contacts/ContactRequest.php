@@ -47,6 +47,7 @@ class ContactRequest extends FormRequest
             'bairro_id' => 'bairro/município',
             'account' => 'conta',
             'street' => 'rua',
+            'indicacoes' => 'indicações',
         ];
     }
 

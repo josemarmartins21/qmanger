@@ -2,9 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+#[Fillable([
+            'name',
+            'type',
+            'number_account',
+            'user_id',
+            'endereco_id',
+            'is_active',
+            'activation_date',
+        ])]
 class Account extends Model
 {
     /** @use HasFactory<\Database\Factories\AccountFactory> */

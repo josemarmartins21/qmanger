@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Requests\contacts;
+namespace App\Http\Requests\accounts;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class ContactUpdateRequest extends FormRequest
+class AccountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,25 +24,24 @@ class ContactUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => 'required|string|max:35',
-            'last_name' => 'required|string|max:35',
-            'email' => 'required|email|max:60|string|lowercase',
+            'name' => 'required|string|max:50',
+            'is_active' => 'required|integer|min:0|max:1|boolean',
+            'type' => 'required|string|'. Rule::in(['empresarial', 'residêncial']),
+            'street' => 'required|string|max:80',
             'indicacoes' => 'nullable|min:20|string|max:300',
-            'phone' => 'required|max:20|string',
-            'bairro_id' => 'required|integer|numeric|min:1',
-            'street' => 'required|max:80|string',
+            'bairro_id' => 'required|integer|min:0'
         ];
     }
 
     public function attributes()
     {
         return [
-            'first_name' => 'primeiro nome',
-            'last_name' => 'último nome',
-            'phone' => 'telefone',
+            'name' => 'nome da conta',
+            'is_active' => 'estado da conta',
+            'type' => 'tipo de conta',
+            'indicacoes' => 'indicações',
             'bairro_id' => 'bairro/município',
             'street' => 'rua',
-            'indicacoes' => 'indicações',
         ];
     }
 }

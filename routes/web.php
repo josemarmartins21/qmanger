@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\app\PlanController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CreateController;
@@ -11,7 +12,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::resource('plans', PlanController::class)->except(['show']);
-    Route::resource('contacts', ContactController::class);
+    Route::resource('contacts', ContactController::class)->except(['show']);
+    Route::resource('accounts', AccountController::class);
 
     Route::get('/', HomeController::class)->name('home');
     Route::get('/index', IndexController::class)->name('index');

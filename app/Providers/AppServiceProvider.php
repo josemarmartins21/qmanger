@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Services\accounts\AccountService;
+use App\Services\accounts\contracts\AccountInterface;
 use App\Services\contacts\ContactService;
 use App\Services\contacts\contracts\ContactInterface;
 use App\Services\plans\contracts\PlanInterface;
@@ -33,6 +35,11 @@ class AppServiceProvider extends ServiceProvider
             ContactInterface::class,
             ContactService::class
         ); 
+
+        $this->app->bind(
+            AccountInterface::class,
+            AccountService::class,
+        );
     }
 
     /**

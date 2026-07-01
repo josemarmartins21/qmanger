@@ -21,8 +21,8 @@
     
                             <x-slot:body>
                                 <ul>
-                                    <li class="text-xl mb-1  text-zinc-100">Preço: {{ number_format($plan->price, 2, ',', '.') }}Kz</li>
-                                    <li class="text-zinc-400">Velocidade: {{ $plan->velocity_download }}mbps </li>
+                                    <li class="text-3xl mb-1  text-zinc-100">{{ number_format($plan->price, 2, ',', '.') }}Kz</li>
+                                    <li class="text-zinc-400">{{ $plan->velocity_download }}mbps </li>
                                 </ul>
                             </x-slot:body>
     
