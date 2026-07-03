@@ -46,13 +46,13 @@
                     </x-dashboard.link-nav>
                     <x-dashboard.link-nav 
                         href="{{ route('accounts.index') }}"
-                        :active="request()->routeIs('accounts.index') || request()->routeIs('accounts.create') || request()->routeIs('accounts.edit') || request()->routeIs('accounts.show')" 
+                        :active="request()->routeIs('accounts.index') || request()->routeIs('accounts.create') || request()->routeIs('accounts.edit') || request()->routeIs('accounts.show') || request()->routeIs('join.contact')" 
                     >
                         Contas
                     </x-dashboard.link-nav>
                     <x-dashboard.link-nav 
                         href="{{ route('contacts.index') }}"
-                        :active="request()->routeIs('contacts.index') || request()->routeIs('contacts.create') || request()->routeIs('contacts.edit')" 
+                        :active="request()->routeIs('contacts.index') || request()->routeIs('contacts.create') || request()->routeIs('contacts.edit')"
                     >
                         Clientes
                     </x-dashboard.link-nav>

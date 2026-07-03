@@ -7,7 +7,7 @@
     <section id="index-container">
        <x-dashboard.content class="md:bg-white md:dark:bg-[var(--dark-fundo-card)] md:p-5">
             <x-dashboard.title-form class="pb-3">
-                <x-slot:title>Associar conta {{ $account->name }} a um Contacto </x-slot:title>
+                <x-slot:title>Adicionar Contacto a Conta {{ $account->name }}</x-slot:title>
                 <x-slot:disclaimer>
                    
                 </x-slot:disclaimer>
@@ -15,14 +15,17 @@
 
             <x-dashboard.form-container 
                 method="POST" 
-                action="{{ route('accounts.store') }}"
+                action="{{ route('join') }}"
             >  
-                <x-dashboard.input-container>
-                    <x-dashboard.form-label for="is_active">
+            <input type="hidden" name="account_id" value="{{ $account->id }}">
+
+            <x-dashboard.input-container>
+                    <x-dashboard.form-label for="contact">
                         Contacto
                     </x-dashboard.form-label>
 
-                    <x-dashboard.input-select name="is_active">
+                    <x-dashboard.input-select name="contact_id">
+
                         <option value="" selected>Selecione o Contacto</option>
                             @foreach ($contacts as $contact)
                                 @foreach ($account->contacts as $c)
@@ -38,11 +41,12 @@
                                 - {{ $contact->phone }} 
                                 - {{ $contact->email }} 
                             </option>
+
                             @php($isAssociate = false)
                         @endforeach
                     </x-dashboard.input-select>
 
-                    <x-input-error :messages="$errors->get('is_active')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('contact')" class="mt-2" />
                 </x-dashboard.input-container>
 
 

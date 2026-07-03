@@ -15,7 +15,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('plans', PlanController::class)->except(['show']);
     Route::resource('contacts', ContactController::class)->except(['show']);
     Route::resource('accounts', AccountController::class);
-    Route::get('join-account-contact/{account}', [JoinAccountContactController::class, 'form'])->name('join.contact');
+
+    Route::get('join-account-contact/{account}', [JoinAccountContactController::class, 'form'])
+    ->name('join.contact');
+    Route::post('join-account-contact', [JoinAccountContactController::class, 'join'])
+    ->name('join');
 
     Route::get('/', HomeController::class)->name('home');
     Route::get('/index', IndexController::class)->name('index');

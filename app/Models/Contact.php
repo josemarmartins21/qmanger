@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use InvalidArgumentException;
 
 #[Fillable([
     'first_name', 
@@ -39,7 +40,7 @@ class Contact extends Model
             $this->accounts()->attach($account);
             return;
         }
-        throw new \Exception("Contacto já associado a conta: " . $account->name);
+        throw new InvalidArgumentException("Contacto já associado a conta: " . $account->name);
     }
 
  /*    public function hasAccount()
