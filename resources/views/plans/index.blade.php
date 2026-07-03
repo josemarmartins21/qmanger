@@ -27,7 +27,10 @@
                             </x-slot:body>
     
                             <x-slot:footer>
-                                <x-dashboard.card-btn    class="ver-mais-plano bg-blue-600">
+                                <x-dashboard.card-btn 
+                                    class="ver-mais-plano 
+                                    bg-blue-600"
+                                >
                                     Ver Mais
                                 </x-dashboard.card-btn>
     
@@ -105,6 +108,7 @@
     <x-dashboard.float-btn 
         bottom="2"
         :rota="route('plans.create')"
+        type="buttom"
     >
         +
     </x-dashboard.float-btn> 

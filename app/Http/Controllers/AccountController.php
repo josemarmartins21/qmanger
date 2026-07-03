@@ -15,7 +15,6 @@ class AccountController extends Controller
         private AccountInterface $account,
     )
     {
-        
     }
 
     public function index()
@@ -23,6 +22,11 @@ class AccountController extends Controller
         $accounts = $this->account->getAll();
 
         return view('accounts.index', compact('accounts'));
+    }
+
+    public function show(Account $account)
+    {
+        return view('accounts.show', compact('account'));
     }
 
     public function create()

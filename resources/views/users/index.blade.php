@@ -26,7 +26,7 @@
                         @foreach ($users as $user) 
                              <tr>
                                  <td>{{ $user->id }} </td>
-                                 <td @class(['text-green-900 font-bold' => $user->is_master])>{{ $user->name }} </td>
+                                 <td @class(['underline' => $user->is_master])>{{ $user->name }} </td>
                                  <td>{{ $user->email }} </td>
                                  <td>
                                      <x-dashboard.action-btn type="link" href="{{ route('users.edit', $user->id) }}" class="bg-green-800 mr-2.5">

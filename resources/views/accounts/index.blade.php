@@ -3,7 +3,7 @@
 @section('title', 'QManager - Contas')
 
 @section('content')
-    <section id="index-container">
+    <section id="index-container" >
        <x-dashboard.content>
             <x-dashboard.title-section>
                 Contas
@@ -51,7 +51,10 @@
                                         </x-dashboard.action-btn>
                                      </form>
                                      
-                                        <x-dashboard.card-btn    class="ver-mais-accounts bg-blue-600">
+                                        <x-dashboard.action-btn
+                                            type="link"
+                                            href="{{ route('accounts.show', ['account' => $account->id]) }}" class="ver-mais-accounts bg-blue-600"
+                                        >
                                             Ver Mais
                                         </x-dashboard.card-btn>
                                  </td>
@@ -67,6 +70,7 @@
        <x-dashboard.float-btn 
            bottom="2"
            :rota="route('accounts.create')"
+           class="bg-blue-600"
        >
            +
        </x-dashboard.float-btn> 

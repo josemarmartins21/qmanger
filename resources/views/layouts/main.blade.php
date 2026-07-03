@@ -46,7 +46,7 @@
                     </x-dashboard.link-nav>
                     <x-dashboard.link-nav 
                         href="{{ route('accounts.index') }}"
-                        :active="request()->routeIs('accounts.index') || request()->routeIs('accounts.create') || request()->routeIs('accounts.edit')" 
+                        :active="request()->routeIs('accounts.index') || request()->routeIs('accounts.create') || request()->routeIs('accounts.edit') || request()->routeIs('accounts.show')" 
                     >
                         Contas
                     </x-dashboard.link-nav>
@@ -63,7 +63,7 @@
                         || request()->routeIs('users.edit') || request()->routeIs('users.show')
                         "
                         >
-                        Gerir Usuários
+                         Usuários
                     </x-dashboard.link-nav>
                     @endcan
                     @can ('admin') 

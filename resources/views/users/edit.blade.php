@@ -96,7 +96,7 @@
                 
                 <x-dashboard.input-container>
                     <x-dashboard.form-btn>
-                        Cadastrar
+                        Atualizar
                     </x-dashboard.form-btn>
                 </x-dashboard.input-container>
                 

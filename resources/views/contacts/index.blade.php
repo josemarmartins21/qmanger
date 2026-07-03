@@ -70,56 +70,58 @@
        <x-dashboard.float-btn 
            bottom="2"
            :rota="route('contacts.create')"
+           class="bg-blue-600"
+           type="link"
        >
            +
        </x-dashboard.float-btn> 
     </section>
-           <x-dashboard.modal>
-            <div class="p-6 bg-zinc-900 text-zinc-100 rounded-md">
-                <header class="mb-4 border-b border-zinc-800 pb-3">
-                    <h2 id="modal-title" class="text-2xl font-semibold"></h2>
-                </header>
+        <x-dashboard.modal>
+                <div class="p-6 bg-zinc-900 text-zinc-100 rounded-md">
+                    <header class="mb-4 border-b border-zinc-800 pb-3">
+                        <h2 id="modal-title" class="text-2xl font-semibold"></h2>
+                    </header>
 
-                <div class="space-y-3">
-                    <ul class="grid grid-cols-1 gap-2 text-zinc-300">
-                        <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
-                            <span class="font-medium">Telefone</span>
-                            <span id="modal-phone" class="text-zinc-100 font-semibold"></span>
-                        </li>
+                    <div class="space-y-3">
+                        <ul class="grid grid-cols-1 gap-2 text-zinc-300">
+                            <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
+                                <span class="font-medium">Telefone</span>
+                                <span id="modal-phone" class="text-zinc-100 font-semibold"></span>
+                            </li>
 
-                        <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
-                            <span class="font-medium">Email</span>
-                            <span id="modal-email" class="text-zinc-100 font-semibold"></span>
-                        </li>
+                            <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
+                                <span class="font-medium">Email</span>
+                                <span id="modal-email" class="text-zinc-100 font-semibold"></span>
+                            </li>
 
-                        <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
-                            <span class="font-medium">Registrado por</span>
-                            <span id="modal-user" class="text-zinc-100 font-semibold"></span>
-                        </li>
+                            <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
+                                <span class="font-medium">Registrado por</span>
+                                <span id="modal-user" class="text-zinc-100 font-semibold"></span>
+                            </li>
 
-                        <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
-                            <span class="font-medium">Bairro/Município</span>
-                            <span id="modal-bairro" class="text-zinc-100 font-semibold"></span>
-                        </li>
+                            <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
+                                <span class="font-medium">Bairro/Município</span>
+                                <span id="modal-bairro" class="text-zinc-100 font-semibold"></span>
+                            </li>
 
-                        <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
-                            <span class="font-medium">Rua</span>
-                            <span id="modal-street" class="text-zinc-100 font-semibold"></span>
-                        </li>
+                            <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
+                                <span class="font-medium">Rua</span>
+                                <span id="modal-street" class="text-zinc-100 font-semibold"></span>
+                            </li>
 
-                    </ul>
+                        </ul>
 
-                    <div class="mt-2 text-zinc-300">
-                        <h3 class="text-lg font-medium mb-1">Indicações</h3>
-                        <p id="modal-indicacoes" class="text-sm leading-relaxed"></p>
+                        <div class="mt-2 text-zinc-300">
+                            <h3 class="text-lg font-medium mb-1">Indicações</h3>
+                            <p id="modal-indicacoes" class="text-sm leading-relaxed"></p>
+                        </div>
                     </div>
-                </div>
 
-                <footer class="mt-5 flex justify-end">
-                    <button type="button" class="px-4 py-2 bg-red-700 hover:opacity-100 md:opacity-80 text-zinc-100 rounded" id="close-modal-btn">
-                        Fechar
-                    </button>
-                </footer>
-            </div>
-       </x-dashboard.modal>
+                    <footer class="mt-5 flex justify-end">
+                        <button type="button" class="px-4 py-2 bg-red-700 hover:opacity-100 md:opacity-80 text-zinc-100 rounded" id="close-modal-btn">
+                            Fechar
+                        </button>
+                    </footer>
+                </div>
+        </x-dashboard.modal>
 @endsection  

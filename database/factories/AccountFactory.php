@@ -22,7 +22,7 @@ class AccountFactory extends Factory
         return [
             'name' => fake()->text(30),
             'number_account' => fake()->numberBetween(100, 100000),
-            'type' => fake()->randomElement(['empresarial', 'residencial']),
+            'type' => fake()->randomElement(['empresarial', 'residêncial']),
             'is_active' => fake()->boolean(),
             'activation_date' => fake()->date(),
             'endereco_id' => Endereco::all()->random()->id,

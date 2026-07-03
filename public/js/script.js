@@ -1,12 +1,16 @@
 var overlay = document.getElementById('overlay')
 var btn = document.getElementById('modal-btn')
 var modal = document.getElementById('modal')
+var modalTable = document.getElementById('modal-table')
 var btnTheme = document.getElementById('btn-theme')
 var btnCloseModal = document.getElementById('close-modal-btn')
-
+/* var btnCloseModalTable = document.getElementById('close-modal-btn-table')
+var overlayTable = document.getElementById('overlay-modal-table') */
 
 overlay.addEventListener('click', showModalPlanos) // Modal
+/* overlayTable.addEventListener('click', abrirModalTable) */ // Modal
 btnCloseModal.addEventListener('click', showModalPlanos) // Modal
+/* btnCloseModalTable.addEventListener('click', abrirModalTable) */ // Modal
 
 document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.card')
@@ -56,7 +60,38 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         }
     });
+
+    var btnFloat = document.getElementById('float-btn')
+    var btnCloseModalTable = document.getElementById('close-modal-btn-table')
+    var overlayTable = document.getElementById('overlay-modal-table') 
+    overlayTable.addEventListener('click', abrirModalTable)
+    btnCloseModalTable.addEventListener('click', abrirModalTable)
+    
+    btnFloat.addEventListener('click', abrirModalTable)
+    
+    
+    function abrirModalTable() {
+        var wantOpen = overlayTable.classList.contains('hidden')
+        var o = overlayTable
+        var m = modalTable
+    
+        if (wantOpen) {
+            setBoxPositionToOpen(o)   
+            setBoxPositionToOpen(m)
+        }
+        
+        if (! wantOpen) {
+            alternarClass(o) 
+            alternarClass(m) 
+        }
+    }
 })
+
+
+
+function showModalIndicacoes() {
+    abrirModal()
+}
 
 function showModalContacts(dado, instaciaUser) {
     var title = document.getElementById('modal-title')
@@ -66,22 +101,9 @@ function showModalContacts(dado, instaciaUser) {
     var indicacoes = document.getElementById('modal-indicacoes')
     var street = document.getElementById('modal-street')
     var user = document.getElementById('modal-user')
-    
-    
-    var wantOpen = overlay.classList.contains('hidden')
-    var o = overlay
-    var m = modal
 
-    if (wantOpen) {
-        setBoxPositionToOpen(o)   
-        setBoxPositionToOpen(m)
-    }
+    abrirModal()
     
-    if (! wantOpen) {
-        alternarClass(o) 
-        alternarClass(m) 
-    } 
-
     title.innerText = dado.first_name + ' ' + dado.last_name;
     phone.innerText = dado.phone;
     email.innerText = dado.email;
@@ -91,6 +113,7 @@ function showModalContacts(dado, instaciaUser) {
     user.innerText = instaciaUser.name;
     
 }
+
 function showModalPlanos(dado) {
     var title = document.getElementById('modal-title')
     var price = document.getElementById('modal-price')
@@ -99,19 +122,7 @@ function showModalPlanos(dado) {
     var instalationTax = document.getElementById('instalation_tax')
     var userName = document.getElementById('modal-user')
     
-    var wantOpen = overlay.classList.contains('hidden')
-    var o = overlay
-    var m = modal
-
-    if (wantOpen) {
-        setBoxPositionToOpen(o)   
-        setBoxPositionToOpen(m)
-    }
-    
-    if (! wantOpen) {
-        alternarClass(o) 
-        alternarClass(m) 
-    } 
+    abrirModal() 
 
     title.innerText = dado.name;
     price.innerText = dado.price + 'Kz';
@@ -123,6 +134,21 @@ function showModalPlanos(dado) {
 }
 
 
+function abrirModal() {
+    var wantOpen = overlay.classList.contains('hidden')
+    var o = overlay
+    var m = modal
+
+    if (wantOpen) {
+        setBoxPositionToOpen(o)   
+        setBoxPositionToOpen(m)
+    }
+    
+    if (! wantOpen) {
+        alternarClass(o) 
+        alternarClass(m) 
+    } 
+}
 
 function alternarClass(o) {
     o.classList.toggle('hidden') 
@@ -132,9 +158,6 @@ function setBoxPositionToOpen(o) {
     alternarClass(o)
     o.classList.add('abrir') 
 }
-
-
-
 
 // Persistência do tema
 const temasalvo = localStorage.getItem('tema');

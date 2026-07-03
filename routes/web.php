@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CreateController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\JoinAccountContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('plans', PlanController::class)->except(['show']);
     Route::resource('contacts', ContactController::class)->except(['show']);
     Route::resource('accounts', AccountController::class);
+    Route::get('join-account-contact/{account}', [JoinAccountContactController::class, 'join'])->name('join.contact');
 
     Route::get('/', HomeController::class)->name('home');
     Route::get('/index', IndexController::class)->name('index');

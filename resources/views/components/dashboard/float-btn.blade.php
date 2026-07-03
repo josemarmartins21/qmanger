@@ -1,8 +1,15 @@
 @props([
     'bottom' => 8,
-    'rota' => ''
+    'rota' => '',
+    'type' => 'buttom',
 ])
 
-<a href="{{ $rota }}"   id="float-btn" {{ $attributes->merge(['class' => 'bottom-' . $bottom]) }}>
-    {{ $slot }}
-</a>
+@if ($type !== 'buttom')
+    <a href="{{ $rota }}" id="float-btn" {{ $attributes->merge(['class' => 'bottom-' . $bottom]) }}>
+        {{ $slot }}
+    </a>
+@else
+    <button id="float-btn" {{ $attributes->merge(['class' => 'bottom-' . $bottom]) }}>
+        {{ $slot }}
+    </button>
+@endif
