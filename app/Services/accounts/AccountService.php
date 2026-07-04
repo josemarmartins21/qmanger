@@ -57,15 +57,8 @@ class AccountService implements AccountInterface
         $lastId = $account ? $account->id + 1 : 0 + 1;
         
         $nameAccount = Str::remove(' ', $nameAccount);
-        $lengthId = strlen((string) $lastId);
 
-        $numberAccount = Str::padRight(
-            $nameAccount, 
-            strlen($nameAccount) + 7 + $lengthId,
-            '-CONT-0' . $lastId,
-        );
-
-        return $numberAccount;
+        return $nameAccount . '-CONT-0' . $lastId;
     }
 
     public function update(

@@ -109,6 +109,7 @@
         bottom="2"
         :rota="route('plans.create')"
         type="buttom"
+        class="bg-blue-600"
     >
         +
     </x-dashboard.float-btn> 

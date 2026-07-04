@@ -8,11 +8,10 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+
 :root {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
-
-    --montserrat:  'Montserrat', sans-serif;  
 
     --fundo-principal: #f3f2f2;
     --texto: #222222;
@@ -35,7 +34,7 @@
 
 @layer {
     body {
-        @apply bg-zinc-200 transition   dark:text-white dark:bg-[var(--dark-fundo-principal)] text-[var(--texto)] dark:text-[var(--dark-texto)] h-screen md:flex md:flex-col;
+        @apply bg-zinc-200 transition   dark:text-white dark:bg-[var(--dark-fundo-principal)] text-[var(--texto)] dark:text-[var(--dark-texto)] h-screen md:flex md:flex-col font-[var(--montserrat)];
     }
 
     #float-btn, #float-btn-buttom {
@@ -261,9 +260,3 @@
         @apply text-zinc-600 dark:text-zinc-300;
     }
 }
-
-
-
-
-
-

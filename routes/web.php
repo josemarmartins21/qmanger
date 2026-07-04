@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('users/{user}', [UserController::class, 'show'])->name('users.show');
 
     Route::middleware(['auth', 'can:access-admin'])->group(function() {
-        Route::resource('users', UserController::class)->except(['show']);
+        Route::resource('users', UserController::class);
     });
 
 

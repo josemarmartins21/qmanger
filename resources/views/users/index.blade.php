@@ -2,11 +2,11 @@
 @extends('layouts.main')
 
 
-@section('title', 'Definições')
+@section('title', 'Usuários')
 
 
 @section('content')
-    <section id="user-container">
+    <section id="index-container">
         <x-dashboard.content>
             <x-dashboard.title-section>
                 Usuários
@@ -56,7 +56,11 @@
             </x-dashboard.main-table>
             {{ $users->links() }}
         </x-dashboard.content>
-        <x-dashboard.float-btn :rota="route('users.create')" >
+        <x-dashboard.float-btn 
+            :rota="route('users.create')" 
+            class="bg-blue-700"
+            type="a"
+        >
             +
         </x-dashboard.float-btn>
 

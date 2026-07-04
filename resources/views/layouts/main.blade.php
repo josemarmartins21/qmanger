@@ -94,7 +94,7 @@
             <div id="logout-btn">
                 
                 <form action="{{ route('logout') }}" method="POST">
-                    <button type="submit" onclick="return alert('Tem a certeza que deseja terminar a sessão?')">
+                    <button type="submit" onclick="return confirm('Tem a certeza que deseja terminar a sessão?')">
                         @csrf
 
 

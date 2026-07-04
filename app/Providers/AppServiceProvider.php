@@ -9,6 +9,8 @@ use App\Services\contacts\ContactService;
 use App\Services\contacts\contracts\ContactInterface;
 use App\Services\plans\contracts\PlanInterface;
 use App\Services\plans\PlanService;
+use App\Services\signatures\contracts\SignatureInterface;
+use App\Services\signatures\SignatureService;
 use App\Services\users\contracts\UserInterface;
 use App\Services\users\UserService;
 use Illuminate\Support\Facades\Gate;
@@ -39,6 +41,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             AccountInterface::class,
             AccountService::class,
+        );
+        
+        $this->app->bind(
+            SignatureInterface::class,
+            SignatureService::class
         );
     }
 

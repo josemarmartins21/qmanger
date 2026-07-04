@@ -19,5 +19,18 @@ class DateHelper
         ->locale('pt_BR')
         ->translatedFormat('l, d \\d\\e F \\d\\e Y');
     }
+
+    public static function remainingDays(int $days): string
+    {
+        if ($days >= 15) {
+            return 'green';
+        }
+
+        if ($days < 15 && $days > 5) {
+            return 'yellow';
+        }
+
+        return 'red';
+    }
     
 }
