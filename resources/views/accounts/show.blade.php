@@ -95,10 +95,10 @@
                         <th>Nome</th>
                         <th>Telefone</th>
                         <th>Email</th>
+                        <th>Ações</th>
                     </x-slot:thead>
                     
                     <x-slot:body>
-                     
                         @foreach ($account->contacts as $contact) 
                              <tr>
                                  <td>
@@ -106,9 +106,21 @@
                                 </td>
                                  <td>{{ $contact->phone }} </td>
                                  <td>{{ $contact->email }} </td>
+                                 <td>
+                                    <form action="{{ route('unJoin') }}" method="POST">
+                                        <input type="hidden" name="contact_id" value="{{ $contact->id }}">
+                                        <input type="hidden" name="account_id" value="{{ $account->id }}">
+
+                                        <x-dashboard.action-btn
+                                                class="bg-yellow-700"
+                                                onclick="return confirm('Tem certeza que deseja desassociar?')"
+                                            >
+                                                Desassociar
+                                        </x-dashboard.card-btn>
+                                    </form>
+                                </td>
                              </tr>
                         @endforeach
-                       
                     </x-slot:body>
                 </x-dashboard.table>
 

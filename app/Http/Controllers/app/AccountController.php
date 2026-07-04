@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\app;
 
 use App\Facades\enderecos\EnderecoFacade;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\accounts\AccountRequest;
 use App\Http\Requests\accounts\AccountUpdateRequest;
 use App\Models\Account;

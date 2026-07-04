@@ -16,4 +16,13 @@ class JoinAccountContactService
             throw new \Exception($e->getMessage());
         }
     }
+
+    public function unJoin(Account $account, Contact $contact): void
+    {
+        try {
+            $contact->disassociateAccount($account);
+        } catch (InvalidArgumentException $e) {
+            throw new \Exception($e->getMessage());
+        }
+    }
 }

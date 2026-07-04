@@ -122,7 +122,7 @@
                     <x-input-error :messages="$errors->get('account_id')" class="mt-2" />
                 </x-dashboard.input-container>
 
-                <x-dashboard.input-container>
+                <x-dashboard.input-container class="justify-center">
                     <x-dashboard.form-btn>
                         Cadastrar
                     </x-dashboard.form-btn>

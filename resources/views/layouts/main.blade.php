@@ -39,6 +39,12 @@
                         Home
                     </x-dashboard.link-nav>
                     <x-dashboard.link-nav 
+                        href="{{ route('signatures.index') }}"
+                        :active="request()->routeIs('signatures.index') || request()->routeIs('signatures.create') || request()->routeIs('signatures.edit')" 
+                    >
+                        Assinaturas
+                    </x-dashboard.link-nav>
+                    <x-dashboard.link-nav 
                         href="{{ route('plans.index') }}"
                         :active="request()->routeIs('plans.index') || request()->routeIs('plans.create') || request()->routeIs('plans.edit')" 
                     >

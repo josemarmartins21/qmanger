@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\app;
 
+use App\Http\Controllers\Controller;
 use App\Models\Account;
 use App\Models\Contact;
 use App\Services\join_contact\JoinAccountContactService;
@@ -36,21 +37,49 @@ class JoinAccountContactController extends Controller
     {
         try {
 
-            $validated = $request->validate([
-                'contact_id' => 'required|integer|numeric|min:1',
-                'account_id' => 'required|integer|numeric|min:1',
-            ]);
+            $validated = $this->validate($request);
     
             $account = Account::find($validated['account_id']);
             $contact = Contact::find($validated['contact_id']);
     
             $this->joinAccountContact->join($account, $contact);
 
-            return redirect()->back()->with('success', 'Contacto associado com sucess!');
+            return redirect()->back()->with('success', 'Contacto associado com sucesso!');
 
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
 
     }
+
+    public function unJoin(Request $request)
+    {
+        try {
+
+            $validated = $this->validate($request);
+    
+            $account = Account::find($validated['account_id']);
+            $contact = Contact::find($validated['contact_id']);
+    
+            $this->joinAccountContact->unJoin($account, $contact);
+
+            return redirect()->back()->with('success', 'Contacto desassociado com sucesso!');
+
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+
+
+    }
+
+    private function validate(Request $request): array
+    {
+        return $request->validate([
+            'contact_id' => 'required|integer|numeric|min:1',
+            'account_id' => 'required|integer|numeric|min:1',
+        ], [
+            'contact_id' => 'contacto',
+        ]);
+    }
+
 }

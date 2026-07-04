@@ -6,6 +6,8 @@ use App\Helpers\StringHelper;
 use App\Models\Plan;
 use App\Observers\plans\contracts\PlanObserverInterface;
 use App\Services\plans\contracts\PlanInterface;
+use Exception;
+use Illuminate\Database\QueryException;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -93,7 +95,12 @@ class PlanService implements PlanInterface
     {
         try {
             
+            if ($plan->signatures->count() > 0) {
+                throw new Exception("Plano vinculado a " . $plan->signatures->count() . " assinatura");
+            }
+
             $this->oldData = $plan;
+
 
             $plan->delete();
 

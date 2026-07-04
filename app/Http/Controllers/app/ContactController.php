@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\app;
+
+
 
 use App\Facades\enderecos\EnderecoFacade;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\contacts\ContactRequest;
 use App\Http\Requests\contacts\ContactUpdateRequest;
 use App\Models\Account;
@@ -110,6 +113,7 @@ class ContactController extends Controller
             $this->contact->delete($contact);
             return redirect()->back()->with('success', 'Contacto elimino com sucesso!');
         } catch (Exception $e) {
+            dd($e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
     }

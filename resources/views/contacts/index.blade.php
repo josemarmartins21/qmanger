@@ -71,7 +71,7 @@
            bottom="2"
            :rota="route('contacts.create')"
            class="bg-blue-600"
-           type="link"
+           type="a"
        >
            +
        </x-dashboard.float-btn> 

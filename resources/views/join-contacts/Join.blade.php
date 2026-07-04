@@ -20,7 +20,7 @@
             <input type="hidden" name="account_id" value="{{ $account->id }}">
 
             <x-dashboard.input-container>
-                    <x-dashboard.form-label for="contact">
+                    <x-dashboard.form-label for="contact_id">
                         Contacto
                     </x-dashboard.form-label>
 
@@ -46,7 +46,7 @@
                         @endforeach
                     </x-dashboard.input-select>
 
-                    <x-input-error :messages="$errors->get('contact')" class="mt-2" />
+                    <x-input-error :messages="$errors->get('contact_id')" class="mt-2" />
                 </x-dashboard.input-container>
 
 

@@ -9,9 +9,6 @@ use App\Models\Plan;
 use App\Observers\plans\LoggerObserver;
 use App\Services\plans\contracts\PlanInterface;
 use Exception;
-use Illuminate\Database\QueryException;
-use Illuminate\Http\Request;
-use InvalidArgumentException;
 use LogicException;
 
 class PlanController extends Controller
@@ -87,8 +84,6 @@ class PlanController extends Controller
             return redirect()->back()->with('success', 'Registro eliminado com sucesso!');
 
         } catch (LogicException $e) {
-            return redirect()->back()->with('error', $e->getMessage());
-        } catch (QueryException $e) {
             return redirect()->back()->with('error', $e->getMessage());
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());

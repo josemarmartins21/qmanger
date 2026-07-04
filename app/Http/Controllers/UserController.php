@@ -9,7 +9,6 @@ use App\Models\User;
 use App\Services\users\contracts\UserInterface;
 use App\Traits\PermissionTrait;
 use Exception;
-use Illuminate\Support\Facades\Gate;
 use LogicException;
 
 class UserController extends Controller

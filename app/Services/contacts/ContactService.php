@@ -103,14 +103,6 @@ class ContactService implements ContactInterface
     public function delete(Contact $contact): void
     {
         try {
-
-            $accounts = $contact->accounts;
-
-            foreach ($accounts as $account) {
-               if ($account->contacts->count() < 2) 
-                throw new Exception("A conta não pode ficar sem um proprietário!");
-            }
-
            // $endereco = $contact->endereco;
             
             $contact->delete();

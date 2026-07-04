@@ -36,11 +36,20 @@ class Contact extends Model
 
     public function associateAccount(Account $account): void
     {
-        if (! $this->accounts()->where('accounts.id', $account->id)->exists()) {
-            $this->accounts()->attach($account);
-            return;
+        if ($this->accounts()->where('accounts.id', $account->id)->exists()) {
+            throw new InvalidArgumentException("Contacto já associado a conta: " . $account->name);
         }
-        throw new InvalidArgumentException("Contacto já associado a conta: " . $account->name);
+        
+        $this->accounts()->attach($account);
+    }
+    
+    public function disassociateAccount(Account $account): void
+    {
+        if (!$this->accounts()->where('accounts.id', $account->id)->exists()) {
+            throw new InvalidArgumentException("Contacto já desassociado a conta: " . $account->name);
+        }
+        
+        $this->accounts()->detach($account);
     }
 
  /*    public function hasAccount()
