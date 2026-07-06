@@ -1,47 +1,40 @@
+@use('App\Models\Plan')
+@use('App\Models\Signature')
+@props([
+    'items' => [],
+    'description' => null,
+    'title' => null,
+])
+@php
+    $totActiveSignature = Signature::where('status', true)
+    ->count();
+@endphp
+
 <div class="overflow-x-auto">
     <div id="raking-container">
         <div id="header-raking">
             <p> {{ $description }} </p>
     
-            <h2>{{ $title }}</h2>   
+            <h2 class="text-3xl font-semibold">{{ $title }}</h2>   
         </div>
     
         <div id="list-raking">
-            <div class="item-raking">
-                <p>
-                    <strong>Description</strong>
-    
-                    <span>12</span>
-                </p>
-    
-                <div class="rate-bar-container">
-                    <div class="rate-bar"></div>
+            @forelse ($items as $item)
+                <div class="item-raking">
+                    <p>
+                        <strong>{{ Plan::find($item->id, ['name'])->name }}</strong>
+        
+                        <span>{{ $item->number_signatures /  $totActiveSignature * 100 }}%</span>
+                    </p>
+        
+                    <div class="rate-bar-container" style="width: 100%">
+                        <div class="rate-bar" style="width: {{ $item->number_signatures /  $totActiveSignature * 100 }}%"></div>
+                    </div>
                 </div>
-            </div>
-    
-            <div class="item-raking">
-                <p>
-                    <strong>Description</strong>
-    
-                    <span>12</span>
-                </p>
-    
-                <div class="rate-bar-container">
-                    <div class="rate-bar"></div>
-                </div>
-            </div>
-    
-            <div class="item-raking">
-                <p>
-                    <strong>Description</strong>
-    
-                    <span>12</span>
-                </p>
-    
-                <div class="rate-bar-container">
-                    <div class="rate-bar"></div>
-                </div>
-            </div>
+                
+            @empty
+                <h2 class="text-3xl">Ainda não foi assinado nenhum plano</h2>
+            @endforelse
         </div>
     </div>
 </div>

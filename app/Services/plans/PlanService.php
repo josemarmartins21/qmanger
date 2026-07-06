@@ -4,6 +4,7 @@ namespace App\Services\plans;
 
 use App\Helpers\StringHelper;
 use App\Models\Plan;
+use App\Models\Signature;
 use App\Observers\plans\contracts\PlanObserverInterface;
 use App\Services\plans\contracts\PlanInterface;
 use Carbon\Carbon;
@@ -120,5 +121,17 @@ class PlanService implements PlanInterface
         foreach ($this->observers as $observer) {
             $observer->deleted($this->oldData);
         }
+    }
+
+    public static function getTopPlans()
+    {
+        return Signature::selectRaw(
+            "COUNT(plan_id) as number_signatures, 
+            plan_id as id",
+        )
+        ->where('status', true)
+        ->groupBy('plan_id')
+        ->orderByRaw("COUNT(plan_id) desc")
+        ->get();
     }
 }

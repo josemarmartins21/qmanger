@@ -26,7 +26,7 @@ class AccountUpdateRequest extends FormRequest
         return [
             'name' => 'required|string|max:50|min:3',
             'is_active' => 'required|integer|min:0|max:1|boolean',
-            'type' => 'required|string|'. Rule::in(['empresarial', 'residêncial']),
+            'type' => 'required|string|'. Rule::in(['Empresarial', 'Residêncial']),
             'street' => 'required|string|max:80',
             'indicacoes' => 'nullable|min:20|string|max:300',
             'bairro_id' => 'required|integer|min:0|exists:bairros,id'
