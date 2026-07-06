@@ -6,6 +6,7 @@ use App\Facades\enderecos\EnderecoFacade;
 use App\Models\Account;
 use App\Models\Contact;
 use App\Services\contacts\contracts\ContactInterface;
+use App\Services\join_contact\JoinAccountContactService;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,12 @@ use Throwable;
 class ContactService implements ContactInterface
 {
  
+    public function __construct(
+        private JoinAccountContactService $joinAccount,
+    )
+    {
+        
+    }
     public function getAll(): LengthAwarePaginator
     {
 
@@ -63,7 +70,7 @@ class ContactService implements ContactInterface
                 'endereco_id' => $endereco->id,
            ]);
 
-            $contact->associateAccount($account);
+            $this->joinAccount->join($account, $contact);
 
        } catch (\Exception $e) {
             throw new \Exception("Erro: " . $e->getMessage());

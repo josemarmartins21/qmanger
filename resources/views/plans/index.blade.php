@@ -79,11 +79,6 @@
                             <span class="font-medium">Velocidade</span>
                             <span id="modal-velocity" class="text-zinc-100 font-semibold"></span>
                         </li>
-                        
-                        <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
-                            <span class="font-medium">Taxa de instalação</span>
-                            <span id="instalation_tax" class="text-zinc-100 font-semibold"></span>
-                        </li>
 
                         <li class="flex justify-between items-center px-3 py-2 bg-zinc-800 rounded">
                             <span class="font-medium">Registrado por</span>
@@ -108,7 +103,7 @@
     <x-dashboard.float-btn 
         bottom="2"
         :rota="route('plans.create')"
-        type="buttom"
+        type="a"
         class="bg-blue-600"
     >
         +

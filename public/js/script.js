@@ -119,7 +119,6 @@ function showModalPlanos(dado) {
     var price = document.getElementById('modal-price')
     var velocity = document.getElementById('modal-velocity')
     var description = document.getElementById('modal-description')
-    var instalationTax = document.getElementById('instalation_tax')
     var userName = document.getElementById('modal-user')
     
     abrirModal() 
@@ -128,7 +127,6 @@ function showModalPlanos(dado) {
     price.innerText = dado.price + 'Kz';
     velocity.innerText = dado.velocity_download + 'Mbps';
     description.innerText = dado.description;
-    instalationTax.innerText = dado.instalation_tax + 'Kz';
     userName.innerText = dado.user_name;
     
 }

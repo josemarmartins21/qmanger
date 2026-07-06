@@ -17,7 +17,6 @@ return new class extends Migration
             $table->decimal('price')->default(0);
             $table->text('description')->nullable();
             $table->integer('velocity_download')->default(0);
-            $table->decimal('instalation_tax', 10)->default(0);
 
             $table->foreignId('user_id')
             ->nullable()

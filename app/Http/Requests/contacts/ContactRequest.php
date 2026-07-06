@@ -31,7 +31,7 @@ class ContactRequest extends FormRequest
             'email' => 'required|email|max:60|string|unique:contacts,id|lowercase',
             'indicacoes' => 'nullable|min:20|string|max:300',
             'phone' => 'required|max:20|string|unique:contacts,id',
-            'bairro_id' => 'required|integer|numeric|min:1',
+            'bairro_id' => 'required|integer|numeric|min:1|exists:bairros,id',
             'account_id' => 'required|numeric|integer|min:1',
             'street' => 'required|max:80|string',
 

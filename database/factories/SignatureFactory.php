@@ -20,6 +20,8 @@ class SignatureFactory extends Factory
      */
     public function definition(): array
     {
+        $planId = Plan::all()->random()->id;
+        $planName = Plan::find($planId);
         return [
             'price' => Plan::all()->random()->price,
             'start_date' => fake()->date(),
@@ -27,7 +29,8 @@ class SignatureFactory extends Factory
             'status' => fake()->boolean(80),
             'discount' => fake()->numberBetween(5000, 10000),
             'account_id' => Account::all()->random()->id,
-            'plan_id' => Plan::all()->random()->id,
+            'plan_id' => $planId,
+            'plan_name' => $planName->name,
             'user_id' => User::all()->random()->id,
         ];
     }

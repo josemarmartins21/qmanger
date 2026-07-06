@@ -29,7 +29,7 @@ class AccountUpdateRequest extends FormRequest
             'type' => 'required|string|'. Rule::in(['empresarial', 'residêncial']),
             'street' => 'required|string|max:80',
             'indicacoes' => 'nullable|min:20|string|max:300',
-            'bairro_id' => 'required|integer|min:0'
+            'bairro_id' => 'required|integer|min:0|exists:bairros,id'
         ];
     }
 

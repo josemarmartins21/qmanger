@@ -46,21 +46,6 @@
                 </x-dashboard.input-container>
 
                 <x-dashboard.input-container>
-                    <x-dashboard.form-label for="instalation_tax">
-                        Taxa de instalação
-                    </x-dashboard.form-label>
-
-                    <x-dashboard.form-input 
-                        type="number" 
-                        value="{{ old('instalation_tax') }}" 
-                        name="instalation_tax" id="instalation_tax" 
-                        placeholder="Taxa de instalação *"
-                    >
-                    </x-dashboard.form-input>
-                    <x-input-error :messages="$errors->get('instalation_tax')" class="mt-2" />
-                </x-dashboard.input-container>
-
-                <x-dashboard.input-container>
                     <x-dashboard.form-label for="description">
                         Descrição
                     </x-dashboard.form-label>

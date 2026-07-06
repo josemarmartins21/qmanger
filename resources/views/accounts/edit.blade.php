@@ -39,14 +39,14 @@
                     <x-dashboard.input-select name="type">
                         <option value="" selected>Selecione o tipo de conta</option>
                         <option 
-                            value="residêncial" 
-                            @selected(old('type', $account->type) == 'residêncial')
+                            value="Residêncial" 
+                            @selected(old('type', $account->type) == 'Residêncial')
                         >
                             Residêncial
                         </option>
                         <option 
-                            value="empresarial" 
-                            @selected(old('type', $account->type) == 'empresarial')
+                            value="Empresarial" 
+                            @selected(old('type', $account->type) == 'Empresarial')
                         >
                             Empresarial
                     </option>

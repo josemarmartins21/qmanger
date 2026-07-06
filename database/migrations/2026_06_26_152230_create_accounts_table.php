@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 60);
             $table->string('number_account', 30);
-            $table->enum('type',['empresarial', 'residencial']);
+            $table->enum('type',['Empresarial', 'Residêncial']);
             $table->boolean('is_active')->default(0);
             $table->date('activation_date')->nullable();
             $table->date('cancelation_date')->nullable();

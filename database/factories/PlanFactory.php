@@ -24,7 +24,6 @@ class PlanFactory extends Factory
             'price' => fake()->numberBetween(10000, 25000),
             'description' => fake()->text(),
             'velocity_download' => fake()->numberBetween(2, 15),
-            'instalation_tax' => fake()->numberBetween(50000, 60000),
             'user_id' => User::all()->random()->id,
         ];
     }

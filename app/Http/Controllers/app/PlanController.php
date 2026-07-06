@@ -84,8 +84,10 @@ class PlanController extends Controller
             return redirect()->back()->with('success', 'Registro eliminado com sucesso!');
 
         } catch (LogicException $e) {
+            dd($e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         } catch (Exception $e) {
+            dd($e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
     }

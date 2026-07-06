@@ -5,10 +5,13 @@ namespace App\Http\Controllers\app;
 
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\SignatureRequest;
+use App\Http\Requests\signatures\SignatureRequest;
+use App\Http\Requests\signatures\SignatureUpdateRequest;
 use App\Models\Account;
 use App\Models\Plan;
+use App\Models\Signature;
 use App\Services\signatures\contracts\SignatureInterface;
+use Exception;
 
 class SignatureController extends Controller
 {
@@ -49,9 +52,55 @@ class SignatureController extends Controller
 
             $this->signatureService->save($validated);
 
+            return redirect()->route('signatures.index')->with('success', 'Assinatura criada com sucesso!');
+
         } catch (\Exception $e) {
             dd($e->getMessage());
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->back()->withInput()->with('error', $e->getMessage());
+        }
+    }
+
+    public function edit(Signature $signature)
+    {
+        $plans = Plan::select(
+            'id', 
+            'price', 
+            'name'
+        )
+        ->orderBy('name')->get();
+
+        $accounts = Account::select(
+            'number_account', 
+            'id', 
+            'is_active'
+        )->orderBy('name')->get();
+
+        return view('signatures.edit', compact('signature', 'plans', 'accounts'));
+    }
+
+    public function update(Signature $signature, SignatureUpdateRequest $request)
+    {
+        try {
+            $validated = $request->validated();
+
+            $this->signatureService->update($signature, $validated);
+
+            return back()->with('success', 'Assinatura actualizada com sucesso!');
+            
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            return back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function destroy(Signature $signature)
+    {
+        try {
+            $this->signatureService->delete($signature);
+
+            return back()->with('error', 'Assinatura excluida com sucesso!');
+        } catch (Exception $e) {
+            dd($e->getMessage());
         }
     }
 }

@@ -35,23 +35,29 @@
                                 <td class="text-{{ DateHelper::remainingDays((int)$remainingDays) }}-900">
                                     {{ $remainingDays }}
                                 </td>
-                                <td>{{ number_format($signature->price - $signature->discount, 2, ',', '.') .'Kz' }}</td>
+                                <td>{{ number_format($signature->price, 2, ',', '.') .'Kz' }}</td>
                                 <td class="flex gap-2">
                                     <x-dashboard.action-btn 
-                                        :rota="route('signatures.edit', ['signature' => $signature])"
+                                        href="{{ route('signatures.edit', ['signature' => $signature->id]) }}"
                                         type="a"
                                         class="bg-green-800"
                                     >
                                         Editar
                                     </x-dashboard.action-btn>
-                                    <x-dashboard.action-btn 
-                                        :rota="route('signatures.destroy', ['signature' => $signature])"
-                                        type="form"
-                                        method="DELETE"
-                                        class="bg-red-600"
+                                    <form 
+                                        action="{{ route('signatures.destroy', ['signature' => $signature->id]) }}"
+                                        method="POST"
                                     >
-                                        Excluir
-                                    </x-dashboard.action-btn>
+                                        @method('Delete')
+                                        @csrf
+
+                                        <x-dashboard.action-btn
+                                            class="bg-red-600"
+                                            onclick="return confirm('Tem a certeza que deseja exluir?')"
+                                        >
+                                            Excluir
+                                        </x-dashboard.action-btn>
+                                    </form>
                                 </td>
                             </tr>
                             

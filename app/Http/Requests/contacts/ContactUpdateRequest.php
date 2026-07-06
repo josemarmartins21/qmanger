@@ -28,7 +28,7 @@ class ContactUpdateRequest extends FormRequest
             'email' => 'required|email|max:60|string|lowercase',
             'indicacoes' => 'nullable|min:20|string|max:300',
             'phone' => 'required|max:20|string',
-            'bairro_id' => 'required|integer|numeric|min:1',
+            'bairro_id' => 'required|integer|numeric|min:1|exists:bairros,id',
             'street' => 'required|max:80|string',
         ];
     }

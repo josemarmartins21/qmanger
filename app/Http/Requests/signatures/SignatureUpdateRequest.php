@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\signatures;
+
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class SignatureRequest extends FormRequest
+class SignatureUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,17 +28,19 @@ class SignatureRequest extends FormRequest
             'account_id' => 'required|min:0|integer|exists:accounts,id',
             'plan_id' => 'required|min:0|integer|exists:plans,id',
             'discount' => 'nullable|numeric|min:0',
+            'status' => 'required|min:0|max:1|boolean|integer|numeric',
             'start_date' => 'nullable|date|'. Rule::date()->afterOrEqual(date('Y-m-d')),
         ];
     }
 
-    public function attributes()
+    public function attributes(): array
     {
         return [
             'account_id' => 'conta',
             'plan_id' => 'plano',
             'discount' => 'desconto',
             'start_date' => 'data de início',
+            'status' => 'estado da assinatura',
         ];
     }
 }

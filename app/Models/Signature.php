@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
     'end_date',
     'discount',
     'status',
+    'plan_name',
 ])]
 class Signature extends Model
 {

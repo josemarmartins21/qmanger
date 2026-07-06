@@ -19,15 +19,17 @@ return new class extends Migration
             ->cascadeOnDelete()
             ->cascadeOnUpdate();
             $table->foreignId('plan_id')
+            ->nullable()
             ->constrained('plans')
-            ->restrictOnDelete()
-            ->restrictOnUpdate();
+            ->nullOnDelete()
+            ->nullOnUpdate();
             $table->foreignId('user_id')
             ->nullable()
             ->constrained('users')
             ->nullOnDelete()
             ->nullOnUpdate();
 
+            $table->string('plan_name');
             $table->decimal('price', 10);   
             $table->date('start_date');
             $table->date('end_date');

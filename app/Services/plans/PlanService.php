@@ -6,8 +6,8 @@ use App\Helpers\StringHelper;
 use App\Models\Plan;
 use App\Observers\plans\contracts\PlanObserverInterface;
 use App\Services\plans\contracts\PlanInterface;
+use Carbon\Carbon;
 use Exception;
-use Illuminate\Database\QueryException;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -28,7 +28,6 @@ class PlanService implements PlanInterface
             'plans.id', 
             'plans.velocity_download', 
             'plans.description', 
-            'plans.instalation_tax',
             'users.name AS user_name'
         )
         ->join('users', 'users.id', '=', 'plans.user_id')
@@ -43,7 +42,6 @@ class PlanService implements PlanInterface
             Plan::create([  
                 'name' => Str::ucwords($data['name']),
                 'price' => $data['price'],
-                'instalation_tax' => $data['instalation_tax'],
                 'description' => Str::ucfirst($data['description']),
                 'velocity_download' => $data['velocity_download'],
                 'user_id' => Auth::user()->id,
@@ -77,7 +75,6 @@ class PlanService implements PlanInterface
             $plan->update([
                 'name' => Str::ucwords($data['name']),
                 'price' => $data['price'],
-                'instalation_tax' => $data['instalation_tax'],
                 'description' => Str::ucfirst($data['description']),
                 'velocity_download' => $data['velocity_download'],
             ]);
@@ -94,9 +91,11 @@ class PlanService implements PlanInterface
     public function delete(Plan $plan): void
     {
         try {
-            
-            if ($plan->signatures->count() > 0) {
-                throw new Exception("Plano vinculado a " . $plan->signatures->count() . " assinatura");
+
+            foreach ($plan->signatures as $signature) {
+                if ($signature->status) {
+                    throw new Exception("Plano vinculado a uma assinatura activa");
+                }
             }
 
             $this->oldData = $plan;
