@@ -4,6 +4,7 @@
 @section('title', 'Usuários')
 
 @section('content')
+<x-dashboard.alert />
     <section id="users-create">
                 <x-dashboard.content class="md:bg-white dark:bg-[var(--dark-fundo-card)] md:p-5">
             <x-dashboard.title-form class="pb-3">

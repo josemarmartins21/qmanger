@@ -3,7 +3,7 @@
 namespace App\Services\signatures;
 
 use App\Exceptions\FailOnDeleteException;
-use App\Exceptions\SignatureCantBeUpdateException;
+use App\Exceptions\SignatureCantBeActivateException;
 use App\Models\Account;
 use App\Models\Plan;
 use App\Models\Signature;
@@ -80,15 +80,6 @@ class SignatureService implements SignatureInterface
         try {
             $plan = Plan::find($data['plan_id']);
 
-            $startDate = Carbon::parse($data['start_date']);
-            
-            if (Carbon::today()->diffInDays($startDate, true) > 0 AND $data['status']) {
-                $message = Carbon::today()
-                ->diffInDays($startDate, true) === 1 ? 'Falta um dia'  : 'Ainda faltam dias';
-
-                throw new SignatureCantBeUpdateException($message . " para a data definida para o início do plano, então não será possivel activar a assinatura");
-            }
-
             $endDate = Carbon::parse($data['start_date'])->addMonth();
 
             $signature->updateOrFail([
@@ -97,12 +88,11 @@ class SignatureService implements SignatureInterface
                 'plan_name' => $plan->name,
                 'price' => $plan->price - $data['discount'],
                 'start_date' => $data['start_date'],
-                'start_end' => $endDate->format('Y-m-d'),
-                'status' => $data['status'],
+                'end_date' => $endDate->format('Y-m-d'),
                 'discount' => $data['discount'],
             ]);
 
-        } catch (SignatureCantBeUpdateException $e) {
+        } catch (SignatureCantBeActivateException $e) {
             throw new Exception($e->getMessage());
         } catch (\Throwable) {
             throw new Exception("Algo deu errado, tente novamente!"); 
@@ -124,6 +114,39 @@ class SignatureService implements SignatureInterface
             throw new \Exception($e->getMessage());
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
+        }
+    }
+
+    public function suspend(Signature $signature): void
+    {
+        try {
+
+            $status = $signature->status;
+            $today = Carbon::today();
+
+            if ($today->diffInDays($signature->start_date) <= 0 AND $today->diffInDays($signature->end_date) >= 0) {
+                $signature->updateOrFail([
+                    'status' => $status ? false : true,
+                ]);
+                return;
+            } 
+
+            if ($today->diffInDays($signature->start_date) > 0) {
+                throw new SignatureCantBeActivateException("Ainda faltam dias para a data de início desta assinatura");
+            }
+            
+            if ($today->diffInDays($signature->end_date) < 0) {
+                throw new SignatureCantBeActivateException("Assinatura já exipirada!");
+            }
+
+            $signature->updateOrFail([
+                'status' => true,
+            ]);
+
+        } catch (SignatureCantBeActivateException $e) {
+            throw new Exception($e->getMessage());
+        } catch (\Throwable $e) {
+            throw new Exception("Algo deu errado, tente novamente!");
         }
     }
 

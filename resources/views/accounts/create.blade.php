@@ -4,6 +4,7 @@
 
 
 @section('content')
+<x-dashboard.alert />
     <section id="index-container">
        <x-dashboard.content class="md:bg-white md:dark:bg-[var(--dark-fundo-card)] md:p-5">
             <x-dashboard.title-form class="pb-3">
@@ -36,13 +37,13 @@
                     <x-dashboard.input-select name="type">
                         <option value="" selected>Selecione o tipo de conta</option>
                         <option 
-                            value="residêncial" 
+                            value="Residêncial" 
                             @selected(old('type') == 'residêncial' )
                         >
                             Residêncial
                         </option>
                         <option 
-                            value="empresarial" 
+                            value="Empresarial" 
                             @selected(old('type') == 'empresarial' )
                         >
                             Empresarial

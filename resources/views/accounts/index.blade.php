@@ -3,6 +3,7 @@
 @section('title', 'QManager - Contas')
 
 @section('content')
+<x-dashboard.alert />
     <section id="index-container" >
        <x-dashboard.content>
             <x-dashboard.title-section>
@@ -73,7 +74,7 @@
            class="bg-blue-600"
            type="a"
        >
-           +
+           <i class="fa-solid fa-plus"></i>
        </x-dashboard.float-btn> 
     </section>
 @endsection  

@@ -73,7 +73,7 @@
            class="bg-blue-600"
            type="a"
        >
-           +
+           <i class="fa-solid fa-plus"></i>
        </x-dashboard.float-btn> 
     </section>
         <x-dashboard.modal>

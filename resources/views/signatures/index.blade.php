@@ -5,6 +5,7 @@
 @section('title', 'QManager - Assinaturas')
 
 @section('content')
+<x-dashboard.alert />
     <section id="index-container">
        <x-dashboard.content>
             <x-dashboard.title-section>
@@ -19,24 +20,33 @@
                         <th>Conta</th>
                         <th>Nª da Conta</th>
                         <th>Plano</th>
-                        <th>Dias Restante</th>
+                        <th>Expira Em</th>
                         <th>Preço</th>
                         <th>Ações</th>
                     </x-slot:thead>
                     
                     <x-slot:body>
                         @foreach ($signatures as $signature)
-                            @php($remainingDays = $signature->start_date->diffforhumans($signature->end_date))
+                            @php($remainingDays = Carbon::today()->diffInDays($signature->end_date))
                             <tr>
-                                <td>{{ $signature->id }}</td>
-                                <td>{{ $signature->account_name }}</td>
-                                <td>{{ $signature->number_account }}</td>
-                                <td>{{ $signature->plan_name }}</td>
-                                <td class="text-{{ DateHelper::remainingDays((int)$remainingDays) }}-900">
-                                    {{ $remainingDays }}
+                                <td style="color: {{ DateHelper::remainingDays($remainingDays) }}">{{ $signature->id }}</td>
+                                <td style="color: {{ DateHelper::remainingDays($remainingDays) }}">{{ $signature->account_name }}</td>
+                                <td style="color: {{ DateHelper::remainingDays($remainingDays) }}">{{ $signature->number_account }}</td>
+                                <td style="color: {{ DateHelper::remainingDays($remainingDays) }}">{{ $signature->plan_name }}</td>
+                                <td style="color: {{ DateHelper::remainingDays($remainingDays) }}"> 
+                                @if ($remainingDays > 0) 
+                                        {{ $remainingDays }} 
+    
+                                        {{ $remainingDays == 1 ? 'dia para expirar' : 'dias para expirar' }} 
+                                @elseif ($remainingDays == 0)
+                                    Expiraou Hoje
+                                @else 
+                                    {{ 'Expirou há ' . abs($remainingDays) . ' dias'}} 
+                                @endif
+                                    </td>
                                 </td>
-                                <td>{{ number_format($signature->price, 2, ',', '.') .'Kz' }}</td>
-                                <td class="flex gap-2">
+                                <td style="color: {{ DateHelper::remainingDays($remainingDays) }}">{{ number_format($signature->price, 2, ',', '.') .'Kz' }}</td>
+                                <td class="flex gap-2" >
                                     <x-dashboard.action-btn 
                                         href="{{ route('signatures.edit', ['signature' => $signature->id]) }}"
                                         type="a"
@@ -58,6 +68,28 @@
                                             Excluir
                                         </x-dashboard.action-btn>
                                     </form>
+
+                                    <form 
+                                        action="{{ route('signatures.suspend', ['signature' => $signature->id]) }}"
+                                        method="POST"
+                                    >
+                                        @method('Patch')
+                                        @csrf
+
+                                        @php($action = $signature->status ? 'Suspender' : 'Activar')
+                                        <x-dashboard.action-btn
+                                            @class([
+                                                'bg-yellow-800' => $signature->status, 
+                                                'bg-blue-600' => !$signature->status,
+                                                'w-[90px] text-center',
+                                            ])
+                                            onclick="return confirm('Tem a certeza que deseja {{ $action }} esta assinatura?')"
+                                        >
+                                            {{ 
+                                                $action
+                                            }}
+                                        </x-dashboard.action-btn>
+                                    </form>
                                 </td>
                             </tr>
                             
@@ -74,7 +106,7 @@
            class="bg-blue-600"
            type="a"
        >
-           +
+           <i class="fa-solid fa-plus"></i>
        </x-dashboard.float-btn> 
     </section>
 @endsection  

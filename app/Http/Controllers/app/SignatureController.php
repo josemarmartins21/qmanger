@@ -55,8 +55,7 @@ class SignatureController extends Controller
             return redirect()->route('signatures.index')->with('success', 'Assinatura criada com sucesso!');
 
         } catch (\Exception $e) {
-            dd($e->getMessage());
-            return redirect()->back()->withInput()->with('error', $e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
@@ -88,7 +87,6 @@ class SignatureController extends Controller
             return back()->with('success', 'Assinatura actualizada com sucesso!');
             
         } catch (\Exception $e) {
-            dd($e->getMessage());
             return back()->with('error', $e->getMessage());
         }
     }
@@ -98,9 +96,22 @@ class SignatureController extends Controller
         try {
             $this->signatureService->delete($signature);
 
-            return back()->with('error', 'Assinatura excluida com sucesso!');
+            return back()->with('success', 'Assinatura excluida com sucesso!');
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function suspendSignature(Signature $signature)
+    {
+        try {
+            $status = $signature->status ? 'suspensa' : 'activada';
+            $this->signatureService->suspend($signature);
+
+            return back()->with('success', "Assinatura {$status} com sucesso!");
+
+        } catch (Exception $e) {
+            return back()->with('error', $e->getMessage());
         }
     }
 }

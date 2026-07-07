@@ -36,31 +36,33 @@
                     <x-dashboard.link-nav href="{{ route('home') }}"
                         :active="request()->routeIs('home')"
                     >
-                        Home
+                        <i class="fa-solid fa-house"></i> Home
                     </x-dashboard.link-nav>
                     <x-dashboard.link-nav 
                         href="{{ route('signatures.index') }}"
                         :active="request()->routeIs('signatures.index') || request()->routeIs('signatures.create') || request()->routeIs('signatures.edit')" 
                     >
-                        Assinaturas
+                        <i class="fa-solid fa-credit-card"></i> Assinaturas
                     </x-dashboard.link-nav>
                     <x-dashboard.link-nav 
                         href="{{ route('plans.index') }}"
                         :active="request()->routeIs('plans.index') || request()->routeIs('plans.create') || request()->routeIs('plans.edit')" 
                     >
+                        <i class="fa-solid fa-house-signal"></i>
                         Planos
                     </x-dashboard.link-nav>
                     <x-dashboard.link-nav 
                         href="{{ route('accounts.index') }}"
                         :active="request()->routeIs('accounts.index') || request()->routeIs('accounts.create') || request()->routeIs('accounts.edit') || request()->routeIs('accounts.show') || request()->routeIs('join.contact')" 
                     >
+                        <i class="fa-solid fa-circle-user"></i>
                         Contas
                     </x-dashboard.link-nav>
                     <x-dashboard.link-nav 
                         href="{{ route('contacts.index') }}"
                         :active="request()->routeIs('contacts.index') || request()->routeIs('contacts.create') || request()->routeIs('contacts.edit')"
                     >
-                        Clientes
+                        <i class="fa-solid fa-people-group"></i> Clientes
                     </x-dashboard.link-nav>
                     @can ('super-admin') 
                         <x-dashboard.link-nav 
@@ -69,7 +71,7 @@
                         || request()->routeIs('users.edit') || request()->routeIs('users.show')
                         "
                         >
-                         Usuários
+                            <i class="fa-solid fa-users"></i> Gerir Usuários
                     </x-dashboard.link-nav>
                     @endcan
                     @can ('admin') 
@@ -79,14 +81,14 @@
                         || request()->routeIs('users.edit') || request()->routeIs('users.show')
                         "
                         >
-                        Gerir Usuários
+                            <i class="fa-solid fa-user-gear"></i> Gerir Usuários
                     </x-dashboard.link-nav>
                     @endcan
                 <x-dashboard.link-nav 
                     href="{{ route('settings') }}"
                     :active="request()->routeIs('settings')"
                 >
-                    Definições
+                    <i class="fa-solid fa-gear"></i>  Definições
                 </x-dashboard.link-nav>
                 </x-dashboard.link-nav-container>
             </nav>
@@ -94,9 +96,12 @@
             <div id="logout-btn">
                 
                 <form action="{{ route('logout') }}" method="POST">
-                    <button type="submit" onclick="return confirm('Tem a certeza que deseja terminar a sessão?')">
+                    <button 
+                        type="submit" 
+                        onclick="return confirm('Tem a certeza que deseja terminar a sessão?')"
+                        class="text-4xl"    
+                    >
                         @csrf
-
 
                         <i class="fa-solid fa-right-from-bracket"></i>  Sair
                     </button>

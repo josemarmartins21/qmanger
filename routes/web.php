@@ -15,6 +15,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('contacts', ContactController::class)->except(['show']);
     Route::resource('accounts', AccountController::class);
     Route::resource('signatures', SignatureController::class);
+    Route::patch('signatures/{signature}/suspend', [SignatureController::class, 'suspendSignature'])->name('signatures.suspend');
 
     Route::get('join-account-contact/{account}', [JoinAccountContactController::class, 'form'])
     ->name('join.contact');

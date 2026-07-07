@@ -4,6 +4,7 @@
 
 
 @section('content')
+<x-dashboard.alert />
     <section id="index-container">
        <x-dashboard.content>
             <x-dashboard.title-section>
@@ -106,7 +107,7 @@
         type="a"
         class="bg-blue-600"
     >
-        +
+        <i class="fa-solid fa-plus"></i>
     </x-dashboard.float-btn> 
     </section>
 @endsection  

@@ -91,23 +91,6 @@
                     <x-input-error :messages="$errors->get('start_date')" class="mt-2" />
                 </x-dashboard.input-container>
 
-                <x-dashboard.input-container>
-                    <x-dashboard.form-label for="status">
-                        Estado da Assinatura
-                    </x-dashboard.form-label>
-
-                    <x-dashboard.input-select name="status">
-                        <option value="1" @selected(old('status', $signature->status) == '1' )>
-                            Activada
-                        </option>
-                        <option value="0" @selected(old('status', $signature->status) == '0' )>
-                            Desactivada
-                        </option>
-                    </x-dashboard.input-select>
-
-                    <x-input-error :messages="$errors->get('status')" class="mt-2" />
-                </x-dashboard.input-container>
-
                 <x-dashboard.input-container class="justify-end">
                     <x-dashboard.form-btn>
                         Atualizar

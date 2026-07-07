@@ -2,6 +2,7 @@
 @props(['canotEdit' => true])
 
 @section('title', 'Usuários')
+<x-dashboard.alert />
 
 
 @section('content')

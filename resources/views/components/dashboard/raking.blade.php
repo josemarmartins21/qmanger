@@ -20,11 +20,12 @@
     
         <div id="list-raking">
             @forelse ($items as $item)
+                @php($porcentage = abs($item->number_signatures /  $totActiveSignature * 100))
                 <div class="item-raking">
                     <p>
-                        <strong>{{ Plan::find($item->id, ['name'])->name }}</strong>
+                        <strong class="text-xl">{{ Plan::find($item->id, ['name'])->name }}</strong>
         
-                        <span>{{ $item->number_signatures /  $totActiveSignature * 100 }}%</span>
+                        <span>{{ $porcentage }}%</span>
                     </p>
         
                     <div class="rate-bar-container" style="width: 100%">
@@ -33,7 +34,7 @@
                 </div>
                 
             @empty
-                <h2 class="text-3xl">Ainda não foi assinado nenhum plano</h2>
+                <h2 class="text-3xl">Não existem assinaturas ainda</h2>
             @endforelse
         </div>
     </div>

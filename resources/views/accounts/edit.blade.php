@@ -5,6 +5,7 @@
 @section('title', 'QManager - Contas')
 
 @section('content')
+<x-dashboard.alert />
     <section id="index-container">
        <x-dashboard.content class="md:bg-white md:dark:bg-[var(--dark-fundo-card)] md:p-5">
             <x-dashboard.title-form class="pb-3">

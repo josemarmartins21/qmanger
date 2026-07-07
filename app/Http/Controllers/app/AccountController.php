@@ -80,7 +80,6 @@ class AccountController extends Controller
             $this->account->delete($account);
             return redirect()->back()->with('success', 'Contacto excluido com sucesso!');
         } catch (Exception $e) {
-            dd($e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
     }

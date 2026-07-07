@@ -28,7 +28,6 @@ class SignatureUpdateRequest extends FormRequest
             'account_id' => 'required|min:0|integer|exists:accounts,id',
             'plan_id' => 'required|min:0|integer|exists:plans,id',
             'discount' => 'nullable|numeric|min:0',
-            'status' => 'required|min:0|max:1|boolean|integer|numeric',
             'start_date' => 'nullable|date|'. Rule::date()->afterOrEqual(date('Y-m-d')),
         ];
     }
@@ -40,7 +39,6 @@ class SignatureUpdateRequest extends FormRequest
             'plan_id' => 'plano',
             'discount' => 'desconto',
             'start_date' => 'data de início',
-            'status' => 'estado da assinatura',
         ];
     }
 }

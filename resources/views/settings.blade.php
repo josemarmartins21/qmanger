@@ -5,7 +5,7 @@
 
 
 @section('content')
-    <section id="settings-container">
+    <section id="index-container">
         <x-dashboard.content>
             <x-dashboard.title-section>Definições</x-dashboard.title-section>
 

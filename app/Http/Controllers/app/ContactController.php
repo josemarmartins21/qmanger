@@ -60,7 +60,6 @@ class ContactController extends Controller
             return redirect()->route('contacts.index')
             ->with('success', 'Contacto criado com sucesso!');
         } catch (\Throwable $e) {
-            dd($e->getMessage());
             return redirect()->back()->withInput()
             ->with('error', $e->getMessage());
         }
@@ -113,7 +112,6 @@ class ContactController extends Controller
             $this->contact->delete($contact);
             return redirect()->back()->with('success', 'Contacto elimino com sucesso!');
         } catch (Exception $e) {
-            dd($e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
     }

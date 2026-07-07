@@ -10,6 +10,6 @@
     </a>
 @else
     <button id="float-btn" {{ $attributes->merge(['class' => 'cursor-pointer bottom-' . $bottom]) }}>
-        {{ $slot }}
+         {{ $slot }}
     </button>
 @endif

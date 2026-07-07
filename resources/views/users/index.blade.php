@@ -6,6 +6,7 @@
 
 
 @section('content')
+<x-dashboard.alert />
     <section id="index-container">
         <x-dashboard.content>
             <x-dashboard.title-section>
@@ -58,10 +59,10 @@
         </x-dashboard.content>
         <x-dashboard.float-btn 
             :rota="route('users.create')" 
-            class="bg-blue-700"
+            class="bg-blue-600"
             type="a"
         >
-            +
+            <i class="fa-solid fa-plus"></i>
         </x-dashboard.float-btn>
 
     </section>
