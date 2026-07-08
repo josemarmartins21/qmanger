@@ -132,6 +132,7 @@ class PlanService implements PlanInterface
         ->where('status', true)
         ->groupBy('plan_id')
         ->orderByRaw("COUNT(plan_id) desc")
+        ->limit(3)
         ->get();
     }
 }

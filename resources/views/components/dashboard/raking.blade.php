@@ -25,7 +25,7 @@
                     <p>
                         <strong class="text-xl">{{ Plan::find($item->id, ['name'])->name }}</strong>
         
-                        <span>{{ $porcentage }}%</span>
+                        <span>{{ floor($porcentage) }}%</span>
                     </p>
         
                     <div class="rate-bar-container" style="width: 100%">
