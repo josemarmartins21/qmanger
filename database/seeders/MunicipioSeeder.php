@@ -14,8 +14,6 @@ class MunicipioSeeder extends Seeder
      */
     public function run(): void
     {
-        Municipio::factory(10)
-        ->has(Bairro::factory(10))
-        ->create();
+        Municipio::factory(5)->create();
     }
 }
