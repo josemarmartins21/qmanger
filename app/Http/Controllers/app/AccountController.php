@@ -68,7 +68,7 @@ class AccountController extends Controller
             
             $this->account->update($account, $validated);
 
-            return redirect()->back()->with('success', 'Contacto actualizado com sucesso!');
+            return redirect()->back()->with('success', 'Conta actualizada com sucesso!');
         } catch (\Throwable $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
@@ -78,7 +78,7 @@ class AccountController extends Controller
     {
         try {
             $this->account->delete($account);
-            return redirect()->back()->with('success', 'Contacto excluido com sucesso!');
+            return redirect()->back()->with('success', 'Conta excluida com sucesso!');
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }

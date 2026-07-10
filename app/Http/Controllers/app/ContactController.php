@@ -64,15 +64,6 @@ class ContactController extends Controller
             ->with('error', $e->getMessage());
         }
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      */
@@ -110,7 +101,7 @@ class ContactController extends Controller
     {
         try {
             $this->contact->delete($contact);
-            return redirect()->back()->with('success', 'Contacto elimino com sucesso!');
+            return redirect()->back()->with('success', 'Contacto eliminado com sucesso!');
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
