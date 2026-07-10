@@ -23,22 +23,23 @@
                     
                     <x-dashboard.card-overview>
                         <span>Município Mais Activo</span>
-                        <h3 class="text-3xl">
-                            {{ Str::limit(
-                                    Municipio::find($queries['municipio_com_mais_clientes']
-                                    ->id, 
-                                    ['name'])?->name, 
-                                    12,
-                                    '...'
-                                ) 
-                            }}
-                        </h3>
+                            <h3 class="text-3xl">
+                                @if ($queries['municipio_com_mais_clientes']) 
+                                    {{ Str::limit(
+                                        Municipio::find($queries['municipio_com_mais_clientes']
+                                        ->id, 
+                                        ['name'])?->name, 
+                                        12,
+                                        '...'
+                                    ) 
+                                    }}
+                                @endif
+                            </h3>
                         <p>
                             Total de clientes 
-                            {{ 
-                                $queries['municipio_com_mais_clientes'] === null 
-                                ? '' : $queries['municipio_com_mais_clientes']->total_conta   
-                            }}
+                            @if ($queries['municipio_com_mais_clientes']) 
+                                {{$queries['municipio_com_mais_clientes']->total_conta}}
+                            @endif
                         </p>
                     </x-dashboard.card-overview>
                     
