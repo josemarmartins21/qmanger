@@ -78,3 +78,21 @@ do
 END ;
 DELIMITER ; 
 
+
+DELIMITER \\
+
+create Procedure activeSignature()
+begin
+    UPDATE signatures
+    set status = 1 where start_date = CURRENT_DATE;
+end;
+DELIMITER;
+
+DELIMITER \\
+create EVENT ev_active_signature
+on schedule EVERY 1 day starts '2026-07-11 00:00:00'
+do
+    begin
+        call `activeSignature`;
+END;
+DELIMITER ; 
