@@ -42,12 +42,6 @@
                             @endif
                         </p>
                     </x-dashboard.card-overview>
-                    
-                    <x-dashboard.card-overview>
-                        <span>Assinaturas Por Activar</span>
-                        <h3 class="text-3xl">{{ $queries['assinaturas_por_activar'] }}</h3>
-                        <p>Não perca nada activando as assinaturas</p>
-                    </x-dashboard.card-overview>
                 </x-dashboard.cards-overview>
             </x-dashboard.overview>
         </x-dashboard.content>

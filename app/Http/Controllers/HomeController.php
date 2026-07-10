@@ -27,7 +27,6 @@ class HomeController extends Controller
             'municipio_com_mais_clientes' => $this->home->municipioComMaiorNumeroDeContas(),
             'assinaturas_por_activar' => $this->home->totSignaturesToActive(),
             'top_plans' => PlanService::getTopPlans(),
-            'assinaturas_por_desactivar' => $this->home->totSignaturesToInactive(),
         ];
         return view('welcome', compact('queries'));
     }

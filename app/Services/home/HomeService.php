@@ -44,10 +44,4 @@ class HomeService
         ->where('status', false)->count();
     }
 
-    public function totSignaturesToInactive(): int
-    {
-        return Signature::where('end_date', '>=', date('Y-m-d'))
-        ->where('start_date', '<=', date('Y-m-d'))
-        ->where('status', true)->count();
-    }
 }

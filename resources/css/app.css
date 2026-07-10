@@ -163,11 +163,15 @@
     }
 
     div#cards-resume {
-        @apply grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5;
+        @apply grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5;
     }
 
     div.card-resume {
         @apply bg-[var(--fundo-card)] dark:bg-[var(--dark-fundo-card)] shadow-[var(--card-sombras)] dark:shadow-[var(--dark-card-sombras)] rounded-xl sm:rounded-[15px] p-4 md:p-3 flex flex-col gap-5;
+    }
+
+    div.card-resume:last-child { 
+        @apply col-span-3 md:col-span-1;
     }
 
     div.card-resume h3 {
