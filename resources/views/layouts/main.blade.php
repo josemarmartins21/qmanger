@@ -29,6 +29,10 @@
         <div id="data-actual">
             <p>{{ DateHelper::currentExtendedDate() }}</p>
         </div>
+
+        <div id="menu-container">
+            <span id="menu">M</span>
+        </div>
     </header>
     <main>
         <section id="side-bar">

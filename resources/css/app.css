@@ -34,7 +34,7 @@
 
 @layer {
     body {
-        @apply bg-zinc-200 transition   dark:text-white dark:bg-[var(--dark-fundo-principal)] text-[var(--texto)] dark:text-[var(--dark-texto)] h-screen md:flex md:flex-col font-[var(--montserrat)];
+        @apply bg-zinc-200 transition   dark:text-white dark:bg-[var(--dark-fundo-principal)] text-[var(--texto)] dark:text-[var(--dark-texto)] h-screen font-[var(--montserrat)];
     }
 
     #float-btn, #float-btn-buttom {
@@ -104,19 +104,23 @@
     div#data-actual p {
         @apply text-white font-semibold text-2xl;
     }
+
+    #menu-container {
+        @apply lg:hidden;
+    }
     /* ====================================================== */
 
    /* ======= CONETEUDO PRINCIPAL ===== */
     main {
-        @apply lg:grid pb-5 flex-1 lg:pb-0 lg:grid-rows-1 lg:grid-cols-[320px_1fr];
+        @apply lg:grid pb-5 w-full lg:pb-0 lg:grid-rows-1 lg:grid-cols-[320px_1fr] h-screen;
     }   
 
     section#side-bar {
-        @apply px-4 hidden md:sticky dark:bg-[var(--dark-fundo-card)] h-[100%] bg-white md:flex md:flex-col py-8 md:gap-5 overflow-y-auto md:justify-between;
+        @apply px-4 lg:sticky z-10 fixed w-full top-[110px] dark:bg-[var(--dark-fundo-card)] h-[100%] bg-white flex flex-col py-8 lg:gap-5 overflow-y-auto lg:justify-between;
     }
 
     div#link-container {
-        @apply p-1.5 mb-20 md:gap-2.5 md:flex md:flex-col md:items-center;
+        @apply p-1.5 mb-20 md:gap-2.5 flex flex-col items-center;
     }
 
     div#link-container a.link-nav {
@@ -151,7 +155,7 @@
         @apply mt-5;
     }
     div#principal-content {
-        @apply  m-5 md:m-[0px_35px_0px_35px] md:gap-7 lg:grid-cols-[70%_1fr];
+        @apply  m-5  lg:m-[0px_35px_0px_35px] ;
     }
     div#fast-checkout {
         @apply  m-5 md:m-[30px_35px_0px_35px]  md:gap-7 lg:grid-cols-1 md:grid-cols-1;
@@ -167,7 +171,7 @@
     }
 
     div.card-resume {
-        @apply bg-[var(--fundo-card)] dark:bg-[var(--dark-fundo-card)] shadow-[var(--card-sombras)] dark:shadow-[var(--dark-card-sombras)] rounded-xl sm:rounded-[15px] p-4 md:p-3 flex flex-col gap-5;
+        @apply bg-[var(--fundo-card)] dark:bg-[var(--dark-fundo-card)] shadow-[var(--card-sombras)] dark:shadow-[var(--dark-card-sombras)] rounded-xl sm:rounded-[15px] p-4 md:p-3 flex flex-col sm:gap-5 gap-2 px-5;
     }
 
     div.card-resume:last-child { 
@@ -184,7 +188,7 @@
 
     /** PRINCIPAL */
     #principal {
-        @apply md:w-[80%] md:m-auto lg:w-[100%];
+        @apply  md:m-auto w-full;
     }
     
     /** ======= TABLE ==================*/
@@ -193,7 +197,7 @@
     }    
 
     table#main-table {
-        @apply w-[600px] sm:w-[100%] m-auto rounded-t-lg overflow-hidden;
+        @apply w-[800px] md:w-full m-auto rounded-t-lg overflow-hidden;
     }
 
     table#main-table thead {

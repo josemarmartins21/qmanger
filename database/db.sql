@@ -68,15 +68,17 @@ CALL `canecelSignature`;
 
 DELIMITER \\
 
-create EVENT ev_cancel_signature
-on SCHEDULE EVERY 1 minute starts '2026-07-09 16:24:00'
-do 
-    begin
+CREATE DEFINER=`root`@`localhost` EVENT `ev_cancel_signature`
+	ON SCHEDULE
+		EVERY 1 DAY STARTS '2026-07-09'
+	ON COMPLETION NOT PRESERVE
+	ENABLE
+	COMMENT ''
+	DO begin
 
     call `canecelSignature`;
 
-END ;
-DELIMITER ; 
+END
 
 
 DELIMITER \\
