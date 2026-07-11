@@ -35,7 +35,7 @@
         </div>
     </header>
     <main>
-        <section id="side-bar">
+        <section id="side-bar" class="hidden lg:flex">
             <nav>
                 <x-dashboard.link-nav-container>
                     <x-dashboard.link-nav href="{{ route('home') }}"

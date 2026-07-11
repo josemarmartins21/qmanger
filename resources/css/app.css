@@ -112,11 +112,11 @@
 
    /* ======= CONETEUDO PRINCIPAL ===== */
     main {
-        @apply lg:grid pb-5 w-full lg:pb-0 lg:grid-rows-1 lg:grid-cols-[320px_1fr] h-screen;
+        @apply lg:grid pb-5 w-full lg:pb-0 lg:grid-rows-1 lg:grid-cols-[320px_1fr];
     }   
 
     section#side-bar {
-        @apply px-4 lg:sticky z-10 fixed w-full top-[110px] dark:bg-[var(--dark-fundo-card)] h-[100%] bg-white flex flex-col py-8 lg:gap-5 overflow-y-auto lg:justify-between;
+        @apply px-4 lg:sticky  z-10 fixed w-full top-[110px] dark:bg-[var(--dark-fundo-card)] h-[100%] bg-white  flex-col py-8 lg:gap-5 overflow-y-auto lg:justify-between;
     }
 
     div#link-container {
