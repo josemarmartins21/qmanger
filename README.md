@@ -96,7 +96,6 @@ php artisan key:generate
 Abra o arquivo `.env` e configure as seguintes variáveis de acordo com o seu ambiente local:
 
 ```env
-APP_NAME="Nome do Projeto"
 APP_URL=http://localhost:8000
 
 DB_CONNECTION=mysql
