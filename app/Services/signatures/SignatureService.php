@@ -67,7 +67,7 @@ class SignatureService implements SignatureInterface
                 'price' => $data['discount'] === null ? $plan->price : $plan->price - $data['discount'],
                 'status' => $daysToStart > 0 ? false : true,
                 'plan_name' => $plan->name,
-                'discount' => $data['discount']
+                'discount' => $data['discount'] ?? 0,
             ]);
 
         } catch (\Throwable $e) {
@@ -90,7 +90,7 @@ class SignatureService implements SignatureInterface
                 'price' => $plan->price - $data['discount'],
                 'start_date' => $data['start_date'],
                 'end_date' => $endDate->format('Y-m-d'),
-                'discount' => $data['discount'],
+                'discount' => $data['discount'] ?? 0,
             ]);
 
         } catch (SignatureCantBeActivateException $e) {
