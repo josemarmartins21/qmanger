@@ -14,7 +14,7 @@
 @section('title', 'QManager - Contas')
 
 @section('content')
-    <section id="index-container" class="mt-5">
+    <section id="index-container" class="mt-5 pb-20">
        <x-dashboard.content class="md:bg-white p-3 dark:bg-[var(--dark-fundo-card)] md:p-5">
         <x-dashboard.title-section>
             {{ $account->name }}
@@ -89,7 +89,7 @@
                 </header>   
 
                 <div class="space-y-3">
-                <x-dashboard.main-table class="md:mb-4 overflow-y-auto h-52">
+                <x-dashboard.main-table class="md:mb-4 overflow-y-auto h-60 sm:h-52">
                 <x-dashboard.table>
                     <x-slot:thead>
                         <th>Nome</th>
@@ -127,7 +127,7 @@
             </x-dashboard.main-table>
                 </div>
 
-                <footer class="mt-5 flex justify-between">
+                <footer class="mt-5 flex flex-wrap gap-2 justify-between">
                     <a 
                         class="px-1 sm:px-4 sm:py-2 bg-blue-600 hover:opacity-100 md:opacity-80 text-zinc-100 rounded cursor-pointer"
                         href="{{ route('join.contact', ['account' => $account->id]) }}"
@@ -142,9 +142,9 @@
             </div>
        </x-dashboard.modal-table>
        <x-dashboard.float-btn 
-            class="bg-blue-600"
+            class="bg-blue-600 bottom-8"
         >
-            C
+            <i class="fa-solid fa-address-book text-2xl"></i>
         </x-dashboard.float-btn>
     </section>
 @endsection  

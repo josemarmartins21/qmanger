@@ -71,7 +71,7 @@
        <x-dashboard.float-btn 
            bottom="2"
            :rota="route('accounts.create')"
-           class="bg-blue-600"
+           class="bg-blue-600 bottom-8"
            type="a"
        >
            <i class="fa-solid fa-plus"></i>

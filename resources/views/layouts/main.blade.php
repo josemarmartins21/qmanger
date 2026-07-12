@@ -31,7 +31,7 @@
         </div>
 
         <div id="menu-container">
-            <span id="menu">M</span>
+            <span id="menu"><i class="fa-solid fa-bars text-xl"></i></span>
         </div>
     </header>
     <main>
