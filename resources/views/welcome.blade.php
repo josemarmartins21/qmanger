@@ -16,16 +16,10 @@
                     </x-dashboard.card-overview>
                     
                     <x-dashboard.card-overview>
-                        <span>Receita Total</span>
-                        <h3 class="text-3xl">{{ number_format($queries['receita_do_mes'], 2, ',', '.') }}Kz</h3>
-                        <p>Receita total do mês</p>
-                    </x-dashboard.card-overview>
-                    
-                    <x-dashboard.card-overview>
                         <span>Município Mais Activo</span>
                             <h3 class="text-3xl">
                                 @if ($queries['municipio_com_mais_clientes']) 
-                                    {{ Str::limit(
+                                {{ Str::limit(
                                         Municipio::find($queries['municipio_com_mais_clientes']
                                         ->id, 
                                         ['name'])?->name, 
@@ -35,13 +29,19 @@
                                     }}
                                 @endif
                             </h3>
-                        <p>
-                            Total de clientes 
-                            @if ($queries['municipio_com_mais_clientes']) 
+                            <p>
+                                Total de clientes 
+                                @if ($queries['municipio_com_mais_clientes']) 
                                 {{$queries['municipio_com_mais_clientes']->total_conta}}
-                            @endif
-                        </p>
-                    </x-dashboard.card-overview>
+                                @endif
+                            </p>
+                        </x-dashboard.card-overview>
+                        
+                        <x-dashboard.card-overview>
+                            <span>Receita Total</span>
+                            <h3 class="text-3xl">{{ number_format($queries['receita_do_mes'], 2, ',', '.') }}Kz</h3>
+                            <p>Receita total do mês</p>
+                        </x-dashboard.card-overview>
                 </x-dashboard.cards-overview>
             </x-dashboard.overview>
         </x-dashboard.content>
