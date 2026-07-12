@@ -3,7 +3,7 @@
 namespace App\Services\signatures;
 
 use App\Exceptions\FailOnDeleteException;
-use App\Exceptions\SignatureCantBeActivateException;
+use App\Exceptions\SignatureCantBeActivateException;    
 use App\Models\Account;
 use App\Models\Plan;
 use App\Models\Signature;
@@ -67,6 +67,7 @@ class SignatureService implements SignatureInterface
                 'price' => $data['discount'] === null ? $plan->price : $plan->price - $data['discount'],
                 'status' => $daysToStart > 0 ? false : true,
                 'plan_name' => $plan->name,
+                'discount' => $data['discount']
             ]);
 
         } catch (\Throwable $e) {
@@ -132,11 +133,11 @@ class SignatureService implements SignatureInterface
             } 
 
             if ($today->diffInDays($signature->start_date) > 0) {
-                throw new SignatureCantBeActivateException("Ainda faltam dias para a data de início desta assinatura");
+                throw new Exception("Ainda faltam dias para a data de início desta assinatura");
             }
             
             if ($today->diffInDays($signature->end_date) < 0) {
-                throw new SignatureCantBeActivateException("Assinatura já exipirada!");
+                throw new Exception("Assinatura já exipirada!");
             }
 
             $signature->updateOrFail([
@@ -146,7 +147,7 @@ class SignatureService implements SignatureInterface
         } catch (SignatureCantBeActivateException $e) {
             throw new Exception($e->getMessage());
         } catch (\Throwable $e) {
-            throw new Exception("Algo deu errado, tente novamente!");
+            throw new Exception($e->getMessage());
         }
     }
 

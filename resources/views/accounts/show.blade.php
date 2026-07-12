@@ -15,7 +15,7 @@
 
 @section('content')
     <section id="index-container" class="mt-5">
-       <x-dashboard.content class="md:bg-white md:dark:bg-[var(--dark-fundo-card)] md:p-5">
+       <x-dashboard.content class="md:bg-white p-3 dark:bg-[var(--dark-fundo-card)] md:p-5">
         <x-dashboard.title-section>
             {{ $account->name }}
         </x-dashboard.title-section>
@@ -129,7 +129,7 @@
 
                 <footer class="mt-5 flex justify-between">
                     <a 
-                        class="px-4 py-2 bg-blue-600 hover:opacity-100 md:opacity-80 text-zinc-100 rounded cursor-pointer"
+                        class="px-1 sm:px-4 sm:py-2 bg-blue-600 hover:opacity-100 md:opacity-80 text-zinc-100 rounded cursor-pointer"
                         href="{{ route('join.contact', ['account' => $account->id]) }}"
                     >
                         Adicionar Contacto
