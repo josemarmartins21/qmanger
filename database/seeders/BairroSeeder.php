@@ -13,6 +13,6 @@ class BairroSeeder extends Seeder
      */
     public function run(): void
     {
-        Bairro::factory(15)->create();
+        // Os bairros de Luanda são gerados em MunicipioSeeder para manter o relacionamento correto com os municípios.
     }
 }
