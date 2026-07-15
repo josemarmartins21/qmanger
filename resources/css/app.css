@@ -167,7 +167,7 @@
     }
 
     div#cards-resume {
-        @apply grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5;
+        @apply grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-center;
     }
 
     div.card-resume {
@@ -194,7 +194,7 @@
     }    
 
     table#main-table {
-        @apply w-[1000px] md:w-full m-auto rounded-t-lg overflow-hidden;
+        @apply w-[1000px]  md:w-[1026px] lg:w-full m-auto rounded-t-lg overflow-hidden;
     }
 
     table#main-table thead {
@@ -250,11 +250,11 @@
 
     /*========== CARDS CONTAINER ==========================*/ 
     div#cards-container {
-        @apply flex flex-col justify-center items-center sm:items-start md:justify-start lg:flex-row md:gap-4 gap-4 lg:gap-7 flex-wrap pb-5;
+        @apply flex flex-col justify-center items-center sm:items-start md:justify-start lg:flex-row md:gap-4 gap-y-4 lg:gap-7 flex-wrap pb-5;
     }
 
     .card {
-        @apply flex flex-col justify-between gap-2.5 bg-[var(--fundo-card)] dark:bg-[var(--dark-fundo-card)] shadow-[var(--card-sombras)] dark:shadow-[var(--dark-card-sombras)] rounded-lg p-2.5 lg:gap-4 w-[95%] sm:w-[70%] lg:w-[321px] h-[200px];
+        @apply flex flex-col justify-between gap-2.5 bg-[var(--fundo-card)] dark:bg-[var(--dark-fundo-card)] shadow-[var(--card-sombras)] dark:shadow-[var(--dark-card-sombras)] rounded-lg p-2.5 lg:gap-4 w-full sm:w-[70%] lg:w-[321px] h-[200px];
     }
 
     .card h3 {
