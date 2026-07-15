@@ -1,6 +1,8 @@
 @use('App\Models\Municipio')
-@extends('layouts.main')    
+@extends('layouts.main')  
+
 @section('title', 'Dashboard')
+@section('section', 'Dashboard')
 
 @section('content')
 

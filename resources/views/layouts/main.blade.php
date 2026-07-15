@@ -19,11 +19,11 @@
 <body id="corpo">
     <header>
         <div id="logo">
-            <img src="{{ asset('images/icones/qos-logo-sem-fundo.png') }}" alt="Logo do sistema" >
+            <a href="{{ route('home') }}"><x-application-logo /></a>
             
             <div id="barra-divisao"></div>
 
-            <h1 class="text-5xl font-bold">QManager</h1>
+            <h1 class="text-5xl font-bold">@yield('section')</h1>
         </div>
 
         <div id="data-actual">

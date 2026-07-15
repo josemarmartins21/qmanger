@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title', 'QManager - Planos')
-
+@section('section', 'Planos')
 
 @section('content')
 <x-dashboard.alert />

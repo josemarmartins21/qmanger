@@ -2,6 +2,7 @@
 @extends('layouts.main')
 
 @section('title', 'QManager - Clientes')
+@section('section', 'Clientes')
 
 @section('content')
     <section id="index-container">

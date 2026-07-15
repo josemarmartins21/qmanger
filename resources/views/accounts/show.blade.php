@@ -1,4 +1,5 @@
 @extends('layouts.main')
+
 @use('Carbon\Carbon')
 @use('App\Models\User')
 @use('App\Models\Endereco')
@@ -12,6 +13,7 @@
 @endphp
 
 @section('title', 'QManager - Contas')
+@section('section', 'Contas')
 
 @section('content')
     <section id="index-container" class="mt-5 pb-20">

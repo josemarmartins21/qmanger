@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title', 'QManager - Editar Assinatura')
-
+@section('section', 'Assinaturas')
 
 @section('content')
 <x-dashboard.alert />

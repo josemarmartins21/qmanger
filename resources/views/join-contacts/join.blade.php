@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('title', 'QManager - Associar Conta a um Contacto')
+@section('section', 'Contas')
 
 @php($isAssociate = false)
 @section('content')

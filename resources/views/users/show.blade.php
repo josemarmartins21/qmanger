@@ -2,10 +2,10 @@
 
 
 @section('title', 'Perfil do Utilizador')
-
+@section('section', 'Usuários')
 
 @section('content') 
-    <section id="users-show" class="py-8 px-4 sm:px-6 lg:px-8">
+    <section id="index-container" class="py-8 px-4 sm:px-6 lg:px-8">
         <div class="max-w-5xl mx-auto">
             <!-- Profile Card -->
             <x-dashboard.content class="overflow-hidden">

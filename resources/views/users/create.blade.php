@@ -2,6 +2,7 @@
 
 
 @section('title', 'Usuários')
+@section('section', 'Usuários')
 
 @section('content')
 <x-dashboard.alert />

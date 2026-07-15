@@ -155,10 +155,10 @@
         @apply mt-5;
     }
     div#principal-content {
-        @apply  m-5  lg:m-[0px_35px_0px_35px] ;
+        @apply  m-5  lg:m-[0px_35px_0px_35px];
     }
     div#fast-checkout {
-        @apply  m-5 md:m-[30px_35px_0px_35px]  md:gap-7 lg:grid-cols-1 md:grid-cols-1;
+        @apply  m-5  lg:m-[40px_35px_0px_35px];
     }
 
     /** OVEVIEW */
@@ -187,9 +187,6 @@
     }
 
     /** PRINCIPAL */
-    /* #principal {
-        @apply  lg:h-full lg:overflow-y-auto;
-    } */
     
     /** ======= TABLE ==================*/
     div#table-container {

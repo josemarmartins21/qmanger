@@ -3,6 +3,7 @@
 @extends('layouts.main')
 
 @section('title', 'QManager - Contas')
+@section('section', 'Contas')
 
 @section('content')
 <x-dashboard.alert />

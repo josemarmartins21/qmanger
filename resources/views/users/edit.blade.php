@@ -2,6 +2,7 @@
 @props(['canotEdit' => true])
 
 @section('title', 'Usuários')
+@section('section', 'Usuários')
 <x-dashboard.alert />
 
 
@@ -29,7 +30,7 @@
         @endcan
     @endif
 
-    <section id="users-create">
+    <section id="index-container">
         <x-dashboard.content class="md:bg-white sm:p-5 dark:bg-transparent sm:dark:bg-[var(--dark-fundo-card)] md:p-5">
             <x-dashboard.title-form class="pb-3">
                 <x-slot:title>Editar Usuário {{ $user->name }}</x-slot:title>

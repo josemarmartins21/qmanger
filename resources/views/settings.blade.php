@@ -2,6 +2,7 @@
 
 
 @section('title', 'Definições')
+@section('section', 'Definições')
 
 
 @section('content')
