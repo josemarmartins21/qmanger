@@ -62,17 +62,24 @@
                             @can ('can-edit-admin') 
                                 @if (! $user->hasPermission('super-admin')) 
                                     <x-dashboard.float-btn 
-                                    :rota="route('users.edit', ['user' => $user->id])">E</x-dashboard.float-btn>
+                                        :rota="route('users.edit', ['user' => $user->id])"
+                                        class="bg-green-600"
+                                        type="a"
+                                    >E</x-dashboard.float-btn>
                                 @endif
                                     
                                 @if (Auth::user()->is_master AND $user->hasPermission('super-admin'))
                                     <x-dashboard.float-btn 
-                                    :rota="route('users.edit', ['user' => $user->id])">E</x-dashboard.float-btn>
+                                    :rota="route('users.edit', ['user' => $user->id])"
+                                        class="bg-green-600"
+                                        type="a">E</x-dashboard.float-btn>
                                 @endif
                             @elsecan ('can-edit-default') 
                                 @if (! $user->hasPermission('admin') AND ! $user->hasPermission('super-admin')) 
                                     <x-dashboard.float-btn 
-                                    :rota="route('users.edit', ['user' => $user->id])">E</x-dashboard.float-btn>
+                                    ::rota="route('users.edit', ['user' => $user->id])"
+                                        class="bg-green-600"
+                                        type="a">E</x-dashboard.float-btn>
                                 @endif
                             @endcan
                         @endif

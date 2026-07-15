@@ -18,7 +18,7 @@ class PermissionFactory extends Factory
     public function definition(): array
     {
         return [    
-            'name' => fake()->randomElement(['admin', 'default', 'super-admin']),
+         //   'name' => fake()->randomElement(['admin', 'default', 'super-admin']),
         ];
     }
 }

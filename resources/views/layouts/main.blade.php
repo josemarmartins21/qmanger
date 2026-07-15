@@ -82,7 +82,7 @@
                     @can ('admin') 
                         <x-dashboard.link-nav 
                         href="{{ route('users.index') }}"
-                        :active="request()->routeIs('users.index') || request()->routeIs('users.create')
+                        :active="request()->routeIs('users.index') || request()->routeIs('register')
                         || request()->routeIs('users.edit') || request()->routeIs('users.show')
                         "
                         >
@@ -113,8 +113,9 @@
                 </form>
             </div>
     </section>
-    
+    <section id="principal">
         @yield('content')
+    </section>    
     </main>
     <script src="{{ asset('js/script.js') }}"></script>      
 </body>

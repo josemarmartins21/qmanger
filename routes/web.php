@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
 });
 
  Route::middleware(['auth', 'can:access-admin'])->group(function() {
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->except('create');
 });
 
 require __DIR__.'/auth.php';

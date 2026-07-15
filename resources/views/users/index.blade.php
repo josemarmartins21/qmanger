@@ -30,10 +30,6 @@
                                  <td @class(['underline' => $user->is_master])>{{ $user->name }} </td>
                                  <td>{{ $user->email }} </td>
                                  <td>
-                                     <x-dashboard.action-btn type="link" href="{{ route('users.edit', $user->id) }}" class="bg-green-800 mr-2.5">
-                                         Editar
-                                     </x-dashboard.action-btn>
-
                                      <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">
                                          @csrf
                                          @method('DELETE')
@@ -58,7 +54,7 @@
             {{ $users->links() }}
         </x-dashboard.content>
         <x-dashboard.float-btn 
-            :rota="route('users.create')" 
+            :rota="route('register')" 
             class="bg-blue-600"
             type="a"
         >

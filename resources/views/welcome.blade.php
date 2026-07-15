@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content')
-    <section id="principal">
+
         <x-dashboard.content>
             <x-dashboard.overview>
             <x-slot:title>Resumo Rápido</x-slot:title>

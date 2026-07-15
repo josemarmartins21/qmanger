@@ -5,7 +5,7 @@
 
 @section('content')
 <x-dashboard.alert />
-    <section id="users-create">
+    <section id="index-container">
                 <x-dashboard.content class="md:bg-white dark:bg-[var(--dark-fundo-card)] md:p-5">
             <x-dashboard.title-form class="pb-3">
                 <x-slot:title>Novo Usuário</x-slot:title>
