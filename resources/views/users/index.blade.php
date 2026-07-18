@@ -28,7 +28,7 @@
                         @foreach ($users as $user) 
                              <tr>
                                  <td>{{ $user->id }} </td>
-                                 <td @class(['underline' => $user->is_master])>{{ $user->name }} </td>
+                                 <td @class(['font-extrabold' => $user->is_master])>{{ $user->name }} </td>
                                  <td>{{ $user->email }} </td>
                                  <td>
                                      <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="inline">

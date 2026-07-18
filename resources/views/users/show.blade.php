@@ -72,7 +72,7 @@
                                     <x-dashboard.float-btn 
                                     :rota="route('users.edit', ['user' => $user->id])"
                                         class="bg-green-600"
-                                        type="a">E</x-dashboard.float-btn>
+                                        type="a"><i class="fa-solid fa-pen-to-square"></i></x-dashboard.float-btn>
                                 @endif
                             @elsecan ('can-edit-default') 
                                 @if (! $user->hasPermission('admin') AND ! $user->hasPermission('super-admin')) 
