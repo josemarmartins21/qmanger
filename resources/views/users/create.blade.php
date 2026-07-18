@@ -7,7 +7,7 @@
 @section('content')
 <x-dashboard.alert />
     <section id="index-container">
-                <x-dashboard.content class="md:bg-white md:p-5">
+                <x-dashboard.content class="md:bg-white dark:sm:bg-[var(--dark-fundo-card)] sm:p-5">
             <x-dashboard.title-form class="pb-3">
                 <x-slot:title>Novo Usuário</x-slot:title>
                 <x-slot:disclaimer>
