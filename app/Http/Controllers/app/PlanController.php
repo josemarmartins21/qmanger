@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\plans\PlanRequest;
 use App\Http\Requests\plans\PlanUpdateRequest;
 use App\Models\Plan;
-use App\Observers\plans\LoggerObserver;
 use App\Services\plans\contracts\PlanInterface;
 use Exception;
 use LogicException;
@@ -76,8 +75,6 @@ class PlanController extends Controller
     public function destroy(Plan $plan)
     {
         try {
-            
-            $this->plan->addObservers(new LoggerObserver);
 
             $this->plan->delete($plan);
 

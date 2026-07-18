@@ -113,11 +113,8 @@ class ContactService implements ContactInterface
     public function delete(Contact $contact): void
     {
         try {
-           // $endereco = $contact->endereco;
             
             $contact->delete();
-
-           // $endereco->delete();
 
         } catch (LogicException) {
             throw new \Exception("Erro ao elimiar o contacto. Tente novamente!");
