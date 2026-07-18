@@ -10,6 +10,7 @@ use App\Services\join_contact\JoinAccountContactService;
 use Exception;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 use InvalidArgumentException;
 use LogicException;
 use Throwable;
@@ -62,8 +63,8 @@ class ContactService implements ContactInterface
            }
     
            $contact = Contact::create([
-                'first_name' => $data['first_name'], 
-                'last_name' => $data['last_name'],
+                'first_name' => Str::ucwords($data['first_name']), 
+                'last_name' => Str::ucwords($data['last_name']),
                 'email' => $data['email'], 
                 'phone' => $data['phone'],
                 'user_id' => Auth::user()->id,
@@ -83,6 +84,8 @@ class ContactService implements ContactInterface
 
             $this->isAvaliable('email', $data['email'], $contact);
             $this->isAvaliable('phone', $data['phone'], $contact);
+            $data['first_name'] = Str::ucwords($data['first_name']);
+            $data['last_name'] = Str::ucwords($data['last_name']);
             
             $contact->update($data);
             EnderecoFacade::update($contact->endereco, $data);

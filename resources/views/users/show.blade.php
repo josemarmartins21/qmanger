@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 
-@section('title', 'Perfil do Utilizador')
+@section('title', $user->name)
 @section('section', 'Usuários')
 
 @section('content') 
