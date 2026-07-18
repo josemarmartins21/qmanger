@@ -5,7 +5,6 @@ namespace App\Services\plans;
 use App\Helpers\StringHelper;
 use App\Models\Plan;
 use App\Models\Signature;
-use App\Observers\plans\contracts\PlanObserverInterface;
 use App\Services\plans\contracts\PlanInterface;
 use Carbon\Carbon;
 use Exception;
