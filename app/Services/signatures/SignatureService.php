@@ -7,7 +7,6 @@ use App\Exceptions\SignatureCantBeActivateException;
 use App\Models\Account;
 use App\Models\Plan;
 use App\Models\Signature;
-use App\Observers\signatures\contracts\SignatureObserver;
 use App\Services\signatures\contracts\SignatureInterface;
 use Carbon\Carbon;
 use Exception;
@@ -15,8 +14,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SignatureService implements SignatureInterface
 {
-    private $observers = [];
-
     public function getAll()
     {
         $attributes = [
@@ -151,18 +148,6 @@ class SignatureService implements SignatureInterface
             throw new Exception($e->getMessage());
         } catch (\Throwable $e) {
             throw new Exception($e->getMessage());
-        }
-    }
-
-    public function addObserver(SignatureObserver $observer): void
-    {
-        $this->observers[] = $observer;
-    }
-
-    public function notifyObservers(): void
-    {
-        foreach ($this->observers as $observer) {
-            $observer->updated();
         }
     }
 
