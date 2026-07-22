@@ -33,7 +33,7 @@ class SignatureAlertCompany extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('qostel@email.com', 'Jeffrey Way'),
+            from: new Address('qostelco@qostel.co.ao', 'QoS Tel'),
             subject: 'Fim da assinatura',
         );
     }

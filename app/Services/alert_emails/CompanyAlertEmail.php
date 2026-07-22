@@ -11,6 +11,6 @@ class CompanyAlertEmail implements AlertEmail
 {
     public function send(): void
     {
-        Mail::to('josemarburguel@example.com')->send(new SignatureAlertCompany(Signature::all()));
+        Mail::to('deodato.dalton@qostel.co.ao')->send(new SignatureAlertCompany(Signature::all()));
     }
 }
