@@ -132,7 +132,7 @@
                 @endif
             </div>
 
-            <p class="footer">Este aviso é enviado para manter você informado e agir antes que qualquer dívida seja gerada.</p>
+            <p class="footer" style="margin-top: 12px; font-size: 12px; color: #6b7280;">© {{ now()->year }} qostel. Todos os direitos reservados.</p>
         </div>
     </div>
 </body>
