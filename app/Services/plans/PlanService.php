@@ -5,7 +5,6 @@ namespace App\Services\plans;
 use App\Helpers\StringHelper;
 use App\Models\Plan;
 use App\Models\Signature;
-use App\Observers\plans\contracts\PlanObserverInterface;
 use App\Services\plans\contracts\PlanInterface;
 use Carbon\Carbon;
 use Exception;
@@ -17,9 +16,6 @@ use LogicException;
 
 class PlanService implements PlanInterface
 {
-    private $observers = [];
-    private $newData;
-    private $oldData;
 
     public function getAll(): LengthAwarePaginator
     {
@@ -48,9 +44,6 @@ class PlanService implements PlanInterface
                 'user_id' => Auth::user()->id,
             ]);
     
-            // $this->newData = $plan;
-           // $this->notifyObservers();
-
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
@@ -99,27 +92,10 @@ class PlanService implements PlanInterface
                 }
             }
 
-            $this->oldData = $plan;
-
-
             $plan->delete();
-
-            $this->notifyObservers();
 
         } catch (LogicException) {
             throw new LogicException('Não foi possível deletar o plano, tente novamente.');
-        }
-    }
-
-    public function addObservers(PlanObserverInterface $observer): void
-    {
-        $this->observers[] = $observer;
-    }
-
-    private function notifyObservers()
-    {
-        foreach ($this->observers as $observer) {
-            $observer->deleted($this->oldData);
         }
     }
 
