@@ -21,8 +21,5 @@ class PermissionSeeder extends Seeder
        Permission::factory(1)->create([
         'name' => 'default'
        ]);
-       Permission::factory(1)->create([
-        'name' => 'super-admin'
-       ]);
     }
 }

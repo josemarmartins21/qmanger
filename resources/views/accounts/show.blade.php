@@ -22,10 +22,10 @@
             {{ $account->name }}
         </x-dashboard.title-section>
         <ul class="text-zinc-200 text-[17px]">
-            <li>Nª {{ $account->number_account }}</li>
-            <li>Tipo de Conta: {{ ucwords($account->type) }}</li>
-            <li>Activa desde {{ Carbon::parse($account->activation_date)->format('d/m/Y') }}</li>
-            <li>Criada por {{ User::find($account->user_id)->name }} </li>
+            <li><strong>Nª:</strong> {{ $account->number_account }}</li>
+            <li><strong>Tipo de Conta:</strong> {{ ucwords($account->type) }}</li>
+            <li><strong>Activa desde:</strong> {{ Carbon::parse($account->activation_date)->format('d/m/Y') }}</li>
+            <li><strong>Criada por:</strong> {{ User::find($account->user_id)->name }} </li>
         </ul>
         <div @class(['bg-green-800' => $account->is_active, 'w-[120px] animate-pulse text-center p-3  rounded-xl mt-3','bg-red-800' => !$account->is_active,'font-bold' => true])>
             {{ $account->is_active ? 'Activa' : 'Desactivada' }}
@@ -33,9 +33,11 @@
         <hr class="my-6">
         <div>
             <h2 class="text-3xl font-semibold pb-2">Endereço</h2>
-            <p class="text-zinc-200 text-[17px]">Município {{ $municipio->name }}</p>
-            <p class="text-zinc-200 text-[17px]">Bairro {{ $bairro->name }}</p>
-            <p class="text-zinc-200 text-[17px]">Rua {{ $endereco->street }}</p>
+            <p class="text-zinc-200 text-[17px]"><strong>Município:</strong> {{ $municipio->name }}</p>
+            <p class="text-zinc-200 text-[17px]"><strong>Bairro:</strong> {{ $bairro->name }}</p>
+            <p class="text-zinc-200 text-[17px]"><strong>Rua:</strong> {{ $endereco->street }}</p>
+            <p class="text-zinc-200 text-[17px]"><strong>Latitude:</strong> {{ $endereco->latitude }}</p>
+            <p class="text-zinc-200 text-[17px]"><strong>Longitude:</strong> {{ $endereco->longitude }}</p>
             <x-dashboard.action-btn 
                 id="ver-indicacoes" 
                 class="ver-mais-accounts bg-blue-600 mt-3"

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable(['indicacoes', 'bairro_id', 'street'])]
+#[Fillable(['indicacoes', 'bairro_id', 'street', 'latitude', 'longitude'])]
 class Endereco extends Model
 {
     use HasFactory;

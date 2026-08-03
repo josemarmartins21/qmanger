@@ -29,6 +29,8 @@ class AccountRequest extends FormRequest
             'type' => 'required|string|'. Rule::in(['Empresarial', 'Residêncial']),
             'street' => 'required|string|max:80',
             'indicacoes' => 'nullable|min:20|string|max:300',
+            'latitude' => 'required_with:longitude|nullable|numeric|between:-180,180',
+            'longitude' => 'required_with:latitude|nullable|numeric|between:-90,90',
             'bairro_id' => 'required|integer|min:0|exists:bairros,id'
         ];
     }

@@ -17,9 +17,9 @@ class UserSeeder extends Seeder
     {
         $user = User::factory(1)->create([
             'name' => 'Josimar Martins',
-            'email' => 'josemar@email.com',
+            'email' => 'josemarburguel@gmail.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('password'),
+            'password' => Hash::make('teresa@2020'),
             'remember_token' => Str::random(10),
             'is_master' => true,
         ])->first();
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
 
         $user = User::factory(1)->create([
             'name' => 'Deodato Francisco',
-            'email' => 'deodato@email.pt',
+            'email' => 'deodato.dalton@qostel.co.ao',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),

@@ -6,6 +6,10 @@
 @section('section', 'Contas')
 
 @section('content')
+
+@php
+    $endereco = Endereco::find($account->endereco_id);
+@endphp
 <x-dashboard.alert />
     <section id="index-container">
        <x-dashboard.content class="md:bg-white md:dark:bg-[var(--dark-fundo-card)] md:p-5">
@@ -102,9 +106,29 @@
                         Rua
                     </x-dashboard.form-label>
 
-                    <x-dashboard.form-input type="text" value="{{ old('street', Endereco::find($account->endereco_id)->street) }}" name="street" id="street" placeholder="Rua *"></x-dashboard.form-input>
+                    <x-dashboard.form-input type="text" value="{{ old('street', $endereco->street) }}" name="street" id="street" placeholder="Rua *"></x-dashboard.form-input>
 
                     <x-input-error :messages="$errors->get('street')" class="mt-2" />
+                </x-dashboard.input-container>
+
+                                <x-dashboard.input-container>
+                    <x-dashboard.form-label for="latitude">
+                        Latitude
+                    </x-dashboard.form-label>
+
+                    <x-dashboard.form-input type="text" value="{{ old('latitude', $endereco->latitude) }}" name="latitude" id="latitude" placeholder="Latitude"></x-dashboard.form-input>
+
+                    <x-input-error :messages="$errors->get('latitude')" class="mt-2" />
+                </x-dashboard.input-container>
+                
+                <x-dashboard.input-container>
+                    <x-dashboard.form-label for="longitude">
+                        Longitude
+                    </x-dashboard.form-label>
+
+                    <x-dashboard.form-input type="text" value="{{ old('longitude', $endereco->longitude) }}" name="longitude" id="longitude" placeholder="Longitude"></x-dashboard.form-input>
+
+                    <x-input-error :messages="$errors->get('longitude')" class="mt-2" />
                 </x-dashboard.input-container>
                 
                 <x-dashboard.input-container>

@@ -27,6 +27,8 @@ class EnderecoFacade
             'indicacoes' => $data['indicacoes'],
             'bairro_id' => $data['bairro_id'],
             'street' => $data['street'],
+            'latitude' => $data['latitude'],
+            'longitude' => $data['longitude'],
         ]);
     }
     
@@ -37,6 +39,8 @@ class EnderecoFacade
                 'indicacoes' => $data['indicacoes'],
                 'bairro_id' => $data['bairro_id'],
                 'street' => $data['street'],
+                'latitude' => $data['latitude'],
+                'longitude' => $data['longitude'],
             ]);
 
         } catch (Throwable) {

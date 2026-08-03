@@ -29,6 +29,8 @@ class AccountUpdateRequest extends FormRequest
             'type' => 'required|string|'. Rule::in(['Empresarial', 'Residêncial']),
             'street' => 'required|string|max:80',
             'indicacoes' => 'nullable|min:20|string|max:300',
+            'latitude' => 'required_with:longitude|nullable|numeric|between:-180,180',
+            'longitude' => 'required_with:latitude|nullable|numeric|between:-90,90',
             'bairro_id' => 'required|integer|min:0|exists:bairros,id'
         ];
     }
@@ -42,6 +44,14 @@ class AccountUpdateRequest extends FormRequest
             'indicacoes' => 'indicações',
             'bairro_id' => 'bairro/município',
             'street' => 'rua',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'latitude.required_with' => 'A latitude é obrigatória quando a longitude está presente.',
+            'longitude.required_with' => 'A longitude é obrigatória quando a latitude está presente.',
         ];
     }
 }

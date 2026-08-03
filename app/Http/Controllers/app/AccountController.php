@@ -48,7 +48,7 @@ class AccountController extends Controller
             ->route('accounts.index')
             ->with('success', 'Conta criada com successo!');
         } catch (Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage()); 
+            return redirect()->back()->withInput()->with('error', $e->getMessage()); 
         }
     }
 

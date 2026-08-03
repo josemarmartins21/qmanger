@@ -38,13 +38,13 @@
                         <option value="" selected>Selecione o tipo de conta</option>
                         <option 
                             value="Residêncial" 
-                            @selected(old('type') == 'residêncial' )
+                            @selected(old('type') == 'Residêncial' )
                         >
                             Residêncial
                         </option>
                         <option 
                             value="Empresarial" 
-                            @selected(old('type') == 'empresarial' )
+                            @selected(old('type') == 'Empresarial')
                         >
                             Empresarial
                     </option>
@@ -100,6 +100,26 @@
                     <x-input-error :messages="$errors->get('street')" class="mt-2" />
                 </x-dashboard.input-container>
                 
+                <x-dashboard.input-container>
+                    <x-dashboard.form-label for="latitude">
+                        Latitude
+                    </x-dashboard.form-label>
+
+                    <x-dashboard.form-input type="text" value="{{ old('latitude') }}" name="latitude" id="latitude" placeholder="Latitude"></x-dashboard.form-input>
+
+                    <x-input-error :messages="$errors->get('latitude')" class="mt-2" />
+                </x-dashboard.input-container>
+                
+                <x-dashboard.input-container>
+                    <x-dashboard.form-label for="longitude">
+                        Longitude
+                    </x-dashboard.form-label>
+
+                    <x-dashboard.form-input type="text" value="{{ old('longitude') }}" name="longitude" id="longitude" placeholder="Longitude"></x-dashboard.form-input>
+
+                    <x-input-error :messages="$errors->get('longitude')" class="mt-2" />
+                </x-dashboard.input-container>
+
                 <x-dashboard.input-container>
                     <x-dashboard.form-label for="indicacoes">
                         Indicacoes
