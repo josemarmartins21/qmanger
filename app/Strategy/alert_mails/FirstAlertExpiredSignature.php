@@ -23,7 +23,7 @@ class FirstAlertExpiredSignature implements AlertExpiredSignature
         
         foreach ($this->signature as $signature) {
             if (Carbon::today()->diffInDays($signature->end_date, true) == 5 AND $signature->status) {
-                Mail::to('deodato@email,com')->send(new FirstSignatureAlertCompany($this->signature));
+                Mail::to('deodato.dalton@qostel.co.ao')->send(new FirstSignatureAlertCompany($this->signature));
                 return;
             }
             }
