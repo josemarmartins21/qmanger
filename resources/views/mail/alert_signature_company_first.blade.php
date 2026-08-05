@@ -108,33 +108,24 @@
             <p class="subtitle">Como colaborador responsável, você recebe este e-mail para acompanhar assinaturas próximas do vencimento e evitar possíveis valores em aberto.</p>
 
             <div class="notice">
-                @php $hasExpiring = false; @endphp
-                @foreach ($signatures as $signature)
-                    @if (Carbon::today()->diffInDays($signature->end_date) <= 5)
-                        @php $hasExpiring = true; @endphp
-                    @endif
-                @endforeach
-
-                @if ($hasExpiring)
-                    <p><strong>Resumo rápido:</strong> as seguintes assinaturas expiram em até 5 dias e podem gerar cobranças se não forem renovadas.</p>
-                    <ul class="list">
-                        @foreach ($signatures as $signature)
-                            @if (Carbon::today()->diffInDays($signature->end_date) <= 5 AND $signature->status)
-                                @php($dias = Carbon::today()->diffInDays($signature->end_date,true))
-                                    
-                                <li class="list-item">
-                                    <p class="item-title">{{ Account::find($signature->account_id)?->name ?? 'Conta desconhecida' }}</p>
-                                    <p class="item-meta">{{ $dias > 1 ? 'Faltam ' . $dias . ' dias' : 'Falta 1 dia' }} para expirar a assinatura e potencialmente gerar uma dívida.</p>
-                                </li>
-                            @endif
-                        @endforeach
-                    </ul>
-                @else
-                    <p style="margin: 0;">Nenhuma assinatura expira nos próximos 5 dias. O fluxo de pagamentos está em dia no momento.</p>
-                @endif
+                <p><strong>Resumo rápido:</strong> as seguintes assinaturas expiram em até 5 dias e podem gerar cobranças se não forem renovadas.</p>
+                <ul class="list">
+                    @foreach ($signatures as $signature)
+                        @if (
+                        Carbon::today()->diffInDays($signature->end_date, true) == 5 
+                        AND $signature->status
+                        
+                    )
+                            <li class="list-item">
+                                <p class="item-title">{{ Account::find($signature->account_id)?->name ?? 'Conta desconhecida' }}</p>
+                                <p class="item-meta">Faltam 5 dias para expirar a assinatura e potencialmente gerar uma dívida.</p>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
             </div>
 
-            <p class="footer" style="text-align: center; margin-top: 12px; font-size: 12px; color: #6b7280;">© {{ now()->year }} qostel. Todos os direitos reservados.</p>
+            <p class="footer" style="text-align: center; margin-top: 12px; font-size: 12px; color: #6b7280;">© {{ date('Y') }} qostel. Todos os direitos reservados.</p>
         </div>
     </div>
 </body>

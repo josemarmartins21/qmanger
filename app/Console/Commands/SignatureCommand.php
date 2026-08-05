@@ -19,11 +19,6 @@ class SignatureCommand extends Command
      */
     public function handle()
     {
-        foreach (Signature::all() as $signature) {
-            if (Carbon::today()->diffInDays($signature->end_date) <= 5) {
-                AlertEmailFactory::create('company')->send();
-            }
-        }
-        
+        AlertEmailFactory::create('company')->send();
     }
 }

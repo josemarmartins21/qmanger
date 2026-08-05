@@ -13,7 +13,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Address;
 
 
-class SignatureAlertCompany extends Mailable
+class LastSignatureAlertCompany extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -21,7 +21,7 @@ class SignatureAlertCompany extends Mailable
      * Create a new message instance.
      */
     public function __construct(
-        private Collection $signatures
+        private Collection $signatures,
     )
     {
         //
@@ -44,7 +44,7 @@ class SignatureAlertCompany extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.alert_signature_company',
+            view: 'mail.alert_signature_company_expired',
             with: [
                 'signatures' => $this->signatures,
             ],
