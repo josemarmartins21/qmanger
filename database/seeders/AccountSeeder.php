@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Account;
 use App\Models\Endereco;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,6 +14,6 @@ class AccountSeeder extends Seeder
      */
     public function run(): void
     {
-        Endereco::factory(10)->hasAccount(2)->create();
+        Account::factory(10)->create();
     }
 }

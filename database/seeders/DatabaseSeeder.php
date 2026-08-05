@@ -17,14 +17,14 @@ class DatabaseSeeder extends Seeder
         $this->call([
            // PermissionSeeder::class,
            PermissionSeeder::class,
+           UserSeeder::class,
            MunicipioSeeder::class,
-           // BairroSeeder::class,
-           // EnderecoSeeder::class,
+          // BairroSeeder::class,
+           EnderecoSeeder::class,
            // PlanSeeder::class,
-           // AccountSeeder::class,
+           AccountSeeder::class,
            // ContactSeeder::class,
            // SignatureSeeder::class,
-           UserSeeder::class,
         ]);
 
         

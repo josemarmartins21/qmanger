@@ -6,15 +6,12 @@ var menu = document.getElementById('menu')
 var sideBar = document.getElementById('side-bar')
 var janela = window
 var corpo = document.getElementById('corpo')
-var menuIcon = document.getElementById('menu-icon')
-var iconeMenu = document.getElementById('icone-menu')
 menu.addEventListener('click', mostrarMenu)
 
 function mostrarMenu() {
     if (sideBar.classList.contains('hidden')) {
         sideBar.classList.toggle('hidden')
         corpo.classList.add('overflow-hidden')
-
     } else {
         sideBar.classList.toggle('hidden')
         corpo.classList.remove('overflow-hidden')
