@@ -9,8 +9,4 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Schedule::call(function () {
-    Log::info('Cron executado!');
-})->everyMinute();
-
 Schedule::command('app:signature-command')->everyMinute();
